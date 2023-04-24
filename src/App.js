@@ -1,14 +1,17 @@
-import Carousel from "./components/Carousel";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import { Route, Router, Routes } from "react-router-dom";
+
+import Navbar from "./components/navbar/Navbar";
+import Home from "./components/home/home";
+
 
 
 
 function App() {
   return <>
   <Navbar/>
-  <Carousel/>
-  <Footer/>
+  <Routes>
+    <Route path="/" element={<Home/>}/>
+  </Routes>
   </>
   
 }
