@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
 
     return <>
@@ -34,7 +36,8 @@ function Navbar() {
                                 <ul className="dropdown-menu ">
                                     <li><a className="dropdown-item" href="#">Customer</a></li>
                                     <li><a className="dropdown-item" href="#">Shopkeeper</a></li>
-                                    <li><a className="dropdown-item" href="#">Mechanic</a></li>
+                                    <li><Link to="logIn" className="dropdown-item">Mechanic</Link></li>
+                                    
                                     <li><a className="dropdown-item" href="#">Admin</a></li>
                                 </ul>
                             </li>
