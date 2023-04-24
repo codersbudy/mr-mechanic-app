@@ -16,32 +16,29 @@ function Footer() {
                     <div>Contact Us</div>
                     <div>More</div>
                 </div>
-
-
-
+                
                 <div className="col-sm-12 col-md-3 col-lg-3 text-center mb-5 ">
                     <div className="fhead">More Info</div>
-                    <div>Terms & Conditions</div>
+                    <div>Terms & condition</div>
                     <div>Privacy Policy</div>
                     <div>Terms of Use</div>
 
                 </div>
-                <div className="col-sm-12 col-md-3 col-lg-3 text-center mb-5">
-                    <div className="fhead">Follow Us</div>
+             <div className="col-sm-12 col-md-3 col-lg-3 text-center mb-5">
+                   <div className="fhead">Follow Us</div>
                     <div>
                         <img src="/images/twitter.svg" alt="twitter" />
                         <img src="/images/facebook.svg" alt="facebook" />
                         <img src="/images/instagram.svg" alt="insta" />
                         <img src="/images/youtube.svg" alt="youtube" />
                     </div>
-                    <div className="btn btn-info fbtn">chat</div>
-
+                   <div className="btn btn-info fbtn">chat</div>
                 </div>
             </div>
-
+            
         </div>
-        <div className="container-fluid border-bottom  Copyright">
-            Copyright © 2023 Mr Mechanic | Designed by Coders-Hub
+        <div className="container-fluidborder-bottom  Copyright">
+            Copyright © 2023 Mr Mechanic | Designed by Coders-hub
         </div>
     </>
 }

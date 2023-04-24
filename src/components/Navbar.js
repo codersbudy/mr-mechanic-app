@@ -1,5 +1,5 @@
-function Navbar() {
-
+function Navbar() {    
+    
     return <>
         <div className="container-fluid border-bottom">
             <nav className="navbar navbar-expand-lg nav ">
@@ -10,7 +10,7 @@ function Navbar() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse navRight" id="navbarNavDropdown">
-                        <ul className="navbar-nav">
+                      <ul className="navbar-nav">
                             <li className="nav-item ">
                                 <a className="nav-link navOption" aria-current="page" href="#">Home</a>
                             </li>
@@ -25,7 +25,6 @@ function Navbar() {
                                     aria-hidden="true"></i> <span id="city">Select City</span></a>
                             </li>
 
-
                             <li className="nav-item dropdown ">
                                 <a className="nav-link navOption  text-light btn btn-info loginBtn" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -33,8 +32,8 @@ function Navbar() {
                                 </a>
                                 <ul className="dropdown-menu ">
                                     <li><a className="dropdown-item" href="#">Customer</a></li>
-                                    <li><a className="dropdown-item" href="#">Shopkeeper</a></li>
-                                    <li><a className="dropdown-item" href="#">Mechanic</a></li>
+                                    <li><a className="dropdown-item" href="#">Shopekeeper</a></li>
+                                    <li><a className="dropdown-item" href="#">Mechanic </a></li>
                                     <li><a className="dropdown-item" href="#">Admin</a></li>
                                 </ul>
                             </li>

@@ -1,6 +1,5 @@
 function Carousel() {
-
-    return <>
+return <>
         <div id="carouselExampleDark" className="carousel carousel-dark slide">
             <div className="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -29,14 +28,13 @@ function Carousel() {
                     <div className="carousel-caption d-none d-md-block">
                         <h5>Car Mechanic Near Me 24 Hours.</h5>
                         <p>Cars that are well taken care of usually outperform and outlast those that are not, questions like, "Which is the best car mechanic near me?" strikes the head. Don't hesitate to bring it to Mr. Mechanic.</p>
-
                     </div>
-
                 </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Previous</span>
+                <span className="visually-hidden">Previous
+                </span>
             </button>
             <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
@@ -45,5 +43,6 @@ function Carousel() {
         </div>
     </>
 }
+
 
 export default Carousel;
