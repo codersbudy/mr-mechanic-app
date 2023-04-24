@@ -1,9 +1,30 @@
 import { useState } from "react";
 import "./logIn.css"
+import { ToastContainer, toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setCustomer } from "../../redux-config/customerSlice";
+import axios from "axios";
+import api from "../../WebApi/api";
+// import api from '../../../WebApi/api';
 function Navbar() {
 
-
+   const [contact,setContact]=useState("");
+   const [password,setPassword]=useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleSubmit=async (event)=>{
+       try{
+        event.preventDefault();
+        const response = await axios.post(api.CUSTOMER_SIGNIN,{contact,password});
+        dispatch(setCustomer(response.data.customer));
+       }
+       catch(err){
+        toast.error("oops something went wrong");
+       }
+    }
     return <>
+    <ToastContainer/>
         <div className="container-fluid border-bottom">
             <nav className="navbar navbar-expand-lg nav ">
                 <div className="container-fluid a">
@@ -77,6 +98,7 @@ function Navbar() {
                             aria-label="Close"></button>     
                            
                         </div>
+                        <form onSubmit={handleSubmit}>
                         <div className="form-group" style={{ marginTop: "2vw" }}>
                             <div style={{ marginLeft: "1.5vw" }}>
                                 <label className="form-label">Enter your mobile number</label>
@@ -88,6 +110,7 @@ function Navbar() {
                                         placeholder={+91}
                                         minLength={10}
                                         maxLength={10}
+                                        onChange={(event)=>setContact(event.target.value)}
                                     />
                                     <div style={{ height: "1vw" }}>
                                         <small id="invalid" style={{ color: "red" }} />
@@ -98,6 +121,7 @@ function Navbar() {
                                 </div>
                                 <div style={{ fontSize: 16, marginTop: 15 }}>
                                     <input
+                                         onChange={(event)=>setPassword(event.target.value)}
                                         type="password"
                                         style={{ width: "99%" }}
                                         id="input"
@@ -131,12 +155,13 @@ function Navbar() {
                                     aria-disabled="true"
                                 >
                                 
-                                       <button className="btn" id="signinBtn">
+                                       <button type="submit" className="btn" id="signinBtn">
                                         CONTINUE
                                     </button>
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
