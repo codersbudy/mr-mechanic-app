@@ -1,0 +1,104 @@
+
+.modal-ku {
+    width: 80%;
+    margin: auto;
+}
+
+#closebutoon {
+    text-align: end;
+}
+
+.close {
+    display: flex;
+    justify-content: right;
+}
+
+#firstside {
+    background-color: #42C8B7;
+    height: auto;
+}
+
+#container {
+    box-shadow: 2px solid black;
+}
+
+#h2 {
+    color: white;
+    font-size: 2rem;
+
+}
+
+label {
+    color: #707070;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#input {
+    border: none;
+    border-bottom: 0.5px solid black;
+    border-bottom-width: 100%;
+    width: 99%;
+    outline: none;
+}
+
+#input:hover {
+    border-bottom: 2px solid #42C8B7;
+}
+
+input::placeholder {
+    font-size: 17px;
+}
+
+#forgotpassword {
+    text-align: justify;
+    /* For Edge */
+    text-align-last: right;
+    text-decoration: none;
+}
+
+.link {
+    text-decoration: none;
+    display: flex;
+    justify-content: right;
+    /* padding-right: 20px; */
+}
+
+#checkboxcontaint {
+    padding-left: 7px;
+    font-size: 14px;
+}
+
+#termcondition {
+    color: #42C8B7;
+    font-size: 14px;
+}
+
+input[type=checkbox] {
+    padding-top: 20px;
+    accent-color: #42c8b7;
+    /* cursor: inherit; */
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+
+}
+
+
+
+#signinBtn {
+    width: 99%;
+    height: 42px;
+    font-weight: 100;
+    font-size: 20px;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 22px;
+    text-size-adjust: 100%;
+    cursor: pointer;
+    text-transform: capitalize;
+    font-family: Montserrat;
+    padding-bottom: 2vw;
+    background-color: #42C8B7;
+    color: white;
+}
