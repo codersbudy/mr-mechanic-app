@@ -95,7 +95,9 @@ function Navbar() {
                                 <a className="nav-link navOption" href="#">About</a>
                             </li>
                             <li className="nav-item ">
-                                <a className="nav-link navOption dropdown-toggle" href="#"> <i className="fa fa-map-marker"
+                                <a  data-bs-toggle="modal"
+                                    href="#exampleModalToggle"
+                                    role="button" className="nav-link navOption dropdown-toggle" > <i className="fa fa-map-marker"
                                     aria-hidden="true"></i> <span id="city">Select City</span></a>
                             </li>
 
@@ -107,7 +109,7 @@ function Navbar() {
                                 </a>
                                 <ul className="dropdown-menu ">
                                     <li><a className="dropdown-item" data-bs-toggle="modal" data-bs-target="#customerModel">Customer</a></li>
-                                    <li><a className="dropdown-item"  >Shopkeeper</a></li>
+                                    <li><a className="dropdown-item">Shopkeeper</a></li>
                                     <li><a className="dropdown-item" href="#">Mechanic</a></li>
                                     <li><a className="dropdown-item" href="#">Admin</a></li>
                                 </ul>
@@ -289,8 +291,7 @@ function Navbar() {
                                         
                                             {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
                                         </div>
-                             </div>
-                          
+                             </div>                          
                             <div className="placeholderdiv">
                                 <input
                                     className="place"

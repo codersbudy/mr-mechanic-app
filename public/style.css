@@ -1,3 +1,13 @@
+
+div img{
+    height: 80px;
+
+}
+
+.bg-c{
+   background-color: #3CB0A2;
+}
+
 .logo {
     height: 55px;
 }
@@ -20,6 +30,10 @@
 .fbtn:hover,
 .loginBtn:hover {
     background-color: #3CB0A2;
+}
+.modal-size{
+    height: 80%;
+    width: auto;
 }
 
 .btn-check:checked+.btn,
@@ -122,7 +136,6 @@ margin-top: 15px;
 }   
 h5{
     
-    font-size: 40px;
     color: #42C8B7;
     text-shadow: 1px 1px 1px  black;
     margin-bottom: 12px;
