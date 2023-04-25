@@ -7,7 +7,6 @@ const slice=createSlice({
     },
     reducers:{
         setCustomer:(state,action)=>{
-            // window.alert(action.payload.customerName);
             state.currentCustomer=action.payload;
         }
     }
