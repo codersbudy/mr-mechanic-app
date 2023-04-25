@@ -55,6 +55,14 @@ input::placeholder {
     text-decoration: none;
     display: flex;
     justify-content: right;
+
+
+}
+.SignUpLink{
+    padding-left: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    
 }
 
 #checkboxcontaint {

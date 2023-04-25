@@ -1,9 +1,83 @@
 import { useState } from "react";
+
 import "./logIn.css";
+
+// import ".../p"
+import { ToastContainer, toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+import { setCustomer } from "../../redux-config/customerSlice";
+import { validPassword, validContact,validName } from "../Regex/regex";
+import axios from "axios";
+import api from "../../WebApi/api";
+import {  useNavigate } from "react-router-dom";
+
 function Navbar() {
+    const [contact, setContact] = useState("");
+    const [password, setPassword] = useState("");
+    const [customerName,setCustomerName]=useState("");
+    const [contErr, setContErr] = useState(false);
+    const [passErr, setPassErr] = useState(false);
+    const [nameErr,setNameErr]=useState(false);
+    
+    //    createPortal
+   
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    function contactHendler(e) {
+         if (!(validContact.test(e.target.value)))
+            setContErr(true);
+        else
+            setContErr(false)
+    }
+
+    function passwordHendler(e) {
+        if (!(validPassword.test(e.target.value)))
+            setPassErr(true);
+        else
+            setPassErr(false);
+    }
+
+    function nameHendler(e){
+        if(validName.test(e.target.value))
+          setNameErr(false);
+        else
+          setNameErr(true);
+    }
 
 
+    const handleSubmit = async (event) => {
+
+        try {
+            event.preventDefault();
+            const response = await axios.post(api.CUSTOMER_SIGNIN, { contact, password });
+            dispatch(setCustomer(response.data.customer));
+            navigate("/home");
+
+        }
+        catch (err) {
+            toast.error("oops something went wrong");
+        }
+    }
+
+    const onSignUpHendler=async(event)=>{
+        try{
+            window.alert(response.data.customerData);
+            event.preventDefault();
+            let response=await axios.post(api.CUSTOMER_SIGNUP,{contact,password,customerName})
+            dispatch(setCustomer(response.data.customerData));
+            navigate("/home");
+           
+        }
+        catch(err){
+            if(err.response.status == 400)
+            toast.error("Bad request : 400");
+         else if(err.response.status == 500)
+            toast.error("Server Error : 500"); 
+        }
+    }
     return <>
+        <ToastContainer />
         <div className="container-fluid border-bottom">
             <nav className="navbar navbar-expand-lg nav ">
                 <div className="container-fluid a">
@@ -48,10 +122,13 @@ function Navbar() {
         </div>
 
 
+
         <div class="modal fade" id="customerModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div
                 className="modal-dialog modal-lg modal-content modal1"
+
+
             >
                 <div className="row r1 p-0">
                     <div className="col-md-4 col-sm-12 " id="firstside">
@@ -72,20 +149,22 @@ function Navbar() {
                         <div className="close">
                             <button type="button" id="closebutoon" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
+
                         </div>
+                         <form onSubmit={handleSubmit}>
                         <div className="" style={{ marginTop: "2vw" }}>
                             <div style={{ marginLeft: "1.5vw" }}>
 
                                 <div className="div1">
 
-                                    <input className="input1" type="text" required="" id="input" placeholder="+91" minLength={10} maxLength={10} />
+                                    <input className="input1" type="text" required="" id="input" placeholder="+91" minLength={10} maxLength={10} onChange={(event) => setContact(event.target.value)} onKeyUp={contactHendler} />
                                     <label className="form-label label1">Enter your mobile number</label>
                                     <small id="invalidNum" style={{ color: "red" }} />
 
                                 </div>
                                 <div className="div1 mt-3">
 
-                                    <input className="input1" type="text" required="" id="password" placeholder="Enter Password" minLength={10} maxLength={10} />
+                                    <input className="input1" type="password" required="" id="password" placeholder="Enter Password"  onChange={(event) => setPassword(event.target.value)} onKeyUp={passwordHendler} minLength={8} maxLength={16} />
                                     <label className="form-label label1">Enter your mobile number</label>
                                     <small id="invalidPass" style={{ color: "red" }} />
 
@@ -103,17 +182,123 @@ function Navbar() {
                                     <span id="checkboxcontaint">I agree to the <a href=""  class="linkHover" id="termcondition">Term and condition.</a></span>
 
                                 </div>
-                                <div style={{ fontSize: 16, marginTop: "1.5vw" }} aria-disabled="true" >
-                                    <button className="btn p-2" id="signinBtn"> Login </button>
+                                <div style={{ fontSize: 16, marginTop: "1.5vw" }} >
+                                    <button  type="submit" className="btn p-2" id="signinBtn" > Login </button>
+                                    
+              
                                 </div>
                                 <div class="signup">Don't have an account? <span><a  className="signuplink linkHover" href="">Sign up</a></span></div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
 
         </div>
+
+
+
+    /*    <div className="modal fade" id="customerSignUpModel"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabIndex={-1}
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+        >
+            <div
+                className="modal-dialog modal-lg modal-content rounded-0"
+                style={{ borderRadius: "100%" }}
+            >
+                <div className="row">
+                    <div className="col-md-4 col-sm-12 " id="firstside">
+                        <div style={{ marginTop: "2vw" }}>
+                            <div className="container-fluid" id="h2" style={{textAlign:"center"}}>
+                                    Signup
+                            </div>
+                        </div>
+                        <div style={{ marginTop: 200 }}>
+                            <img
+                                src="./images/LoginImage.svg"
+                                className="img-fluid"
+                                alt="Responsive image"
+                            />
+                        </div>
+                    </div>
+                    <div className="col-md-8 col-sm-12" style={{ paddingRight: 25 }}>
+                        <div className="close">
+                            <button
+                                type="button"
+                                id="closebutoon"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            />
+                        </div>
+                        <form onSubmit={onSignUpHendler} style={{ padding: "3vw" }}>
+                            <div className="placeholderdiv">
+                                <input
+                                    className="place"
+                                    type="text"
+                                    id="customerName"
+                                    placeholder="Enter name"
+                                    onChange={(event) => setCustomerName(event.target.value)}
+                                    onKeyUp={nameHendler}
+                                />
+                                <div style={{ height: "1vw" }}>
+                                        
+                                        {nameErr ? <small style={{ color: "red" }} >Invalid customer name</small> : ""}
+                                    </div>
+                            </div>
+                            <div className="placeholderdiv">
+                                        <input
+                                            className="place"
+                                            type="text"
+                                            required=""
+                                            id="customerContact"
+                                            placeholder="Enter contact number"
+                                            minLength={10}
+                                            maxLength={10}
+                                            onChange={(event) => setContact(event.target.value)}
+                                            // onChange={(event) => setContact(event.target.value)}
+                                            onKeyUp={contactHendler}
+                                        />
+                                        <div style={{ height: "1vw" }}>
+                                        
+                                            {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
+                                        </div>
+                             </div>
+                          
+                            <div className="placeholderdiv">
+                                <input
+                                    className="place"
+                                    type="password"
+                                    id="customerPassword"
+                                    placeholder="Enter password"
+                                    onKeyUp={passwordHendler}
+                                    minLength={8}
+                                    maxLength={16}
+                                    onChange={(event) => setPassword(event.target.value)}
+                                />
+                                <div style={{ height: "1vw" }}>
+                                        
+                                        {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""}
+                                    </div>
+                            </div>
+                            <div>
+                                <a href="" className="link">
+                                    <a data-bs-toggle="modal" data-bs-target="#customerModel">Already have an account ?</a>
+                                </a>
+                            </div>
+                            <div>
+                                <button type="submit" className="btn btn" id="signUpBtn">
+                                    Continue
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> */
 
     </>
 }
