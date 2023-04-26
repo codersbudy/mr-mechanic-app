@@ -16,11 +16,15 @@ function VerifyPassword() {
     const [pinErr,setPinErr]=useState(false);
     const{currentCustomer}=useSelector(state=>state.customer)
    const  handleSubmit= async(event)=>{
+    window.alert("hellp")
      try{
         let tempraryPassword=pin1+""+pin2+""+pin3+""+pin4+""+pin5+""+pin6;
         event.preventDefault();
         let contact=currentCustomer.contact;
+        window.alert(contact);
+        window.alert(tempraryPassword);
         const  response=await axios.post(api.CUSTOMER_VERIFY_OTP,{contact,tempraryPassword});
+        window.alert("hii")
         navigate("/setPassword")
     }
     catch(err){

@@ -27,10 +27,14 @@ function SetPassword() {
 
     }
     const hendleSubmit = async (event) => {
+        
         try {
             event.preventDefault();
             let contact = currentCustomer.contact
+            window.alert("before api");
             let response = await axios.post(api.CUSTOMER_SET_PASSWORD, { contact, password })
+            
+            window.alert("after api");
             navigate("/home");
         }
         catch (err) {
@@ -102,7 +106,7 @@ function SetPassword() {
 
                                         <Link to='/verifyOtp' id='signin'><i class="fa fa-arrow-left icon" aria-hidden="true"></i>Back</Link>
                                         <div id='buttonDiv'>
-                                            <button type="submit" className="btn" id="signinBtn" >
+                                            <button type="submit" className="btn" id="signinBtn">
                                                 SET PASSWORD
                                             </button>
                                         </div>

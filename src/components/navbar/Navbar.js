@@ -16,10 +16,12 @@ import { Link, useNavigate } from "react-router-dom";
 function Navbar() {
     const [contact, setContact] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [customerName, setCustomerName] = useState("");
     const [contErr, setContErr] = useState(false);
     const [passErr, setPassErr] = useState(false);
     const [nameErr, setNameErr] = useState(false);
+    const [confirmpassErr, setConfirmPassErr] = useState(false);
 
 
     const dispatch = useDispatch();
@@ -37,7 +39,13 @@ function Navbar() {
         else
             setPassErr(false);
     }
+    function confirmPasswordHendler(e) {
+        if (!(password == e.target.value))
+            setConfirmPassErr(true);
+        else
+            setConfirmPassErr(false);
 
+    }
     function nameHendler(e) {
         if (validName.test(e.target.value))
             setNameErr(false);
@@ -178,20 +186,20 @@ function Navbar() {
 
                                                 <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10} onChange={(event) => setContact(event.target.value)} onKeyUp={contactHendler} />
                                                 <label className="form-label label1">Enter Mobile Number</label>
-                                                {passErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
+                                                {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
 
                                             </div>
                                             <div className="div1 mt-3">
 
                                                 <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter Password" onChange={(event) => setPassword(event.target.value)} onKeyUp={passwordHendler} minLength={8} maxLength={16} />
                                                 <label className="form-label label1">Enter Password</label>
-                                                <small id="invalidPass" style={{ color: "red" }} />
+                                                {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""}
 
                                             </div>
                                             <div style={{ marginTop: 15 }}>
-                                                <a href="" className="link">
-                                                    <small className="fp linkHover">forgot Password?</small>
-                                                </a>
+                                                <Link to='/forgotPassword' className="link">
+                                                    <small className="fp linkHover" data-bs-dismiss="modal">forgot Password?</small>
+                                                </Link>
                                             </div>
 
                                             <div style={{ fontSize: 16, marginTop: "8vw" }}>
@@ -237,34 +245,33 @@ function Navbar() {
                                 <form onSubmit={onSignUpHendler}>
                                     <div className="" style={{ marginTop: "2vw" }}>
                                         <div style={{ marginLeft: "1.5vw" }}>
-
                                             <div className="div1 ">
+                                                <input className="input1" type="text" name="username" required="" id="password" placeholder="Ex: John" onChange={(event) => setCustomerName(event.target.value)} onKeyUp={nameHendler}/>
+                                                <label className="form-label label1">Customer name</label>
+                                                {nameErr ? <small style={{ color: "red" }} >Invalid customer name</small> : ""}
 
-                                                <input className="input1" type="text" name="username" required="" id="password" placeholder="Ex: John" onChange={(event) => setPassword(event.target.value)} onKeyUp={passwordHendler} minLength={8} maxLength={16}  onChange={(event) => setCustomerName(event.target.value)} onKeyUp={nameHendler} />
-                                                <label className="form-label label1">Username</label>
-                                                <small id="invalidPass" style={{ color: "red" }} />
 
                                             </div>
 
-                                            <div className="div1 mt-2">
+                                            <div className="div1 mt-2" >
 
                                                 <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10} onChange={(event) => setContact(event.target.value)}  onKeyUp={contactHendler} />
                                                 <label className="form-label label1">Mobile Number</label>
-                                                <small id="invalidNum" style={{ color: "red" }} />
+                                                {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
 
                                             </div>
                                             <div className="div1 mt-2">
 
                                                 <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter password" onKeyUp={passwordHendler} onChange={(event) => setPassword(event.target.value)} minLength={8} maxLength={16} />
                                                 <label className="form-label label1">Password</label>
-                                                <small id="invalidPass" style={{ color: "red" }} />
+                                                {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""}
 
                                             </div>
                                             <div className="div1 mt-2">
 
-                                                <input className="input1" type="password" name="confirmPassword" required="" id="password" placeholder="Enter Confirm Password" onChange={(event) => setPassword(event.target.value)} onKeyUp={passwordHendler} minLength={8} maxLength={16} />
+                                                <input className="input1" type="password" name="confirmPassword" required="" id="password" placeholder="Enter Confirm Password" onKeyUp={confirmPasswordHendler} minLength={8} maxLength={16} />
                                                 <label className="form-label label1">Confirm Password</label>
-                                                <small id="invalidPass" style={{ color: "red" }} />
+                                                {confirmpassErr ? <small style={{ color: "red" }} >Password not match</small> : ""}
 
                                             </div>
 
@@ -289,7 +296,6 @@ function Navbar() {
             </div>
 
         </div>
-<<<<<<< HEAD
         <div className="modal fade" id="customerSignUpModel"
             data-bs-backdrop="static"
             data-bs-keyboard="false"
@@ -390,13 +396,6 @@ function Navbar() {
                 </div>
             </div>
         </div>
-=======
-
-
-
-    
-
->>>>>>> 879d8e79fa9c723316d040b52af92a534fcde025
     </>
 }
 
