@@ -288,7 +288,6 @@ function Navbar() {
                                             minLength={10}
                                             maxLength={10}
                                             onChange={(event) => setContact(event.target.value)}
-                                            // onChange={(event) => setContact(event.target.value)}
                                             onKeyUp={contactHendler}
                                         />
                                         <div style={{ height: "1vw" }}>

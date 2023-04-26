@@ -5,6 +5,7 @@ import { validPassword } from '../../Regex/regex';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import api from '../../../WebApi/api';
+import { toast } from 'react-toastify';
 function SetPassword() {
     const navigate = useNavigate();
     const [passErr, setPassErr] = useState(false);
