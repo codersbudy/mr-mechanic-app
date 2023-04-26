@@ -8,7 +8,7 @@ import { setCustomer } from "../../redux-config/customerSlice";
 import { validPassword, validContact,validName } from "../Regex/regex";
 import axios from "axios";
 import api from "../../WebApi/api";
-import {  useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 function Navbar() {
     const [contact, setContact] = useState("");
     const [password, setPassword] = useState("");
@@ -72,6 +72,12 @@ function Navbar() {
          else if(err.response.status == 500)
             toast.error("Server Error : 500"); 
         }
+    }
+
+    function delteModel(){
+        window.alert("delete")
+        let customerModal=document.getElementById("customerModel");
+        // customerModal.remove();
     }
     return <>
         <ToastContainer />
@@ -183,7 +189,7 @@ function Navbar() {
                                     <div style={{ fontSize: 16, marginTop: 15 }}>
                                         <a href="" className="link">
                                             {" "}
-                                            <small>forgot Password?</small>
+                                            <Link className="SignUpLink" to="/forgotPassword" > <span  data-bs-dismiss="modal"  > forgot Password? </span></Link>
                                             <a className="SignUpLink" data-bs-toggle="modal" data-bs-target="#customerSignUpModel">Sign Up?</a>
                                         </a>
                                     </div>
@@ -193,7 +199,7 @@ function Navbar() {
                                             <input
                                                 type="checkbox"
                                                 id="checkbox"
-                                                onclick="termcondition()"
+                                                // onclick="termcondition()"
                                             />
                                         </span>
                                         <span id="checkboxcontaint">I agree to the</span>
@@ -205,7 +211,7 @@ function Navbar() {
                                     </div>
                                     <div
                                         style={{ fontSize: 16, marginTop: "3vw" }}
-                                        aria-disabled="true"
+                                      
                                     >
 
                                         <button type="submit" className="btn" data-bs-dismiss="modal"
@@ -313,7 +319,7 @@ function Navbar() {
                                 </a>
                             </div>
                             <div>
-                                <button type="submit" className="btn btn" id="signUpBtn">
+                                <button type="submit"  className="btn btn" id="signUpBtn">
                                     Continue
                                 </button>
                             </div>
