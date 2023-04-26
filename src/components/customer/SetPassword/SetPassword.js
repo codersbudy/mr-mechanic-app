@@ -31,10 +31,7 @@ function SetPassword() {
         try {
             event.preventDefault();
             let contact = currentCustomer.contact
-            window.alert("before api");
             let response = await axios.post(api.CUSTOMER_SET_PASSWORD, { contact, password })
-            
-            window.alert("after api");
             navigate("/home");
         }
         catch (err) {
