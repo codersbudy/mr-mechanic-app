@@ -1,35 +1,34 @@
+
 :root{
     --modal-height:85vh;
 }
+
 
 .modal-ku {
     width: 80%;
     margin: auto;
 }
-
 #closebutoon {
     text-align: end;
 }
-
 .close {
     display: flex;
     justify-content: right;
 }
 
+
 #firstside{
     background-color: #42C8B7;
-    /* height: var(--modal-height); */
 }
-
 #container {
     box-shadow: 2px solid black;
 }
-
 #h2 {
     color: white;
     font-size: 2rem;
 
 }
+
 
 #password,
 #input {
@@ -42,19 +41,15 @@
     color: black;
 }
 
-
-
 input::placeholder {
     font-size: 15px;
     color: rgba(0, 0, 0, 0.279);
 }
-
 #forgotpassword {
     text-align: justify;
     text-align-last: right;
     text-decoration: none;
 }
-
 .link {
     text-decoration: none;
     display: flex;
@@ -68,7 +63,6 @@ input::placeholder {
     font-size: 14px;
     
 }
-
 #checkboxcontaint {
     padding-left: 7px;
     font-weight: 500;
@@ -76,13 +70,13 @@ input::placeholder {
     line-height: 20px;
     margin-left: 20px;
 }
+
 .fp,
 #termcondition {
     text-decoration: none;
     color: #42C8B7;
     font-size: 13px;
 }
-
 
 input[type=checkbox] {
     accent-color: #42c8b7;

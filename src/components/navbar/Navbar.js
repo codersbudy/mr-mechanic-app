@@ -10,6 +10,7 @@ import { setCustomer } from "../../redux-config/customerSlice";
 import { validPassword, validContact, validName } from "../Regex/regex";
 import axios from "axios";
 import api from "../../WebApi/api";
+
 import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
@@ -20,7 +21,6 @@ function Navbar() {
     const [passErr, setPassErr] = useState(false);
     const [nameErr, setNameErr] = useState(false);
 
-    //    createPortal
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -89,6 +89,12 @@ function Navbar() {
             else if (err.response.status == 500)
                 toast.error("Server Error : 500");
         }
+    }
+
+    function delteModel(){
+        window.alert("delete")
+        let customerModal=document.getElementById("customerModel");
+        // customerModal.remove();
     }
     return <>
         <ToastContainer />
@@ -172,7 +178,7 @@ function Navbar() {
 
                                                 <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10} onChange={(event) => setContact(event.target.value)} onKeyUp={contactHendler} />
                                                 <label className="form-label label1">Enter Mobile Number</label>
-                                                <small id="invalidNum" style={{ color: "red" }} />
+                                                {passErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
 
                                             </div>
                                             <div className="div1 mt-3">
@@ -196,13 +202,13 @@ function Navbar() {
 
                                             </div>
                                             <div style={{ fontSize: 16, marginTop: "1.5vw" }} >
-                                                <button type="submit" className="btn p-2" id="signinBtn" > Login </button>
-
-
+                                                <button type="submit" className="btn p-2" data-bs-dismiss="modal" aria-label="Close" id="signinBtn" > Login </button>
+                                                                        
                                             </div>
                                             <div className="signup">Don't have an account? <span><Link className="signuplink linkHover" onClick={funTurn} >Sign up</Link></span></div>
                                         </div>
                                     </div>
+
                                 </form>
                             </div>
                         </div>
@@ -211,6 +217,7 @@ function Navbar() {
                                 <div style={{ marginTop: "2vw" }}>
                                     <div className="container-fluid fw-bold text-center " id="h2">
                                         * Sign up *
+
                                     </div>
                                 </div>
                                 <div >
@@ -227,13 +234,13 @@ function Navbar() {
                                         aria-label="Close"></button>
 
                                 </div>
-                                <form onSubmit={handleSubmit}>
+                                <form onSubmit={onSignUpHendler}>
                                     <div className="" style={{ marginTop: "2vw" }}>
                                         <div style={{ marginLeft: "1.5vw" }}>
 
                                             <div className="div1 ">
 
-                                                <input className="input1" type="text" name="username" required="" id="password" placeholder="Ex: John" onChange={(event) => setPassword(event.target.value)} onKeyUp={passwordHendler} minLength={8} maxLength={16} />
+                                                <input className="input1" type="text" name="username" required="" id="password" placeholder="Ex: John" onChange={(event) => setPassword(event.target.value)} onKeyUp={passwordHendler} minLength={8} maxLength={16}  onChange={(event) => setCustomerName(event.target.value)} onKeyUp={nameHendler} />
                                                 <label className="form-label label1">Username</label>
                                                 <small id="invalidPass" style={{ color: "red" }} />
 
@@ -241,14 +248,14 @@ function Navbar() {
 
                                             <div className="div1 mt-2">
 
-                                                <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10} onChange={(event) => setContact(event.target.value)} onKeyUp={contactHendler} />
+                                                <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10} onChange={(event) => setContact(event.target.value)}  onKeyUp={contactHendler} />
                                                 <label className="form-label label1">Mobile Number</label>
                                                 <small id="invalidNum" style={{ color: "red" }} />
 
                                             </div>
                                             <div className="div1 mt-2">
 
-                                                <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter password" onChange={(event) => setPassword(event.target.value)} onKeyUp={passwordHendler} minLength={8} maxLength={16} />
+                                                <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter password" onKeyUp={passwordHendler} onChange={(event) => setPassword(event.target.value)} minLength={8} maxLength={16} />
                                                 <label className="form-label label1">Password</label>
                                                 <small id="invalidPass" style={{ color: "red" }} />
 
@@ -268,7 +275,7 @@ function Navbar() {
 
 
                                             </div>
-                                            <div className="signup">have an account? <span><Link className="signuplink linkHover" onClick={funReturn} >Log in</Link></span></div>
+                                            <div  className="signup">have an account? <span><Link className="signuplink linkHover" onClick={funReturn} data-bs-toggle="modal" data-bs-target="#customerModel" >Log in</Link></span></div>
                                         </div>
                                     </div>
                                 </form>
@@ -285,107 +292,7 @@ function Navbar() {
 
 
 
-    /*    <div className="modal fade" id="customerSignUpModel"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabIndex={-1}
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true"
-        >
-            <div
-                className="modal-dialog modal-lg modal-content rounded-0"
-                style={{ borderRadius: "100%" }}
-            >
-                <div className="row">
-                    <div className="col-md-4 col-sm-12 " id="firstside">
-                        <div style={{ marginTop: "2vw" }}>
-                            <div className="container-fluid" id="h2" style={{ textAlign: "center" }}>
-                                Signup
-                            </div>
-                        </div>
-                        <div style={{ marginTop: 200 }}>
-                            <img
-                                src="./images/LoginImage.svg"
-                                className="img-fluid"
-                                alt="Responsive image"
-                            />
-                        </div>
-                    </div>
-                    <div className="col-md-8 col-sm-12" style={{ paddingRight: 25 }}>
-                        <div className="close">
-                            <button
-                                type="button"
-                                id="closebutoon"
-                                className="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            />
-                        </div>
-                        <form onSubmit={onSignUpHendler} style={{ padding: "3vw" }}>
-                            <div className="placeholderdiv">
-                                <input
-                                    className="place"
-                                    type="text"
-                                    id="customerName"
-                                    placeholder="Enter name"
-                                    onChange={(event) => setCustomerName(event.target.value)}
-                                    onKeyUp={nameHendler}
-                                />
-                                <div style={{ height: "1vw" }}>
-
-                                    {nameErr ? <small style={{ color: "red" }} >Invalid customer name</small> : ""}
-                                </div>
-                            </div>
-                            <div className="placeholderdiv">
-                                <input
-                                    className="place"
-                                    type="text"
-                                    required=""
-                                    id="customerContact"
-                                    placeholder="Enter contact number"
-                                    minLength={10}
-                                    maxLength={10}
-                                    onChange={(event) => setContact(event.target.value)}
-                                    // onChange={(event) => setContact(event.target.value)}
-                                    onKeyUp={contactHendler}
-                                />
-                                <div style={{ height: "1vw" }}>
-
-                                    {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
-                                </div>
-                            </div>
-
-                            <div className="placeholderdiv">
-                                <input
-                                    className="place"
-                                    type="password"
-                                    id="customerPassword"
-                                    placeholder="Enter password"
-                                    onKeyUp={passwordHendler}
-                                    minLength={8}
-                                    maxLength={16}
-                                    onChange={(event) => setPassword(event.target.value)}
-                                />
-                                <div style={{ height: "1vw" }}>
-
-                                    {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""}
-                                </div>
-                            </div>
-                            <div>
-                                <a href="" className="link">
-                                    <a data-bs-toggle="modal" data-bs-target="#customerModel">Already have an account ?</a>
-                                </a>
-                            </div>
-                            <div>
-                                <button type="submit" className="btn btn" id="signUpBtn">
-                                    Continue
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> */
+    
 
     </>
 }
