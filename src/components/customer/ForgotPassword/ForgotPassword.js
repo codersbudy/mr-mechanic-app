@@ -67,7 +67,7 @@ const  handleSubnmit =async (event)=>{
                                                 {contactErr ? <small style={{ color: "red" }} >Invalid contact</small> : ""}
                                             </div>
                                         </div>
-                                        <a href='' id='signin'>Signin?</a>
+                                        <a href='' id='signin'  data-bs-toggle="modal" data-bs-target="#customerModel">Signin?</a>
                                         <div id='buttonDiv'>
                                             <button type="submit" className="btn" id="signinBtn">
                                                 SEND OTP

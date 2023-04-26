@@ -9,7 +9,7 @@ function App() {
   return <>
   <Navbar/> 
  <Routes>
-    <Route path="/" element={<Home/>}/>
+    <Route path="/home" element={<Home/>}/>
     <Route path="/forgotPassword" element={<ForgotPassword/>} />
      <Route path="/home" element={<Home/>}/> 
     <Route path="/verifyOtp" element={<VerifyPassword/>} /> 
