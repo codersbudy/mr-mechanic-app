@@ -1,3 +1,6 @@
+:root{
+    --modal-height:85vh;
+}
 
 .modal-ku {
     width: 80%;
@@ -13,9 +16,9 @@
     justify-content: right;
 }
 
-#firstside {
+#firstside{
     background-color: #42C8B7;
-    height: auto;
+    /* height: var(--modal-height); */
 }
 
 #container {
@@ -31,7 +34,7 @@
 #password,
 #input {
     border: none;
-    border-bottom: 0.5px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
     border-bottom-width: 100%;
     width: 99%;
     outline: none;
@@ -42,7 +45,8 @@
 
 
 input::placeholder {
-    font-size: 16px;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.279);
 }
 
 #forgotpassword {
@@ -160,13 +164,25 @@ input[type=checkbox] {
     position: relative;
     font-size: 16px;
 }
+.sideImg{
+    width:80% ;
+    margin-top: 37vh;
 
+    
+}
 #firstside{
     border-radius: 16px 0px 0 16px;
+    /* height:  var(--modal-height); */
+    height:  auto;
 }
+
 .secondside{ 
     border-radius: 0 16px 0 16px;
     padding-right: 30px;
+    background-color: #fff;
+    /* height:  var(--modal-height); */
+    /* height:  100%; */
+    
 }
 .r1,
 .modal1{
@@ -176,7 +192,11 @@ input[type=checkbox] {
 .modal1{
     width: 100%;
     padding: 0;
-
+    /* border: 10px solid yellow; */
+    width: 100%;
+    height: var(--modal-height);
+    background: transparent;
+    border: none;
 }
 .r1{
     margin: 0;
@@ -188,16 +208,85 @@ input[type=checkbox] {
 
 
 
+
+
+/* -----------------------------------------flip------------------------------------------- */
+.box {
+    /* height: 50vh; */
+    width: 100%;
+    /* margin-top: 10vh; */
+    /* border: 1px solid red; */
+    padding: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: white; */
+    border-radius: 17px;
+
+}
+
+.box-content {
+    /* border: 2px solid rgb(0, 255, 145); */
+    height: var(--modal-height);
+    padding: 0px;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    border-radius: 17px;
+    /* justify-content: center; */
+}
+
+/* .box:hover .box-content {
+    transform: rotateY(180deg);
+} */
+
+
+.outer1 {
+    /* border: 2px solid rgb(7, 17, 159); */
+    
+
+    position: absolute;
+    height:  var(--modal-height);
+    backface-visibility: hidden;
+    background-color: white;
+    padding: 1% 5%;
+    border-radius: 17px;
+    box-shadow: 2px 2px 5px;
+    overflow-y: auto;
+
+}
+
+.outer2 {
+    position: absolute;
+    backface-visibility: hidden;
+    height:  var(--modal-height);
+    /* width: 75%; */
+    box-shadow: 2px 2px 5px;
+    border-radius: 17px;
+    transform: rotateY(180deg);
+    padding: 1% 5%;
+    background-color: white;
+       /* overflow-y: auto; */
+}
+
+/* ------------------------------------------------------------------------------------ */
+
 @media screen and (max-width: 767px) {
 
-    .secondside{
+   .secondside{
         position: absolute;
-        background-color: white;
-        bottom: 0px;
+        /* background-color: white; */
+        top: 25%;
+        
+
         border-radius: 17px;
-        padding-bottom: 25px;
+        padding-bottom: 0;
     }
-    #firstside{
+    /*  #firstside{
         border-radius: 17px;
+    } */
+    .sideImg{
+        margin: 0;
+        visibility: hidden;
     }
-}
+} 
