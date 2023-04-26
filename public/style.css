@@ -43,11 +43,20 @@ div img{
 :not(.btn-check)+.btn:active {
     background-color: #3CB0A2;
 }
+.text{
+    font-weight: bold;
+}
 
 .nav-item {
     margin-left: 30px;
     margin-top: 8px;
 
+}
+.bg-color{
+    background-color: #3CB0A2;
+    border: none;
+    height: 30px;
+    width: 130px;
 }
 
 .ff,
