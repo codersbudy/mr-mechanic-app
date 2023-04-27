@@ -3,8 +3,8 @@ import Carousel from "../carousel/Carousel";
 
 function Home(){
     return <>
-    <Carousel/>
-    <Footer/>
+<Carousel/>
+<Footer/>
     </>
 }
 

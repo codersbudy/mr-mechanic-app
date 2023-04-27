@@ -1,3 +1,4 @@
+
 import { Route, Router, Routes } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home/home";
@@ -9,8 +10,7 @@ import ShopkeeperSignUP from "./components/shopkeeper/shopkeeperSignUp/Shopkeepe
 import ShopkeeperSignin from "./components/shopkeeper/shopkeeperSignIn/ShopkeeperSignIn";
 
 function App() {
-  return <>
-      <CustomerSignUP/>
+  return <>      <CustomerSignUP/>
       <ShopkeeperSignUP/>
       <ShopkeeperSignin/>
       <Navbar/>
@@ -21,7 +21,7 @@ function App() {
       </Routes>
  
   {/* <ViewHistory/> */}
-  </>
-};
+</>
+}
 
 export default App;
