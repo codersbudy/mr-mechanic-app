@@ -1,4 +1,54 @@
+import { useState } from "react";
+// import "./logIn.css"
+// import ".../p"
+import { ToastContainer, toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { setshopkeeper } from "../../../redux-config/shopkeeperSlice";
+import { useNavigate } from "react-router-dom";
+import api from "../../../WebApi/api";
+import { validContact } from "../../Regex/regex";
+//  import {  useNavigate } from "react-router-dom";
+
+
 function ShopkeeperSignUP(){
+
+    const [contact, setContact] = useState("");
+    const [password, setPassword] = useState("");
+    const [shopkeeperName,setShopkeeperName]=useState("");
+    const [contErr, setContErr] = useState(false);
+    const [passErr, setPassErr] = useState(false);
+    const [nameErr,setNameErr]=useState(false);
+    
+
+   
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    function contactHendler(e) {
+         if (!(validContact.test(e.target.value)))
+            setContErr(true);
+        else
+            setContErr(false)
+    }
+
+    const onSignUpHendler=async(event)=>{
+        try{
+            window.alert(response.data.customerData);
+            event.preventDefault();
+            let response=await axios.post(api.SHOPKEEPER_SIGNUP,{contact,password,shopkeeperName})
+            dispatch(setshopkeeper(response.data.shopkeeperData));
+            navigate("/home");
+           
+        }
+        catch(err){
+            if(err.response.status == 400)
+            toast.error("Bad request : 400");
+         else if(err.response.status == 500)
+            toast.error("Server Error : 500"); 
+        }
+    }
+
       return <>
                <div className="modal fade" id="shopkeeperSignUpModel"
                data-bs-backdrop="static"
@@ -41,7 +91,7 @@ function ShopkeeperSignUP(){
                                    <input
                                        className="place"
                                        type="text"
-                                       id="customerName"
+                                       id="shopkeeperName"
                                        placeholder="Enter name"
                                        // onChange={(event) => setShopkeeperName(event.target.value)}
                                        // onKeyUp={nameHendler}
@@ -56,7 +106,7 @@ function ShopkeeperSignUP(){
                                                className="place"
                                                type="text"
                                                required=""
-                                               id="customerContact"
+                                               id="shopkeeperContact"
                                                placeholder="Enter contact number"
                                                minLength={10}
                                                maxLength={10}
@@ -73,7 +123,7 @@ function ShopkeeperSignUP(){
                                    <input
                                        className="place"
                                        type="password"
-                                       id="customerPassword"
+                                       id="shopkeeperPassword"
                                        placeholder="Enter password"
                                        // onKeyUp={passwordHendler}
                                        minLength={8}

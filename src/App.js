@@ -6,18 +6,22 @@ import SelectCity from "./components/selectCity/SelectCity";
 import Booking from "./components/shopkeeper/bookingHistory/bookingHistoy";
 import ViewHistory from "./components/shopkeeper/viewHistory/viewHistory";
 import CustomerSignUP from "./components/customer/CustomerSignUp/customersignup";
-import ShopkeeperSignUP from "./components/shopkeeper/shopkeeperSignUp/ShopkeeperSignp";
 import ShopkeeperSignin from "./components/shopkeeper/shopkeeperSignIn/ShopkeeperSignIn";
+import ForgotPassword from "./components/customer/ForgotPassword/ForgotPassword";
+import ShopkeeperSignUP from "./components/shopkeeper/shopkeeperSignUp/ShopkeeperSignup";
 
 function App() {
-  return <>      <CustomerSignUP/>
-      <ShopkeeperSignUP/>
+  return <>     
+        <CustomerSignUP/>
+        <Navbar/>
+<ShopkeeperSignUP/>
       <ShopkeeperSignin/>
-      <Navbar/>
-      <SelectCity/> 
-      {/* <Booking/> */}
+      
+      <SelectCity/>  */
+      {/* <Booking/>
       <Routes>
         <Route path="/home" element={<Home/>}/>
+        <Route path="/forgotPassword" element={<ForgotPassword/>}/>
       </Routes>
  
   {/* <ViewHistory/> */}
