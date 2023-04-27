@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import api from '../../../WebApi/api';
 import { toast } from 'react-toastify';
+import Navbar from '../../navbar/Navbar';
 function VerifyPassword() {
     const navigate=useNavigate();
     const [pin1,setPin1]=useState("");
@@ -28,6 +29,7 @@ function VerifyPassword() {
     }
    }
     return <>
+     <Navbar/> 
         <div className='container-fluid'>
             <div className='row outerDiv'>
                 <div className='col-2'></div>

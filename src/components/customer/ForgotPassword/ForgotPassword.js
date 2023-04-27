@@ -6,6 +6,8 @@ import axios from 'axios'
 import api from "../../../WebApi/api";
 import { useDispatch } from 'react-redux';
 import { setCustomer } from '../../../redux-config/customerSlice';
+import { toast } from 'react-toastify';
+import Navbar from '../../navbar/Navbar';
 function ForgotPassword() {
 const dispatch =useDispatch();
 const navigate=useNavigate()
@@ -26,11 +28,12 @@ const  handleSubnmit =async (event)=>{
          navigate("/verifyOtp");
     }
     catch(err){
-       
+        toast.error("Oops! something went wrong");
     }
 }
 
     return <>
+     <Navbar/> 
         <div className='container-fluid'>
             <div className='row outerDiv'>
                 <div className='col-2'></div>

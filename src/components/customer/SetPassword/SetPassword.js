@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import api from '../../../WebApi/api';
 import { toast } from 'react-toastify';
+import Navbar from '../../navbar/Navbar';
 function SetPassword() {
     const navigate = useNavigate();
     const [passErr, setPassErr] = useState(false);
@@ -40,6 +41,7 @@ function SetPassword() {
     }
 
     return <>
+     <Navbar/> 
         <div className='container-fluid'>
             <div className='row outerDiv'>
                 <div className='col-2'></div>

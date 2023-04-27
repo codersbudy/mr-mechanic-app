@@ -2,10 +2,8 @@ import { useState } from "react";
 
 import "./logIn.css";
 
-// import ".../p"
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
 import { setCustomer } from "../../redux-config/customerSlice";
 import { validPassword, validContact, validName } from "../Regex/regex";
 import axios from "axios";
@@ -21,9 +19,8 @@ function Navbar() {
     const [contErr, setContErr] = useState(false);
     const [passErr, setPassErr] = useState(false);
     const [nameErr, setNameErr] = useState(false);
+    const [show, setShow] = useState(false);
     const [confirmpassErr, setConfirmPassErr] = useState(false);
-
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     function contactHendler(e) {
@@ -54,6 +51,7 @@ function Navbar() {
     }
 
     function funReturn() {
+        
         let element = document.getElementById('box-content');
         element.style.transform = "rotateY(0deg)";
     }
@@ -70,10 +68,11 @@ function Navbar() {
     const handleSubmit = async (event) => {
 
         try {
+            window.alert("inner function")
             event.preventDefault();
-            const response = await axios.post(api.CUSTOMER_SIGNIN, { contact, password });
+            let response = await axios.post(api.CUSTOMER_SIGNIN, { contact, password });
             dispatch(setCustomer(response.data.customer));
-            navigate("/selectCIty");
+            navigate("/forgotPassword")
 
         }
         catch (err) {
@@ -84,12 +83,10 @@ function Navbar() {
 
     const onSignUpHendler = async (event) => {
         try {
-            window.alert(response.data.customerData);
             event.preventDefault();
             let response = await axios.post(api.CUSTOMER_SIGNUP, { contact, password, customerName })
-            dispatch(setCustomer(response.data.customerData));
             funReturn();
-
+           
         }
         catch (err) {
             if (err.response.status == 400)
@@ -98,6 +95,7 @@ function Navbar() {
                 toast.error("Server Error : 500");
         }
     }
+
     return <>
         <ToastContainer />
         <div className="container-fluid border-bottom">
@@ -204,11 +202,11 @@ function Navbar() {
 
                                             </div>
                                             <div style={{ fontSize: 16, marginTop: "1.5vw" }} >
-                                                <button type="submit" className="btn p-2" data-bs-dismiss="modal" aria-label="Close" id="signinBtn" > Login </button>
+                                                <button type="submit" className="btn p-2"  id="signinBtn"> Login </button>
                                                                         
                                             </div>
                                             <div className="signup">Don't have an account? <span><Link className="signuplink linkHover" onClick={funTurn} >Sign up</Link></span></div>
-                                       </div>
+                                        </div>
                                     </div>
 
                                 </form>
@@ -277,7 +275,7 @@ function Navbar() {
 
                                             </div>
                                             <div  className="signup">have an account? <span><a className="signuplink linkHover" onClick={funReturn} >Log in</a></span></div>
-                                     </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -390,7 +388,9 @@ function Navbar() {
                 </div>
             </div>
         </div>
-    </>
+
+
+        </>
 }
 
 export default Navbar;
