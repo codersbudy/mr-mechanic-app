@@ -1,5 +1,4 @@
 import { Route, Router, Routes } from "react-router-dom";
-
 import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home/home";
 import SelectCity from "./components/selectCity/SelectCity";
@@ -23,6 +22,6 @@ function App() {
  
   {/* <ViewHistory/> */}
   </>
-}
+};
 
 export default App;

@@ -1,5 +1,5 @@
 function ShopkeeperSignUP(){
-   return <>
+      return <>
                <div className="modal fade" id="shopkeeperSignUpModel"
                data-bs-backdrop="static"
                data-bs-keyboard="false"
@@ -101,5 +101,5 @@ function ShopkeeperSignUP(){
                </div>
                </div>
             </>
-    }
+    };
     export default ShopkeeperSignUP;

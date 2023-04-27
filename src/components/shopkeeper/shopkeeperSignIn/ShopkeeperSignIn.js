@@ -1,69 +1,70 @@
 
-             
+
 import { useState } from "react";
 import "./logIn.css"
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {  useNavigate } from "react-router-dom";
 import { validContact, validName, validPassword } from "../../Regex/regex";
 import api from "../../../WebApi/api";
 import { setshopkeeper } from "../../../redux-config/shopkeeperSlice";
 
 
-function ShopkeeperSignin(){
+function ShopkeeperSignin() {
 
     const [contact, setContact] = useState("");
     const [password, setPassword] = useState("");
-    const [shopkeeperName,setName]=useState("");
+    const [shopkeeperName, setName] = useState("");
     const [contErr, setContErr] = useState(false);
     const [passErr, setPassErr] = useState(false);
-    const [nameErr,setNameErr]=useState(false);
-    
-   
+    const [nameErr, setNameErr] = useState(false);
+
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     function contactHendler(e) {
-         if (!(validContact.test(e.target.value)))
+        if (!(validContact.test(e.target.value)))
             setContErr(true);
         else
             setContErr(false)
-    }
+    };
 
     function passwordHendler(e) {
         if (!(validPassword.test(e.target.value)))
             setPassErr(true);
         else
             setPassErr(false);
-    }
+    };
 
-    function nameHendler(e){
-        if(validName.test(e.target.value))
-          setNameErr(false);
+    function nameHendler(e) {
+        if (validName.test(e.target.value))
+            setNameErr(false);
         else
-          setNameErr(true);
-    }
+            setNameErr(true);
+    };
 
 
     const handleSubmit = async (event) => {
 
         try {
+            // window.alert(contact+ ""+ password)
             event.preventDefault();
             const response = await axios.post(api.SHOPKEEPER_SIGNIN, { contact, password });
-            window.alert(response);
-//             dispatch(setshopkeeper(response.data.customer));
+            //   window.alert("api called");
+            dispatch(setshopkeeper(response.data.customer));
             navigate("/home");
-            
+
         }
         catch (err) {
             toast.error("oops something went wrong");
         }
-    }
 
-    
-     return <>
-                 <div class="modal fade" id="shopkeeperModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    };
+
+
+    return <>
+        <div class="modal fade" id="shopkeeperModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
 
@@ -74,8 +75,8 @@ function ShopkeeperSignin(){
                 <div className="row">
                     <div className="col-md-4 col-sm-12 " id="firstside">
                         <div style={{ marginTop: "2vw" }}>
-                            <div className="container-fluid" id="h2" style={{textAlign:"center"}}>
-                                    Signin
+                            <div className="container-fluid" id="h2" style={{ textAlign: "center" }}>
+                                Signin
                             </div>
                         </div>
                         <div style={{ marginTop: 200 }}>
@@ -108,7 +109,7 @@ function ShopkeeperSignin(){
                                             onKeyUp={contactHendler}
                                         />
                                         <div style={{ height: "1vw" }}>
-                                        
+
                                             {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
                                         </div>
                                     </div>
@@ -123,7 +124,7 @@ function ShopkeeperSignin(){
                                             id="input"
                                             placeholder="Enter password"
                                             onKeyUp={passwordHendler}
-                                             minLength={8}
+                                            minLength={8}
                                             maxLength={16}
                                         />
                                         {passErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
@@ -167,8 +168,8 @@ function ShopkeeperSignin(){
                 </div>
             </div>
 
-        </div>      
-     </>          
-}
+        </div>
+    </>
+};
 
 export default ShopkeeperSignin;

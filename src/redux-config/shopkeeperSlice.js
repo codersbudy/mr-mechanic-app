@@ -6,7 +6,7 @@ const slice=createSlice({
         currentShopkeeper:null
     },
     reducers:{
-        setCustomer:(state,action)=>{
+        setshopkeeper:(state,action)=>{
             state.currentShopkeeper=action.payload;
         }
     }
