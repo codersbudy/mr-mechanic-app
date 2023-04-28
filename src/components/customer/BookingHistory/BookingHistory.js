@@ -20,17 +20,13 @@ function CustomerBookingHistory(){
          dispatch(setCustomerBookingHistory(response.data.result));
     }
     const{customerBookingHistory}=useSelector(state=>state.customer);
-    // window.alert(customerBookingHistory);
-    console.log(customerBookingHistory);
-
-  
+   
     useEffect(()=>{
         loadHistory();
     },[]);
 
 
    function getIndex (id){
-       window.alert(id);
         setIndex(id);
         navigate("/viewBookingHistory",{state:{
             id : id
