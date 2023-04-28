@@ -4,12 +4,8 @@ import "./viewBookingHistory.css"
 function ViewBookingHistory(){
    const {customerBookingHistory}=useSelector(state=>state.customer);
    const state =  useLocation()
-    // console.log(state.state.id);
     let index=state.state.id;
-    let viewMore=customerBookingHistory[index];
-    console.log(viewMore);
-    
-    // window.alert(state);    
+    let viewMore=customerBookingHistory[index]; 
     return <>
     <div className="outerDiv">
      <div className="row m-5">
