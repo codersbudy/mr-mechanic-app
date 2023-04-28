@@ -1,11 +1,7 @@
 
-
-// import "./logIn.css";
-
-// import ".../p"
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
+
 import { validPassword, validContact, validName } from "../Regex/regex";
 import axios from "axios";
 import api from "../../WebApi/api";
@@ -86,7 +82,6 @@ function shopkeeperSignIn() {
                                                                                                                      
     const onSignUpHendler = async (event) => {
         try {
-            window.alert(response.data.customerData);
             event.preventDefault();
             let response = await axios.post(api.SHOPKEEPER_SIGNIN, { contact, password, shopkeeperName })
             dispatch(setCustomer(response.data.customerData));
