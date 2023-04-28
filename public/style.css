@@ -47,6 +47,7 @@
     line-height: 30px;
     font-family: Montserrat;
     color: inherit;
+    cursor: pointer;
 
 }
 
@@ -163,4 +164,8 @@ h5{
 
 .carousel-dark .carousel-indicators [data-bs-target] {
     background-color: #42C8B7;
+}
+
+.drop{
+    cursor: pointer;
 }

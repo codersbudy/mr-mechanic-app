@@ -8,7 +8,6 @@ function SelectCity(){
             <h5>
             <img src="./images/logo.png" style={{height: "50px"}} alt="images" />
             </h5>
-            
           </div>
           <div>
             <div className="row">
@@ -44,23 +43,23 @@ function SelectCity(){
                 <div className="col 1 text-center" />
                 <div className="col-1">
                   <img src="./images/img3.jpg" alt="" />
-                  <p>Bangalore</p>
+                  <p value="chennai">Bangalore</p>
                 </div>
                 <div className="col 1 text-center">
                   <img src="./images/img1.jpg" alt="" />
-                  <p>chennai</p>
+                  <p value="chennai" >chennai</p>
                 </div>
                 <div className="col 1 text-center">
                   <img src="./images/img2.jpg" alt="" />
-                  <p>Delhi</p>
+                  <p value="chennai">Delhi</p>
                 </div>
                 <div className="col 1 text-center">
                   <img src="./images/img4.jpg" alt="" />
-                  <p>Indore</p>
+                  <p value="chennai">Indore</p>
                 </div>
                 <div className="col 1 text-center">
                   <img src="./images/img5.jpg" alt="" />
-                  <p>Hyderabad</p>
+                  <p value="chennai">Hyderabad</p>
                 </div>
                 <div className="col 1 text-center">
                   <img src="./images/img6.jpg" alt="" />
