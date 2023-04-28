@@ -1,11 +1,8 @@
 import { useState } from "react";
 
 import "./logIn.css";
-
-// import ".../p"
 import { toast,ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
 import { setCustomer } from "../../redux-config/customerSlice";
 import { validPassword, validContact, validName } from "../Regex/regex";
 import axios from "axios";
@@ -90,7 +87,6 @@ function Navbar() {
             event.preventDefault();
             toast.success("dfvdgb");
             let response = await axios.post(api.CUSTOMER_SIGNUP, { contact, password, customerName })
-            // dispatch(setCustomer(response.data.customerData));
             funReturn();
 
         }
