@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 
 function CustomerNavigation(){
-    // window.alert("customer navigation")
-  
-    
     return <>
        <div className="container-fluid border-bottom">
             <nav className="navbar navbar-expand-lg nav ">
