@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-// import ''
 import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home/home"
 import ForgotPassword from "./components/customer/ForgotPassword/ForgotPassword";
@@ -16,13 +15,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import ViewShop from "./components/customer/ViewShop/viewShop";
 function App() {
   return <>
-  {/* <CustomerNavigation/>
-  <CustomerBookingHistory/> */}
-{/* export default shopkeeperSignIn; */}
-  {/* <shopkeeperSignIn/> */}
-  {/* <ViewBookingHistory/> */}
-  {/* <CustomerProfile/> */}
-  {/* <ViewShop/> */}
+
  <Routes>
     <Route path="/" element={<Home/>}/>
     <Route path="/forgotPassword" element={<ForgotPassword/>} />
