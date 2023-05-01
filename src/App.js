@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import ViewShop from "./components/customer/ViewShop/viewShop";
 // import CustomerProfileUpdate from "./components/customer/UpdateProfile/updateProfile";
 import CustomerUpdateProfile from "./components/customer/UpdateProfile/updateProfile";
+import ShopKeeperSignIn from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 function App() {
   return <>
  {/* <CustomerNavigation/> */}
@@ -27,10 +28,11 @@ function App() {
   {/* <ViewShop/> */}
 
   {/* <CustomerNavigation/> */}
-  <CustomerUpdateProfile/>
+  {/* <CustomerUpdateProfile/> */}
+
  <Routes>
 
-    {/* <Route path="/" element={<Home/>}/> */}
+    <Route path="/" element={<Home/>}/>
     <Route path="/forgotPassword" element={<ForgotPassword/>} />
      <Route path="/home" element={<Home/>}/> 
     <Route path="/verifyOtp" element={<ProtectedRoute><VerifyPassword/></ProtectedRoute>} /> 

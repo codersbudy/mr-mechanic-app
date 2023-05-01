@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import "./viewBookingHistory.css"
+import CustomerNavigation from "../Navigation/navigation";
 function ViewBookingHistory(){
    const {customerBookingHistory}=useSelector(state=>state.customer);
    const state =  useLocation()
@@ -11,6 +12,7 @@ function ViewBookingHistory(){
     
     // window.alert(state);    
     return <>
+    <CustomerNavigation/>
     <div className="outerDiv">
      <div className="row m-5">
          <div className="col-3 text">
@@ -48,9 +50,6 @@ function ViewBookingHistory(){
              <p>cmd</p>
          </div>
       </div> 
-      <div>
-        <button className="bg-color">Back</button>
-      </div>
       </div>  
     </>
 }
