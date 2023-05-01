@@ -1,15 +1,14 @@
 import { useState } from "react";
 
 import "./logIn.css";
-<<<<<<< HEAD
+
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Link} from "react-router-dom";
 import ShopKeeperSignInAndSignUp from "../Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import CustomerSignInAndSignUp from "../customer/SignInAndSignUp/signInAndSignUp";
 
-function Navbar() {  
-=======
+function Navbar() 
 import { toast,ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setCustomer } from "../../redux-config/customerSlice";
@@ -106,7 +105,6 @@ function Navbar() {
                 toast.error("Server Error : 500");
         }
     }
->>>>>>> 20e858f033897438841f278aeecafd8bfefcd429
     return <>
         <CustomerSignInAndSignUp/>
         <ShopKeeperSignInAndSignUp/>
