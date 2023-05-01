@@ -10,7 +10,7 @@ import { setCustomer } from "../../redux-config/customerSlice";
 import { validPassword, validContact, validName } from "../Regex/regex";
 import axios from "axios";
 import api from "../../WebApi/api";
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -85,12 +85,9 @@ function Navbar() {
 
     const onSignUpHendler = async (event) => {
         try {
-            window.alert("inner fiunctonb")
-            window.alert(response.data.customerData);
             event.preventDefault();
-            toast.success("dfvdgb");
+            toast.success("Registration successfully...");
             let response = await axios.post(api.CUSTOMER_SIGNUP, { contact, password, customerName })
-            // dispatch(setCustomer(response.data.customerData));
             funReturn();
 
         }
@@ -222,7 +219,6 @@ function Navbar() {
                                 <div style={{ marginTop: "2vw" }}>
                                     <div className="container-fluid fw-bold text-center " id="h2">
                                         * Sign up *
-
                                     </div>
                                 </div>
                                 <div >

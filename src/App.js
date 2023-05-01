@@ -14,17 +14,23 @@ import ViewBookingHistory from "./components/customer/ViewBookingHistory/viewBoo
 import CustomerProfile from "./components/customer/Profile/profile";
 import 'react-toastify/dist/ReactToastify.css'
 import ViewShop from "./components/customer/ViewShop/viewShop";
+// import CustomerProfileUpdate from "./components/customer/UpdateProfile/updateProfile";
+import CustomerUpdateProfile from "./components/customer/UpdateProfile/updateProfile";
 function App() {
   return <>
-  {/* <CustomerNavigation/>
-  <CustomerBookingHistory/> */}
+ {/* <CustomerNavigation/> */}
+   {/* <CustomerBookingHistory/> */}
 {/* export default shopkeeperSignIn; */}
   {/* <shopkeeperSignIn/> */}
   {/* <ViewBookingHistory/> */}
   {/* <CustomerProfile/> */}
   {/* <ViewShop/> */}
+
+  {/* <CustomerNavigation/> */}
+  <CustomerUpdateProfile/>
  <Routes>
-    <Route path="/" element={<Home/>}/>
+
+    {/* <Route path="/" element={<Home/>}/> */}
     <Route path="/forgotPassword" element={<ForgotPassword/>} />
      <Route path="/home" element={<Home/>}/> 
     <Route path="/verifyOtp" element={<ProtectedRoute><VerifyPassword/></ProtectedRoute>} /> 
