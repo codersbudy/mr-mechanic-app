@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-// import ''
 import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home/home"
 import ForgotPassword from "./components/customer/ForgotPassword/ForgotPassword";
@@ -19,6 +18,7 @@ import CustomerUpdateProfile from "./components/customer/UpdateProfile/updatePro
 import ShopKeeperSignIn from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 function App() {
   return <>
+<<<<<<< HEAD
  {/* <CustomerNavigation/> */}
    {/* <CustomerBookingHistory/> */}
 {/* export default shopkeeperSignIn; */}
@@ -29,6 +29,8 @@ function App() {
 
   {/* <CustomerNavigation/> */}
   {/* <CustomerUpdateProfile/> */}
+=======
+>>>>>>> 20e858f033897438841f278aeecafd8bfefcd429
 
  <Routes>
 
