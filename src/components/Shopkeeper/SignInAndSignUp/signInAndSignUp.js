@@ -49,22 +49,15 @@ function ShopKeeperSignInAndSignUp() {
     }
 
     function funReturn() {
-        // window.alert("hello");
-        let element = document.getElementById('box-content');
+        let element = document.getElementById('box-content-shopkeeper');
         element.style.transform = "rotateY(0deg)";
     }
-    function funTurn() {
-        window.alert("inner funturn");
+        var funTurn=()=> {
         var outer2 = document.getElementById('outer2');
-        
         outer2.style.overflowY = "auto";
-        window.alert("inner overflow");
         outer2.style.borderRadius = "17px"
-        window.alert("inner borderradius");
-        var ele = document.getElementById('box-content');
-        // window.alert("inner funturn");
+        var ele = document.getElementById('box-content-shopkeeper');
         ele.style.transform = "rotateY(180deg)";
-        window.alert("inner rotate");
     }
 
 
@@ -111,7 +104,7 @@ function ShopKeeperSignInAndSignUp() {
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="modal-dialog modal-lg modal-content modal1"  >
                 <div className="container-fluid m-0 p-0 box">
-                    <div className="container-fluid m-0 p-0 box-content" id="box-content">
+                    <div className="container-fluid m-0 p-0 box-content" id="box-content-shopkeeper">
 
                         <div className="row r1 p-0 m-0 outer1">
                             <div className="col-md-4 col-sm-12 " id="firstside">

@@ -142,3 +142,62 @@ input::placeholder {
 }
 
 
+/* //////////////////////////////////flip//////////////////////////////////////////////////// */
+
+.box {
+    /* height: 50vh; */
+    width: 100%;
+    /* margin-top: 10vh; */
+    /* border: 1px solid red; */
+    padding: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: white; */
+    border-radius: 17px;
+
+}
+
+.box-content {
+    /* border: 2px solid rgb(0, 255, 145); */
+    height: var(--modal-height);
+    padding: 0px;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    border-radius: 17px;
+    /* justify-content: center; */
+}
+
+/* .box:hover .box-content {
+    transform: rotateY(180deg);
+} */
+
+
+.outer1 {
+    /* border: 2px solid rgb(7, 17, 159); */
+    
+
+    position: absolute;
+    height:  var(--modal-height);
+    backface-visibility: hidden;
+    background-color: white;
+    padding: 1% 5%;
+    border-radius: 17px;
+    box-shadow: 2px 2px 5px;
+    overflow-y: auto;
+
+}
+
+.outer2 {
+    position: absolute;
+    backface-visibility: hidden;
+    height:  var(--modal-height);
+    /* width: 75%; */
+    box-shadow: 2px 2px 5px;
+    border-radius: 17px;
+    transform: rotateY(180deg);
+    padding: 1% 5%;
+    background-color: white;
+       /* overflow-y: auto; */
+}
