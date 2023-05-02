@@ -18,7 +18,6 @@ import CustomerUpdateProfile from "./components/customer/UpdateProfile/updatePro
 import ShopKeeperSignIn from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 function App() {
   return <>
-<<<<<<< HEAD
  {/* <CustomerNavigation/> */}
    {/* <CustomerBookingHistory/> */}
 {/* export default shopkeeperSignIn; */}
@@ -29,8 +28,7 @@ function App() {
 
   {/* <CustomerNavigation/> */}
   {/* <CustomerUpdateProfile/> */}
-=======
->>>>>>> 20e858f033897438841f278aeecafd8bfefcd429
+
 
  <Routes>
 

@@ -67,12 +67,14 @@ function CustomerSignInAndSignUp() {
         try {
             event.preventDefault();
             const response = await axios.post(api.CUSTOMER_SIGNIN, { contact, password });
+            toast.success("Log In successfully...");
             dispatch(setCustomer(response.data.customer));
+         
             navigate("/customerHome");
 
         }
         catch (err) {
-            window.alert("Correct information");
+           toast.error("please check contact password")
         }
     }
 

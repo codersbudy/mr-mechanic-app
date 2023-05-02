@@ -295,7 +295,7 @@ function CustomerNavigation(){
                     <div className="collapse navbar-collapse navRight" id="navbarNavDropdown">
                         <ul className="navbar-nav">
                             <li className="nav-item ">
-                                <a className="nav-link navOption" aria-current="page" href="#">Home</a>
+                                <Link className="nav-link navOption" aria-current="page" to="/customerHome">Home</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link navOption" to="/cusotmerProfile">My Profile</Link>

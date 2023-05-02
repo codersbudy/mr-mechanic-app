@@ -2,109 +2,16 @@ import { useState } from "react";
 
 import "./logIn.css";
 
-import 'react-toastify/dist/ReactToastify.css';
+// import 'react-toastify/dist/ReactToastify.css';
 
-import { Link} from "react-router-dom";
+// import { Link} from "react-router-dom";
 import ShopKeeperSignInAndSignUp from "../Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import CustomerSignInAndSignUp from "../customer/SignInAndSignUp/signInAndSignUp";
-
-function Navbar() 
-import { toast,ToastContainer } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { setCustomer } from "../../redux-config/customerSlice";
-import { validPassword, validContact, validName } from "../Regex/regex";
-import axios from "axios";
-import api from "../../WebApi/api";
 import 'react-toastify/dist/ReactToastify.css'
 
 import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
-    const [contact, setContact] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [customerName, setCustomerName] = useState("");
-    const [contErr, setContErr] = useState(false);
-    const [passErr, setPassErr] = useState(false);
-    const [nameErr, setNameErr] = useState(false);
-    const [confirmpassErr, setConfirmPassErr] = useState(false);
-
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    function contactHendler(e) {
-        if (!(validContact.test(e.target.value)))
-            setContErr(true);
-        else
-            setContErr(false)
-    }
-
-    function passwordHendler(e) {
-        if (!(validPassword.test(e.target.value)))
-            setPassErr(true);
-        else
-            setPassErr(false);
-    }
-    function confirmPasswordHendler(e) {
-        if (!(password == e.target.value))
-            setConfirmPassErr(true);
-        else
-            setConfirmPassErr(false);
-
-    }
-    function nameHendler(e) {
-        if (validName.test(e.target.value))
-            setNameErr(false);
-        else
-            setNameErr(true);
-    }
-
-    function funReturn() {
-        let element = document.getElementById('box-content');
-        element.style.transform = "rotateY(0deg)";
-    }
-    function funTurn() {
-        var outer2 = document.getElementById('outer2');
-        outer2.style.overflowY = "auto";
-        outer2.style.borderRadius = "17px"
-        var ele = document.getElementById('box-content');
-        ele.style.transform = "rotateY(180deg)";
-
-    }
-
-
-    const handleSubmit = async (event) => {
-
-        try {
-            event.preventDefault();
-            const response = await axios.post(api.CUSTOMER_SIGNIN, { contact, password });
-            dispatch(setCustomer(response.data.customer));
-            navigate("/customerHome");
-
-        }
-        catch (err) {
-            window.alert("Correct information");
-        }
-    }
-
-
-    const onSignUpHendler = async (event) => {
-        try {
-            window.alert("inner fiunctonb")
-            window.alert(response.data.customerData);
-            event.preventDefault();
-            toast.success("dfvdgb");
-            let response = await axios.post(api.CUSTOMER_SIGNUP, { contact, password, customerName })
-            funReturn();
-
-        }
-        catch (err) {
-            if (err.response.status == 400)
-                toast.error("Bad request : 400");
-            else if (err.response.status == 500)
-                toast.error("Server Error : 500");
-        }
-    }
     return <>
         <CustomerSignInAndSignUp/>
         <ShopKeeperSignInAndSignUp/>
