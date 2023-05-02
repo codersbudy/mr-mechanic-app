@@ -5,15 +5,17 @@ import { validPassword } from '../../Regex/regex';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import api from '../../../WebApi/api';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import Navbar from '../../navbar/Navbar';
+import 'react-toastify/dist/ReactToastify.css';
 function SetPassword() {
     const navigate = useNavigate();
     const [passErr, setPassErr] = useState(false);
     const [confirmpassErr, setConfirmPassErr] = useState(false);
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const { currentCustomer } = useSelector(state => state.customer)
+    const { currentCustomer } = useSelector(state => state.customer);
+    const { currentShopkeeper } = useSelector((state) => state.shopkeeper);
     function passwordHendler(e) {
         if (!(validPassword.test(e.target.value)))
             setPassErr(true);
@@ -28,20 +30,36 @@ function SetPassword() {
 
     }
     const hendleSubmit = async (event) => {
-        
+
         try {
             event.preventDefault();
-            let contact = currentCustomer.contact
-            let response = await axios.post(api.CUSTOMER_SET_PASSWORD, { contact, password })
-            navigate("/home");
+            if (currentCustomer) {
+                alert("set customer inner");
+                let contact = currentCustomer.contact
+                let response = await axios.post(api.CUSTOMER_SET_PASSWORD, { contact, password });
+                alert("set customer api chali ");
+                toast.success("successfully password set");
+                navigate("/home");
+            }
+            else {
+                alert("set shopkeeper inner");
+                let contact = currentShopkeeper.contact;
+                window.alert(contact);
+                window.alert(password);
+                let response = await axios.post(api.SHOPKEEPER_SET_PASSWORD, { contact, password });
+                alert("set shopkeeper api chali ");
+                toast.success("successfully password set");
+                navigate("/home");
+            }
         }
         catch (err) {
-            toast.error("Oops somethinf went wrong");
+            toast.error("Oops something went wrong");
         }
     }
 
     return <>
-     <Navbar/> 
+        <Navbar />
+        <ToastContainer />
         <div className='container-fluid'>
             <div className='row outerDiv'>
                 <div className='col-2'></div>

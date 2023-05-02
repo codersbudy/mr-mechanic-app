@@ -10,11 +10,13 @@ import CustomerSignInAndSignUp from "../customer/SignInAndSignUp/signInAndSignUp
 import 'react-toastify/dist/ReactToastify.css'
 
 import { Link, useNavigate } from "react-router-dom";
+import MechanicSignInAndSignUp from "../Mechanic/SignInAndSignUp/signInAndSignUp";
 
 function Navbar() {
     return <>
         <CustomerSignInAndSignUp/>
         <ShopKeeperSignInAndSignUp/>
+        <MechanicSignInAndSignUp/>
         <div className="container-fluid border-bottom">
             <nav className="navbar navbar-expand-lg nav ">
                 <div className="container-fluid a">
@@ -48,7 +50,7 @@ function Navbar() {
                                 <ul className="dropdown-menu ">
                                     <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#customerModel">Customer</a></li>
                                     <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#shopKeeperModel" >Shopkeeper</a></li>
-                                    <li><a className="dropdown-item drop" href="#">Mechanic</a></li>
+                                    <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#mechanicModel" href="#">Mechanic</a></li>
                                     <li><a className="dropdown-item drop" href="#">Admin</a></li>
                                 </ul>
                             </li>

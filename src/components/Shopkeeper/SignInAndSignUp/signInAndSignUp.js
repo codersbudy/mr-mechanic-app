@@ -9,92 +9,101 @@ import api from "../../../WebApi/api";
 import { setCustomer } from "../../../redux-config/customerSlice";
 
 function ShopKeeperSignInAndSignUp() {
-    // const [contact, setContact] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [confirmPassword, setConfirmPassword] = useState("");
-    // const [customerName, setCustomerName] = useState("");
-    // const [contErr, setContErr] = useState(false);
-    // const [passErr, setPassErr] = useState(false);
-    // const [nameErr, setNameErr] = useState(false);
-    // const [confirmpassErr, setConfirmPassErr] = useState(false);
+    const [contact, setContact] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [customerName, setCustomerName] = useState("");
+    const [contErr, setContErr] = useState(false);
+    const [passErr, setPassErr] = useState(false);
+    const [nameErr, setNameErr] = useState(false);
+    const [confirmpassErr, setConfirmPassErr] = useState(false);
 
 
-    // const dispatch = useDispatch();
-    // const navigate = useNavigate();
-    // function contactHendler(e) {
-    //     if (!(validContact.test(e.target.value)))
-    //         setContErr(true);
-    //     else
-    //         setContErr(false)
-    // }
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    function contactHendler(e) {
+        if (!(validContact.test(e.target.value)))
+            setContErr(true);
+        else
+            setContErr(false)
+    }
 
-    // function passwordHendler(e) {
-    //     if (!(validPassword.test(e.target.value)))
-    //         setPassErr(true);
-    //     else
-    //         setPassErr(false);
-    // }
-    // function confirmPasswordHendler(e) {
-    //     if (!(password == e.target.value))
-    //         setConfirmPassErr(true);
-    //     else
-    //         setConfirmPassErr(false);
+    function passwordHendler(e) {
+        if (!(validPassword.test(e.target.value)))
+            setPassErr(true);
+        else
+            setPassErr(false);
+    }
+    function confirmPasswordHendler(e) {
+        if (!(password == e.target.value))
+            setConfirmPassErr(true);
+        else
+            setConfirmPassErr(false);
 
-    // }
-    // function nameHendler(e) {
-    //     if (validName.test(e.target.value))
-    //         setNameErr(false);
-    //     else
-    //         setNameErr(true);
-    // }
+    }
+    function nameHendler(e) {
+        if (validName.test(e.target.value))
+            setNameErr(false);
+        else
+            setNameErr(true);
+    }
 
     function funReturn() {
-        window.alert("hello");
+        // window.alert("hello");
         let element = document.getElementById('box-content');
         element.style.transform = "rotateY(0deg)";
     }
     function funTurn() {
-        window.alert("hii");
+        window.alert("inner funturn");
         var outer2 = document.getElementById('outer2');
+        
         outer2.style.overflowY = "auto";
+        window.alert("inner overflow");
         outer2.style.borderRadius = "17px"
+        window.alert("inner borderradius");
         var ele = document.getElementById('box-content');
+        // window.alert("inner funturn");
         ele.style.transform = "rotateY(180deg)";
+        window.alert("inner rotate");
     }
 
 
-    // const handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
 
-    //     try {
-    //         event.preventDefault();
-    //         const response = await axios.post(api.CUSTOMER_SIGNIN, { contact, password });
-    //         toast.success("Log In successfully...");
-    //         dispatch(setCustomer(response.data.customer));
-         
-    //         navigate("/customerHome");
+        try {
+            event.preventDefault();
+            const response = await axios.post(api.SHOPKEEPER_SIGNIN, { contact, password });
+            toast.success("Log In successfully...");
+            window.alert("api is called...");
+            // dispatch(setCustomer(response.data.customer));
+         console.log(response.data);
+            navigate("/forgotPassword");
 
-    //     }
-    //     catch (err) {
-    //        toast.error("please check contact password")
-    //     }
-    // }
+        }
+        catch (err) {
+            if(err.response.status==400)
+               toast.error("Invalid Password");
+            else   
+               toast.error("invalid contact");
+        }
+    }
 
 
-    // const onSignUpHendler = async (event) => {
-    //     try {
-    //         event.preventDefault();
-    //         toast.success("Registration successfully...");
-    //         let response = await axios.post(api.CUSTOMER_SIGNUP, { contact, password, customerName })
-    //         funReturn();
+    const onSignUpHendler = async (event) => {
+        try {
+            event.preventDefault();
+            toast.success("Registration successfully...");
+            let response = await axios.post(api.CUSTOMER_SIGNUP, { contact, password, customerName })
+            funReturn();
 
-    //     }
-    //     catch (err) {
-    //         if (err.response.status == 400)
-    //             toast.error("Bad request : 400");
-    //         else if (err.response.status == 500)
-    //             toast.error("Server Error : 500");
-    //     }
-    // }
+        }
+        catch (err) {
+            if (err.response.status == 400)
+                toast.error("Bad request : 400");
+            else if (err.response.status == 500)
+                toast.error("Server Error : 500");
+        }
+    }
 
     return <>
      <ToastContainer/>
@@ -125,30 +134,30 @@ function ShopKeeperSignInAndSignUp() {
                                         aria-label="Close"></button>
 
                                 </div>
-{/* onSubmit={handleSubmit} */}
-                                <form >
+
+                                <form onSubmit={handleSubmit}>
                                     <div className="" style={{ marginTop: "2vw" }}>
                                         <div style={{ marginLeft: "1.5vw" }}>
 
 
                                             <div className="div1">
-                                                {/* onChange={(event) => setContact(event.target.value)} onKeyUp={contactHendler} */}
+                                              
 
-                                                <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10}  />
+                                                <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10}   onChange={(event) => setContact(event.target.value)} onKeyUp={contactHendler} />
                                                 <label className="form-label label1">Enter Mobile Number</label>
-                                                {/* {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""} */}
+                                                {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
 
                                             </div>
                                             <div className="div1 mt-3">
-                                                {/* onChange={(event) => setPassword(event.target.value)} onKeyUp={passwordHendler} */}
+                                              
 
-                                                <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter Password" minLength={8} maxLength={16}  />
+                                                <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter Password" minLength={8} maxLength={16}   onChange={(event) => setPassword(event.target.value)} onKeyUp={passwordHendler} />
                                                 <label className="form-label label1">Enter Password</label>
-                                                {/* {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""} */}
+                                                {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""}
 
                                             </div>
                                             <div style={{ marginTop: 15 }}>
-                                                <Link to='/forgotPassword' className="link">
+                                                <Link to='/shopkeeperForgotPassword' className="link">
                                                     <small className="fp linkHover" data-bs-dismiss="modal">forgot Password?</small>
                                                 </Link>
                                             </div>
