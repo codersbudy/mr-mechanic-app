@@ -1,35 +1,57 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './VerifyPassword.css'
-import {useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import api from '../../../WebApi/api';
 import { toast } from 'react-toastify';
 import Navbar from '../../navbar/Navbar';
 function VerifyPassword() {
-    const navigate=useNavigate();
-    const [pin1,setPin1]=useState("");
-    const [pin2,setPin2]=useState("");
-    const [pin3,setPin3]=useState("");
-    const [pin4,setPin4]=useState("");
-    const [pin5,setPin5]=useState("");
-    const [pin6,setPin6]=useState("");
-    const [pinErr,setPinErr]=useState(false);
-    const{currentCustomer}=useSelector(state=>state.customer)
-   const  handleSubmit= async(event)=>{
-     try{
-        let tempraryPassword=pin1+""+pin2+""+pin3+""+pin4+""+pin5+""+pin6;
-        event.preventDefault();
-        let contact=currentCustomer.contact;
-        const  response=await axios.post(api.CUSTOMER_VERIFY_OTP,{contact,tempraryPassword});
-        navigate("/setPassword")
+    window.alert("verify password");
+    const navigate = useNavigate();
+    const [pin1, setPin1] = useState("");
+    const [pin2, setPin2] = useState("");
+    const [pin3, setPin3] = useState("");
+    const [pin4, setPin4] = useState("");
+    const [pin5, setPin5] = useState("");
+    const [pin6, setPin6] = useState("");
+    const [pinErr, setPinErr] = useState(false);
+    const { currentCustomer } = useSelector(state => state.customer);
+    const { currentShopkeeper } = useSelector(state => state.shopkeeper);
+    console.log(currentShopkeeper);
+    console.log(currentCustomer);
+    const handleSubmit = async (event) => {
+        try {
+            window.alert("inner try");
+            let tempraryPassword = pin1 + "" + pin2 + "" + pin3 + "" + pin4 + "" + pin5 + "" + pin6;
+            window.alert(tempraryPassword);
+            event.preventDefault();
+
+
+
+            if (currentCustomer) {
+                window.alert("customer bali api")
+                let contact = currentCustomer.contact;
+                window.alert(contact)
+                const response = await axios.post(api.CUSTOMER_VERIFY_OTP, { contact, tempraryPassword });
+                window.alert("customer bali api chli")
+                navigate("/setPassword")
+            }
+            else {
+                window.alert("shopkeeper bali api");
+                let contact = currentShopkeeper.contact;
+                window.alert(contact);
+                const response = await axios.post(api.SHOPKEEPER_VERIFY_OTP, { contact, tempraryPassword });
+                window.alert("shopkeeper bali api chali")
+                navigate("/setPassword")
+            }
+        }
+        catch (err) {
+            toast.error("Oops! wrong otp");
+        }
     }
-    catch(err){
-        toast.error("Oops! wrong otp");
-    }
-   }
     return <>
-     <Navbar/> 
+        <Navbar />
         <div className='container-fluid'>
             <div className='row outerDiv'>
                 <div className='col-2'></div>
@@ -58,17 +80,17 @@ function VerifyPassword() {
                                         </div>
                                         <div style={{ fontSize: 16, marginTop: 15 }}>
                                             <div class="input-field">
-                                                <input className='input'  onChange={(event)=>setPin1(event.target.value)} type="text" maxLength={1} />
-                                                <input className='input'  onChange={(event)=>setPin2(event.target.value)} type="text" maxLength={1} />
-                                                <input className='input'  onChange={(event)=>setPin3(event.target.value)} type="text" maxLength={1} />
-                                                <input className='input'  onChange={(event)=>setPin4(event.target.value)} type="text" maxLength={1} />
-                                                <input className='input'  onChange={(event)=>setPin5(event.target.value)} type="text" maxLength={1} />
-                                                <input className='input'  onChange={(event)=>setPin6(event.target.value)} type="text" maxLength={1} />
-                                          
+                                                <input className='input' onChange={(event) => setPin1(event.target.value)} type="text" maxLength={1} />
+                                                <input className='input' onChange={(event) => setPin2(event.target.value)} type="text" maxLength={1} />
+                                                <input className='input' onChange={(event) => setPin3(event.target.value)} type="text" maxLength={1} />
+                                                <input className='input' onChange={(event) => setPin4(event.target.value)} type="text" maxLength={1} />
+                                                <input className='input' onChange={(event) => setPin5(event.target.value)} type="text" maxLength={1} />
+                                                <input className='input' onChange={(event) => setPin6(event.target.value)} type="text" maxLength={1} />
+
                                             </div>
                                             <div>
                                                 <div style={{ height: "1vw" }}>
-                                                      {pinErr ? <small style={{ color: "red" ,textAlign:"left" }} >Invalid Otp</small> : ""}
+                                                    {pinErr ? <small style={{ color: "red", textAlign: "left" }} >Invalid Otp</small> : ""}
                                                 </div>
                                             </div>
 
