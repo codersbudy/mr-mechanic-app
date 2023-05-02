@@ -35,7 +35,7 @@ function CustomerBookingHistory(){
 
     return <>
 <CustomerNavigation/>
-   <div>
+   <div className="container">
    <table className="table">
      <thead>
         <tr>
