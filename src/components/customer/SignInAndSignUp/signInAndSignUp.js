@@ -7,7 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import api from "../../../WebApi/api";
 import { setCustomer } from "../../../redux-config/customerSlice";
-
+import { setCurrentLocation } from "../../../redux-config/customerSlice";
+import { setLatLong } from "../../../redux-config/customerSlice"; 
 function CustomerSignInAndSignUp() {
     const [contact, setContact] = useState("");
     const [password, setPassword] = useState("");
@@ -69,7 +70,8 @@ function CustomerSignInAndSignUp() {
             const response = await axios.post(api.CUSTOMER_SIGNIN, { contact, password });
             toast.success("Log In successfully...");
             dispatch(setCustomer(response.data.customer));
-         
+            nearBySearch();
+            getLocation();
             navigate("/customerHome");
 
         }
@@ -94,7 +96,36 @@ function CustomerSignInAndSignUp() {
                 toast.error("Server Error : 500");
         }
     }
+    const nearBySearch = ()=>{
+        navigator.geolocation.getCurrentPosition((position) => {
+          let latitude = position.coords.latitude;
+          let longitude = position.coords.longitude;
+          window.alert(latitude+" fdfdfdsf"+longitude);
+          dispatch(setLatLong(latitude+","+longitude));
+      });
+      }
 
+
+    function getLocation() {
+        if (navigator.geolocation)
+          navigator.geolocation.getCurrentPosition(showPosition);
+      }
+
+
+      function showPosition(position) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "https://api.opencagedata.com/geocode/v1/json?q=" + position.coords.latitude + "+" + position.coords.longitude + "&key=87f70e732bbd44d984f351fc57d3e4cc", true);
+        xhttp.send();
+        xhttp.onreadystatechange = function () {
+          if (xhttp.readyState == 4) {
+            // var citySpan = document.getElementById("city");
+            let data = JSON.parse(xhttp.responseText);
+            window.alert(data.results[0].components.city)
+            dispatch(setCurrentLocation(data.results[0].components.city));
+            // citySpan.innerHTML = data.results[0].components.city;
+          }
+        }
+      }
     return <>
      <ToastContainer/>
         <div class="modal fade" id="customerModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

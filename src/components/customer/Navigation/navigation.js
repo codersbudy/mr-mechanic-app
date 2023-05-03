@@ -72,14 +72,14 @@
 //     function saveEnable() {
 //         let saveEle=document.getElementById("save");
 //         saveEle.disabled = false;
-      
-        
+
+
 //         saveEle.onClick=window.alert("saveEle ");
 //         console.log("save chala")
 //     }
 //     function saveData(){
 //         window.alert("inenr save "+customerName+""+customerEmail)
-    
+
 
 //     }
 //     function fileValue() {
@@ -90,7 +90,7 @@
 //         // var preview = document.getElementById('profileImg');
 //         file = document.querySelector('input[type=file]').files[0];
 //         document.getElementById("save").disabled = false;
-      
+
 //         changesrc();
 //     }
 
@@ -280,11 +280,13 @@
 
 
 
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-function CustomerNavigation(){
+function CustomerNavigation() {
+    const {currentLocation}=useSelector(state=>state.customer);
+     document.getElementById("city").innerHTML=currentLocation;
     return <>
-       <div className="container-fluid border-bottom">
+        <div className="container-fluid border-bottom">
             <nav className="navbar navbar-expand-lg nav ">
                 <div className="container-fluid a">
                     <img className="navbar-brand logo" src="./images/logo.png"></img>
@@ -297,14 +299,18 @@ function CustomerNavigation(){
                             <li className="nav-item ">
                                 <Link className="nav-link navOption" aria-current="page" to="/customerHome">Home</Link>
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link navOption dropdown-toggle" href="#"> <i class="fa fa-map-marker fs-1"
+                                    aria-hidden="true"></i> &nbsp;<span id="city">Select City</span></a>
+                            </li>
                             <li className="nav-item">
                                 <Link className="nav-link navOption" to="/cusotmerProfile">My Profile</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/customerBookingHistory" className="nav-link navOption">View History</Link>
                             </li>
-                            
-                         </ul>
+
+                        </ul>
                     </div>
                 </div>
             </nav>
