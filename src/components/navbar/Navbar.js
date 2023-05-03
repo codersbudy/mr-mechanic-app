@@ -48,8 +48,8 @@ function Navbar() {
                                     <span className="dropdown-toggle ">Login</span>
                                 </a>
                                 <ul className="dropdown-menu ">
-                                    <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#customerModel">Customer</a></li>
-                                    <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#shopKeeperModel" >Shopkeeper</a></li>
+                                        <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#customerModel">Customer</a></li>
+                                        <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#shopKeeperModel" >Shopkeeper</a></li>
                                     <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#mechanicModel" href="#">Mechanic</a></li>
                                     <li><a className="dropdown-item drop" href="#">Admin</a></li>
                                 </ul>

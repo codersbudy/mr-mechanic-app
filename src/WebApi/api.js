@@ -9,6 +9,7 @@ export default{
     SHOPKEEPER_FORGOT_PASSWORD:'/shopkeeper/forgetPassword',
     SHOPKEEPER_SET_PASSWORD:'/shopkeeper/setPassword',
     SHOPKEEPER_VERIFY_OTP:'/shopkeeper/verifyOtp',
-    MECHANIC_SIGNIN:'/mechanic/signIn'
+    MECHANIC_SIGNIN:'/mechanic/signIn',
+    SHOP_LIST:'/shop/getList',
 
 }

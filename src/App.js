@@ -25,7 +25,7 @@ function App() {
   {/* <shopkeeperSignIn/> */}
   {/* <ViewBookingHistory/> */}
   {/* <CustomerProfile/> */}
-  {/* <ViewShop/> */}
+  <ViewShop/>
 
   {/* <CustomerNavigation/> */}
   {/* <CustomerUpdateProfile/> */}
@@ -33,7 +33,7 @@ function App() {
 
  <Routes>
 
-    <Route path="/" element={<Home/>}/>
+    {/* <Route path="/" element={<Home/>}/> */}
     <Route path="/forgotPassword" element={<ForgotPassword/>} />
      <Route path="/home" element={<Home/>}/> 
     <Route path="/verifyOtp" element={<ProtectedRoute><VerifyPassword/></ProtectedRoute>} /> 
