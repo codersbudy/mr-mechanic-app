@@ -52,7 +52,10 @@ function ShopKeeperSignInAndSignUp() {
         let element = document.getElementById('box-content-shopkeeper');
         element.style.transform = "rotateY(0deg)";
     }
+
+
     var funTurn = () => {
+
         var outer2 = document.getElementById('outer2');
         outer2.style.overflowY = "auto";
         outer2.style.borderRadius = "17px"

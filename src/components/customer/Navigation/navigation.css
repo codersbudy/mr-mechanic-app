@@ -22,11 +22,11 @@
     background-color: #3CB0A2;
 }
 
-.btn-check:checked+.btn,
+.edit-check:checked+.edit,
 .edit.active,
-.btn.show,
+.edit.show,
 .edit:first-child:active,
-:not(.btn-check)+.edit:active {
+:not(.edit-check)+.edit:active {
     background-color:transparent
 }
 
@@ -78,7 +78,7 @@
     background-color: whitesmoke;
     padding: 10px;
     border-radius: 17px;
-    visibility:hidden;
+    display: none;
     font-size: small;
     box-shadow: 1px 1px 2px black;
     left:75%;
@@ -116,12 +116,14 @@ input[type='file'] {
     position: absolute; 
     margin-left:-100px;
   }
+
+
 .file{
    align-items: center ;
 }
 .viewProfile input {
     color: #3CB0A2;
-    font-weight: 550;
+    font-weight: bold;
 }
 .closeBtn{
     position: absolute;

@@ -3,11 +3,9 @@ import axios from "axios";
 import api from "../WebApi/api";
 
 export const fetchShop=createAsyncThunk("shop",async()=>{
-    // window.alert("inner fetchshop function");
-    let response=await axios.get(api.SHOP_LIST);
+    let response = await axios.get(api.SHOP_LIST);
     if(response.data){
       return response.data;
-      
     }
 })
 
