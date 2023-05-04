@@ -27,7 +27,7 @@ function VerifyPassword() {
             window.alert(tempraryPassword);
             event.preventDefault();
 
-
+            
 
             if (currentCustomer) {
                 window.alert("customer bali api")
@@ -37,7 +37,7 @@ function VerifyPassword() {
                 window.alert("customer bali api chli")
                 navigate("/setPassword")
             }
-            else {
+            else if(currentShopkeeper) {
                 window.alert("shopkeeper bali api");
                 let contact = currentShopkeeper.contact;
                 window.alert(contact);

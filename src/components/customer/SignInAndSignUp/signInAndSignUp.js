@@ -84,8 +84,9 @@ function CustomerSignInAndSignUp() {
     const onSignUpHendler = async (event) => {
         try {
             event.preventDefault();
-            toast.success("Registration successfully...");
+            
             let response = await axios.post(api.CUSTOMER_SIGNUP, { contact, password, customerName })
+            toast.success("Registration successfully...");
             funReturn();
 
         }
@@ -100,7 +101,6 @@ function CustomerSignInAndSignUp() {
         navigator.geolocation.getCurrentPosition((position) => {
           let latitude = position.coords.latitude;
           let longitude = position.coords.longitude;
-          window.alert(latitude+" fdfdfdsf"+longitude);
           dispatch(setLatLong(latitude+","+longitude));
       });
       }
@@ -120,7 +120,7 @@ function CustomerSignInAndSignUp() {
           if (xhttp.readyState == 4) {
             // var citySpan = document.getElementById("city");
             let data = JSON.parse(xhttp.responseText);
-            window.alert(data.results[0].components.city)
+
             dispatch(setCurrentLocation(data.results[0].components.city));
             // citySpan.innerHTML = data.results[0].components.city;
           }

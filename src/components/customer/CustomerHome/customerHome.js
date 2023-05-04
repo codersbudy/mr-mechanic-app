@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import CustomerNavigation from "../Navigation/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShop } from "../../../redux-config/shopSlice";
+
 import "./customerHome.css";
 import shopImg from "./shopImg.jpg";
 

@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/navbar/Navbar";
+// import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home/home"
 import ForgotPassword from "./components/customer/ForgotPassword/ForgotPassword";
 import VerifyPassword from "./components/customer/verifyPassword/VerifyPassword";
@@ -13,7 +13,7 @@ import ViewBookingHistory from "./components/customer/ViewBookingHistory/viewBoo
 import CustomerProfile from "./components/customer/Profile/profile";
 import 'react-toastify/dist/ReactToastify.css'
 import ViewShop from "./components/customer/ViewShop/viewShop";
-// import CustomerProfileUpdate from "./components/customer/UpdateProfile/updateProfile";
+import CustomerProfileUpdate from "./components/customer/UpdateProfile/updateProfile";
 import CustomerUpdateProfile from "./components/customer/UpdateProfile/updateProfile";
 import ShopKeeperSignIn from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import ShopkeeperForgotPassword from "./components/Shopkeeper/ForgotPassword/ForgotPassword";
@@ -29,7 +29,7 @@ function App() {
 
   {/* <CustomerNavigation/> */}
   {/* <CustomerUpdateProfile/> */}
-
+{/* <CustomerHome/> */}
 
  <Routes>
 

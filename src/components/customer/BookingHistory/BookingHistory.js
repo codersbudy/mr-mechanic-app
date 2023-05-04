@@ -50,7 +50,7 @@ function CustomerBookingHistory(){
      </thead>
      <tbody className="tbody">
        {customerBookingHistory.map((history,index)=><tr>
-        <td>{index+1} </td>
+        <td className="srNumber">{index+1} </td>
         <td>{history.shopId.shopName}</td>
         <td>{history.problem}</td>
         <td>{history.shopId.contact}</td>

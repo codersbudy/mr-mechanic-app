@@ -8,6 +8,7 @@ const slice=createSlice(
         customerBookingHistory:[],
         currentLocation:null,
         latLong:null,
+        customerVerify:false,
     },
     reducers:{
         setCustomer:(state,action)=>{
@@ -26,6 +27,7 @@ const slice=createSlice(
     
 }
 )
+export const {customerVerify}=slice.actions;
 export const {setLatLong}=slice.actions;
 export const {setCurrentLocation}=slice.actions;
 export const {setCustomerBookingHistory}=slice.actions;
