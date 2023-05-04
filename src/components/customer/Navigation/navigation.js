@@ -283,7 +283,9 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 function CustomerNavigation() {
+
     const {currentLocation}=useSelector(state=>state.customer);
+    // window.alert(currentLocation);
      document.getElementById("city").innerHTML=currentLocation;
     return <>
         <div className="container-fluid border-bottom">

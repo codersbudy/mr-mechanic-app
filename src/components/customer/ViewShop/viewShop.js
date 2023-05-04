@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function ViewShop() {
 
     return <>
-       <CustomerNavigation/>
+       {/* <CustomerNavigation/> */}
         <div className="container-fluid outerContainer">
             <div className='row'>
                 <div className='col-2'></div>
