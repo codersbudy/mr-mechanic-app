@@ -14,8 +14,11 @@ function CustomerBookingHistory(){
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const loadHistory=async ()=> {
-         let customerId=currentCustomer.customerId;
+         let customerId=currentCustomer._id;
+         window.alert("customer id"+customerId);
          let response=await axios.post(api.CUSTOMER_BOOKING_HISTORY,{customerId});
+         console.log(response);
+         window.alert("after api");
          console.log(response.data.result)
          dispatch(setCustomerBookingHistory(response.data.result));
     }

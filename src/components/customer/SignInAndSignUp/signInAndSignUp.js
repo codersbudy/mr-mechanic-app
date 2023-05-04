@@ -76,6 +76,7 @@ function CustomerSignInAndSignUp() {
 
         }
         catch (err) {
+        console.log(err);
            toast.error("please check contact password")
         }
     }
