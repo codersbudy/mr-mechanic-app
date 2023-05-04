@@ -35,7 +35,7 @@ function App() {
 
     <Route path="/" element={<Home/>}/>
     <Route path="/forgotPassword" element={<ForgotPassword/>} />
-     <Route path="/home" element={<Home/>}/> 
+    <Route path="/home" element={<Home/>}/> 
     <Route path="/verifyOtp" element={<ProtectedRoute><VerifyPassword/></ProtectedRoute>} /> 
     <Route path="/setPassword" element={<ProtectedRoute><SetPassword/></ProtectedRoute>}/>
     <Route path="/selectCity" element={<ProtectedRoute> <SelectCity/></ProtectedRoute>}/>
