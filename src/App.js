@@ -43,8 +43,10 @@ function App() {
     <Route path="/customerHome" element={<ProtectedRoute><CustomerHome/></ProtectedRoute>}/>
     <Route path="/viewBookingHistory" element={<ProtectedRoute><ViewBookingHistory/></ProtectedRoute>}/>
     <Route path="/cusotmerProfile" element={<ProtectedRoute><CustomerProfile/></ProtectedRoute>}/>
+    <Route path="/customerViewShop" element={<ProtectedRoute><ViewShop/></ProtectedRoute>} />
    {/* -----------------------------------------shop keeper functionality---------------- */}
    <Route path="/shopkeeperForgotPassword" element={<ShopkeeperForgotPassword/>}/>
+   {/* <Route path="/customerRequest" element={<ProtectedRoute><CustomerRequest/></ProtectedRoute>}/> */}
    
   </Routes> 
   </>

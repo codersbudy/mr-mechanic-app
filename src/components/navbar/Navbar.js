@@ -1,10 +1,6 @@
 import { useState } from "react";
 
 import "./logIn.css";
-
-// import 'react-toastify/dist/ReactToastify.css';
-
-// import { Link} from "react-router-dom";
 import ShopKeeperSignInAndSignUp from "../Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import CustomerSignInAndSignUp from "../customer/SignInAndSignUp/signInAndSignUp";
 import 'react-toastify/dist/ReactToastify.css'
@@ -28,7 +24,7 @@ function Navbar() {
                     <div className="collapse navbar-collapse navRight" id="navbarNavDropdown">
                         <ul className="navbar-nav">
                             <li className="nav-item ">
-                                <a className="nav-link navOption" aria-current="page" href="#">Home</a>
+                                <Link to="/" className="nav-link navOption" aria-current="page" >Home</Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link navOption" href="#">Features </a>
@@ -36,10 +32,10 @@ function Navbar() {
                             <li className="nav-item">
                                 <a className="nav-link navOption" href="#">About</a>
                             </li>
-                            <li className="nav-item ">
+                            {/* <li className="nav-item ">
                                 <Link className="nav-link navOption dropdown-toggle" to="/selectCity"> <i className="fa fa-map-marker"
                                     aria-hidden="true"></i> <span id="city">Select City</span></Link>
-                            </li>
+                            </li> */}
 
 
                             <li className="nav-item dropdown ">

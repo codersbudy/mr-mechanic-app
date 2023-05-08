@@ -8,40 +8,38 @@ import './BookingHistory.css'
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../navbar/Navbar";
 import { createContext } from "react";
-function CustomerBookingHistory(){
-   const[index,setIndex]=useState("");
-    const{currentCustomer}=useSelector(state=>state.customer);
-    const dispatch=useDispatch();
-    const navigate=useNavigate();
-    const loadHistory=async ()=> {
-         let customerId=currentCustomer._id;
-         window.alert("customer id"+customerId);
-         let response=await axios.post(api.CUSTOMER_BOOKING_HISTORY,{customerId});
-         console.log(response);
-         window.alert("after api");
-         console.log(response.data.result)
-         dispatch(setCustomerBookingHistory(response.data.result));
-    }
-    const{customerBookingHistory}=useSelector(state=>state.customer);
-   
-    useEffect(()=>{
-        loadHistory();
-    },[]);
+function CustomerBookingHistory() {
+  const [index, setIndex] = useState("");
+  const { currentCustomer } = useSelector(state => state.customer);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loadHistory = async () => {
+    let customerId = currentCustomer._id;
+    let response = await axios.post(api.CUSTOMER_BOOKING_HISTORY, { customerId });
+    dispatch(setCustomerBookingHistory(response.data.result));
+  }
+  const { customerBookingHistory } = useSelector(state => state.customer);
+
+  useEffect(() => {
+    loadHistory();
+  }, []);
 
 
-   function getIndex (id){
-        setIndex(id);
-        navigate("/viewBookingHistory",{state:{
-            id : id
-        }}); 
-   }
+  function getIndex(id) {
+    setIndex(id);
+    navigate("/viewBookingHistory", {
+      state: {
+        id: id
+      }
+    });
+  }
 
-    return <>
-<CustomerNavigation/>
-   <div className="container">
-   <table className="table">
-     <thead>
-        <tr>
+  return <>
+    <CustomerNavigation />
+    <div className="container">
+      <table className="table">
+        <thead>
+          <tr>
             <th>Sr No</th>
             <th>Shop Name</th>
             <th>Problem</th>
@@ -49,24 +47,24 @@ function CustomerBookingHistory(){
             <th>Bill</th>
             <th>Date</th>
             <th>View</th>
-        </tr>
-     </thead>
-     <tbody className="tbody">
-       {customerBookingHistory.map((history,index)=><tr>
-        <td className="srNumber">{index+1} </td>
-        <td>{history.shopId.shopName}</td>
-        <td>{history.problem}</td>
-        <td>{history.shopId.contact}</td>
-        <td>{history.billAmmount}</td>        
-        <td>{history.date}</td>
-        <td><button className="btn view" onClick={()=>getIndex(index)}>View</button></td>
-       </tr>)}
-        
-     </tbody>
-     
-   </table>
-   </div>
-    </>         
+          </tr>
+        </thead>
+        <tbody className="tbody">
+          {customerBookingHistory.map((history, index) => <tr>
+            <td className="srNumber">{index + 1} </td>
+            <td>{history.shopName}</td>
+            <td>{history.problem}</td>
+            <td>{history.contact}</td>
+            <td>{history.billAmmount}</td>
+            <td>{history.date}</td>
+            <td><button className="btn view" onClick={() => getIndex(index)}>View</button></td>
+          </tr>)}
+
+        </tbody>
+
+      </table>
+    </div>
+  </>
 }
 
 export default CustomerBookingHistory;

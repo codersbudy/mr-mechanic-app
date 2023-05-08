@@ -7,7 +7,6 @@ import api from '../../../WebApi/api';
 import { toast } from 'react-toastify';
 import Navbar from '../../navbar/Navbar';
 function VerifyPassword() {
-    window.alert("verify password");
     const navigate = useNavigate();
     const [pin1, setPin1] = useState("");
     const [pin2, setPin2] = useState("");
@@ -18,31 +17,23 @@ function VerifyPassword() {
     const [pinErr, setPinErr] = useState(false);
     const { currentCustomer } = useSelector(state => state.customer);
     const { currentShopkeeper } = useSelector(state => state.shopkeeper);
-    console.log(currentShopkeeper);
-    console.log(currentCustomer);
     const handleSubmit = async (event) => {
         try {
-            window.alert("inner try");
+
             let tempraryPassword = pin1 + "" + pin2 + "" + pin3 + "" + pin4 + "" + pin5 + "" + pin6;
-            window.alert(tempraryPassword);
             event.preventDefault();
 
             
 
             if (currentCustomer) {
-                window.alert("customer bali api")
+
                 let contact = currentCustomer.contact;
-                window.alert(contact)
                 const response = await axios.post(api.CUSTOMER_VERIFY_OTP, { contact, tempraryPassword });
-                window.alert("customer bali api chli")
                 navigate("/setPassword")
             }
             else if(currentShopkeeper) {
-                window.alert("shopkeeper bali api");
                 let contact = currentShopkeeper.contact;
-                window.alert(contact);
                 const response = await axios.post(api.SHOPKEEPER_VERIFY_OTP, { contact, tempraryPassword });
-                window.alert("shopkeeper bali api chali")
                 navigate("/setPassword")
             }
         }

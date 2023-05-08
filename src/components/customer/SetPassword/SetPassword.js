@@ -34,20 +34,14 @@ function SetPassword() {
         try {
             event.preventDefault();
             if (currentCustomer) {
-                alert("set customer inner");
                 let contact = currentCustomer.contact
                 let response = await axios.post(api.CUSTOMER_SET_PASSWORD, { contact, password });
-                alert("set customer api chali ");
                 toast.success("successfully password set");
                 navigate("/home");
             }
             else {
-                alert("set shopkeeper inner");
                 let contact = currentShopkeeper.contact;
-                window.alert(contact);
-                window.alert(password);
                 let response = await axios.post(api.SHOPKEEPER_SET_PASSWORD, { contact, password });
-                alert("set shopkeeper api chali ");
                 toast.success("successfully password set");
                 navigate("/home");
             }
