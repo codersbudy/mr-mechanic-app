@@ -1,7 +1,7 @@
 function Footer() {
 
     return <>
-        <div className="container-fluid footer m-0 border-top justify-align-center ">
+           <div className="container-fluid footer m-0 border-top justify-align-center ">
 
             <div className="row d ff ">
 

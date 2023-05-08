@@ -64,20 +64,6 @@ const  handleSubnmit =async (event)=>{
                                         <div className='row'>
                                          <div className='col-4'><label className="form-label">Enter Name</label></div>   
                                          <div className='col-8'><input type='text' id="input" placeholder='Enter your name'/></div>   
-                                     {/* <span>  <label className="form-label">Enter contact number</label></span>
-                                       <span><div style={{ fontSize: 16, marginTop: 15 }}>
-                                            <input type="text" required="" id="input"
-                                                minLength={10}
-                                                maxLength={10}
-                                                placeholder="Enter contact number"
-                                                onChange={(event) => setContact(event.target.value)}
-                                                onKeyUp={contactHendler}
-                                            />
-                                            <div style={{ height: "1vw" }}>
-                                                {contactErr ? <small style={{ color: "red" }} >Invalid contact</small> : ""}
-                                            </div>
-                                        </div>
-                                        </span>  */}
                                         </div>
                                         <div className='row' style={{marginTop:"2vw"}}>
                                         <div className='col-4'><label className="form-label">Enter Contact</label></div>   

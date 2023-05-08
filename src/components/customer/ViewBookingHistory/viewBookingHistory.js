@@ -21,7 +21,7 @@ function ViewBookingHistory(){
              <p>Date</p>
           </div>
          <div className="col-3">
-             <p>{viewMore.shopId.shopName}</p>
+             <p>{viewMore.shopName}</p>
              <p>9090909090</p>
              <p>{viewMore.mechanicId.mechanicname}</p>
              <p>{viewMore.status}</p>
@@ -30,7 +30,6 @@ function ViewBookingHistory(){
              <p>{viewMore.date}</p>
          </div>
          <div className="col-3 text">
-             {/* <p>Shopkeeper Name</p> */}
              <p>Shop Address</p>
              <p>Mechanic contact</p>
              <p>Address</p>
@@ -38,8 +37,7 @@ function ViewBookingHistory(){
              <p>Payment Mode</p>
           </div>
           <div className="col-3">
-             {/* <p>Ankit</p> */}
-             <p>{viewMore.shopId.address}</p>
+             <p>{viewMore.address}</p>
              <p>{viewMore.mechanicId.contact}</p>
              <p>{viewMore.location}</p>
              <p>{viewMore.vehicleName}</p>

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { validContact, validName, validPassword } from "../../Regex/regex";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,8 +8,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import api from "../../../WebApi/api";
 import { setCustomer } from "../../../redux-config/customerSlice";
 import { setCurrentLocation } from "../../../redux-config/customerSlice";
-import { setLatLong } from "../../../redux-config/customerSlice"; 
+import { setLatLong } from "../../../redux-config/customerSlice";
+import { fetchShop } from "../../../redux-config/shopSlice";
 function CustomerSignInAndSignUp() {
+    var latlong;
     const [contact, setContact] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -19,7 +21,7 @@ function CustomerSignInAndSignUp() {
     const [nameErr, setNameErr] = useState(false);
     const [confirmpassErr, setConfirmPassErr] = useState(false);
 
-
+    const {isLoading}=useSelector(state=>state.shop);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     function contactHendler(e) {
@@ -70,14 +72,23 @@ function CustomerSignInAndSignUp() {
             const response = await axios.post(api.CUSTOMER_SIGNIN, { contact, password });
             toast.success("Log In successfully...");
             dispatch(setCustomer(response.data.customer));
-            nearBySearch();
-            getLocation();
-            navigate("/customerHome");
+            // nearBySearch();
+            navigator.geolocation.getCurrentPosition((position) => {
+                let lat = position.coords.latitude;
+                let long = position.coords.longitude;
+                latlong=lat+","+long;
+                 dispatch(fetchShop(latlong));
+                getLocation();
+                if(!isLoading)
+                  navigate("/customerHome");
+              
+            });
+            
+          
 
         }
         catch (err) {
-        console.log(err);
-           toast.error("please check contact password")
+            toast.error("please check contact password")
         }
     }
 
@@ -85,7 +96,7 @@ function CustomerSignInAndSignUp() {
     const onSignUpHendler = async (event) => {
         try {
             event.preventDefault();
-            
+
             let response = await axios.post(api.CUSTOMER_SIGNUP, { contact, password, customerName })
             toast.success("Registration successfully...");
             funReturn();
@@ -98,37 +109,26 @@ function CustomerSignInAndSignUp() {
                 toast.error("Server Error : 500");
         }
     }
-    const nearBySearch = ()=>{
-        navigator.geolocation.getCurrentPosition((position) => {
-          let latitude = position.coords.latitude;
-          let longitude = position.coords.longitude;
-          dispatch(setLatLong(latitude+","+longitude));
-      });
-      }
-
 
     function getLocation() {
         if (navigator.geolocation)
-          navigator.geolocation.getCurrentPosition(showPosition);
-      }
+            navigator.geolocation.getCurrentPosition(showPosition);
+    }
 
 
-      function showPosition(position) {
+    function showPosition(position) {
         var xhttp = new XMLHttpRequest();
         xhttp.open("GET", "https://api.opencagedata.com/geocode/v1/json?q=" + position.coords.latitude + "+" + position.coords.longitude + "&key=87f70e732bbd44d984f351fc57d3e4cc", true);
         xhttp.send();
         xhttp.onreadystatechange = function () {
-          if (xhttp.readyState == 4) {
-            // var citySpan = document.getElementById("city");
-            let data = JSON.parse(xhttp.responseText);
-
-            dispatch(setCurrentLocation(data.results[0].components.city));
-            // citySpan.innerHTML = data.results[0].components.city;
-          }
+            if (xhttp.readyState == 4) {
+                let data = JSON.parse(xhttp.responseText);
+                dispatch(setCurrentLocation(data.results[0].components.city));
+            }
         }
-      }
+    }
     return <>
-     <ToastContainer/>
+        <ToastContainer />
         <div class="modal fade" id="customerModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="modal-dialog modal-lg modal-content modal1"  >
@@ -178,7 +178,7 @@ function CustomerSignInAndSignUp() {
                                             </div>
                                             <div style={{ marginTop: 15 }}>
                                                 <Link to='/forgotPassword' className="link">
-                                                    <small className="fp linkHover" data-bs-dismiss="modal">forgot Password?</small>
+                                                    <small className="fp linkHover" data-bs-dismiss="modal">Forgot password?</small>
                                                 </Link>
                                             </div>
 
@@ -314,21 +314,16 @@ function CustomerSignInAndSignUp() {
                                 aria-label="Close"
                             />
                         </div>
-                        {/*  onSubmit={onSignUpHendler} */}
-                        <form style={{ padding: "3vw" }}>
+                          <form style={{ padding: "3vw" }}>
                             <div className="placeholderdiv">
                                 <input
                                     className="place"
                                     type="text"
                                     id="customerName"
-                                    placeholder="Enter name"
-                                // onChange={(event) => setCustomerName(event.target.value)}
-                                // onKeyUp={nameHendler}
-                                />
+                                    />
                                 <div style={{ height: "1vw" }}>
 
-                                    {/* {nameErr ? <small style={{ color: "red" }} >Invalid customer name</small> : ""} */}
-                                </div>
+                                          </div>
                             </div>
                             <div className="placeholderdiv">
                                 <input
@@ -339,13 +334,11 @@ function CustomerSignInAndSignUp() {
                                     placeholder="Enter contact number"
                                     minLength={10}
                                     maxLength={10}
-                                // onChange={(event) => setContact(event.target.value)}
-                                // onKeyUp={contactHendler}
+                            
                                 />
                                 <div style={{ height: "1vw" }}>
 
-                                    {/* {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""} */}
-                                </div>
+                                         </div>
                             </div>
 
                             <div className="placeholderdiv">
@@ -354,15 +347,13 @@ function CustomerSignInAndSignUp() {
                                     type="password"
                                     id="customerPassword"
                                     placeholder="Enter password"
-                                    // onKeyUp={passwordHendler}
+                        
                                     minLength={8}
                                     maxLength={16}
-                                // onChange={(event) => setPassword(event.target.value)}
-                                />
+                                  />
                                 <div style={{ height: "1vw" }}>
 
-                                    {/* {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""} */}
-                                </div>
+                                  </div>
                             </div>
                             <div>
                                 <a href="" className="link">

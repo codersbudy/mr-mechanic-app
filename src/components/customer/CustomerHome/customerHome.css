@@ -197,4 +197,10 @@
   .filter{
     border-radius: 17px;
   }
+  
+  .index{
+
+     cursor: pointer;
+
+  }
 

@@ -16,6 +16,7 @@ const slice=createSlice(
         },
         setCustomerBookingHistory:(state,action)=>{
             state.customerBookingHistory=action.payload;
+            
         },
         setCurrentLocation:(state,action)=>{
             state.currentLocation=action.payload;
