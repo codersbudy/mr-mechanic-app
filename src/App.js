@@ -17,6 +17,7 @@ import CustomerProfileUpdate from "./components/customer/UpdateProfile/updatePro
 import CustomerUpdateProfile from "./components/customer/UpdateProfile/updateProfile";
 import ShopKeeperSignIn from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import ShopkeeperForgotPassword from "./components/Shopkeeper/ForgotPassword/ForgotPassword";
+import CustomerRequest from "./components/customer/CustomerRequest/CustomerRequest";
 function App() {
   return <>
  {/* <CustomerNavigation/> */}
@@ -30,6 +31,8 @@ function App() {
   {/* <CustomerNavigation/> */}
   {/* <CustomerUpdateProfile/> */}
 {/* <CustomerHome/> */}
+{/* <CustomerNavigation/> */}
+{/* <CustomerRequest/> */}
 
  <Routes>
 
@@ -44,6 +47,7 @@ function App() {
     <Route path="/viewBookingHistory" element={<ProtectedRoute><ViewBookingHistory/></ProtectedRoute>}/>
     <Route path="/cusotmerProfile" element={<ProtectedRoute><CustomerProfile/></ProtectedRoute>}/>
     <Route path="/customerViewShop" element={<ProtectedRoute><ViewShop/></ProtectedRoute>} />
+    {/* <Route path="/sendRequest" element={<ProtectedRoute><CustomerRequest/></ProtectedRoute>} /> */}
    {/* -----------------------------------------shop keeper functionality---------------- */}
    <Route path="/shopkeeperForgotPassword" element={<ShopkeeperForgotPassword/>}/>
    {/* <Route path="/customerRequest" element={<ProtectedRoute><CustomerRequest/></ProtectedRoute>}/> */}
