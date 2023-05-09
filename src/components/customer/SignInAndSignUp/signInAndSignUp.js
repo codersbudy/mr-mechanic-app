@@ -79,7 +79,6 @@ function CustomerSignInAndSignUp() {
                 latlong=lat+","+long;
                  dispatch(fetchShop(latlong));
                 getLocation();
-                if(!isLoading)
                   navigate("/customerHome");
               
             });

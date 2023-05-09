@@ -201,6 +201,10 @@
   .index{
 
      cursor: pointer;
-
+  }
+  .drop{
+    align-items: end;
+    /* background-color: black; */
+    margin-left: 1vw;
   }
 

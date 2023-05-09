@@ -12,7 +12,6 @@ export const fetchShop=createAsyncThunk("shop",async(latLong)=>{
       return response.data;
     }
 })
-
 const slice=createSlice({
     name:"shop",
     initialState:{
@@ -35,6 +34,4 @@ const slice=createSlice({
 
     }
 })
-
-
 export default slice.reducer;
