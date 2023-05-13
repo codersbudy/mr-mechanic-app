@@ -1,14 +1,15 @@
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import "./viewBookingHistory.css"
-import CustomerNavigation from "../Navigation/navigation";
+import Navbar from "../../navbar/Navbar";
+// import CustomerNavigation from "../Navigation/navigation";
 function ViewBookingHistory(){
    const {customerBookingHistory}=useSelector(state=>state.customer);
    const state =  useLocation()
     let index=state.state.id;
     let viewMore=customerBookingHistory[index]; 
     return <>
-    <CustomerNavigation/>
+    <Navbar/>
     <div className="outerDiv">
      <div className="row m-5">
          <div className="col-3 text">

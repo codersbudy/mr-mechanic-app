@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CustomerNavigation from "../Navigation/navigation";
+// import CustomerNavigation from "../Navigation/navigation";
 import axios from "axios";
 import api from "../../../WebApi/api";
 import { setCustomerBookingHistory } from "../../../redux-config/customerSlice";
@@ -35,7 +35,7 @@ function CustomerBookingHistory() {
   }
 
   return <>
-    <CustomerNavigation />
+    <Navbar />
     <div className="container">
       <table className="table">
         <thead>

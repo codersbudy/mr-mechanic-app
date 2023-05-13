@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 import './viewShop.css'
-import CustomerNavigation from '../Navigation/navigation';
+// import CustomerNavigation from '../Navigation/navigation';
 import { Link, useLocation } from 'react-router-dom';
+import Navbar from '../../navbar/Navbar';
 
 function ViewShop() {
     const {shopList}=useSelector(state=>state.shop);
@@ -9,7 +10,7 @@ function ViewShop() {
     let index=state.state.index;
     let shop=shopList.shop[index];
     return <>
-       <CustomerNavigation/>
+       <Navbar/>
         <div className="container-fluid outerContainer">
             <div className='row'>
                 <div className='col-2'></div>

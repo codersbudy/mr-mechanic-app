@@ -21,7 +21,7 @@ function CustomerSignInAndSignUp() {
     const [nameErr, setNameErr] = useState(false);
     const [confirmpassErr, setConfirmPassErr] = useState(false);
 
-    const {isLoading}=useSelector(state=>state.shop);
+    const { isLoading } = useSelector(state => state.shop);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     function contactHendler(e) {
@@ -76,14 +76,14 @@ function CustomerSignInAndSignUp() {
             navigator.geolocation.getCurrentPosition((position) => {
                 let lat = position.coords.latitude;
                 let long = position.coords.longitude;
-                latlong=lat+","+long;
-                 dispatch(fetchShop(latlong));
+                latlong = lat + "," + long;
+                dispatch(fetchShop(latlong));
                 getLocation();
-                  navigate("/customerHome");
-              
+                navigate("/customerHome");
+
             });
-            
-          
+
+
 
         }
         catch (err) {
@@ -313,16 +313,16 @@ function CustomerSignInAndSignUp() {
                                 aria-label="Close"
                             />
                         </div>
-                          <form style={{ padding: "3vw" }}>
+                        <form style={{ padding: "3vw" }}>
                             <div className="placeholderdiv">
                                 <input
                                     className="place"
                                     type="text"
                                     id="customerName"
-                                    />
+                                />
                                 <div style={{ height: "1vw" }}>
 
-                                          </div>
+                                </div>
                             </div>
                             <div className="placeholderdiv">
                                 <input
@@ -333,11 +333,11 @@ function CustomerSignInAndSignUp() {
                                     placeholder="Enter contact number"
                                     minLength={10}
                                     maxLength={10}
-                            
+
                                 />
                                 <div style={{ height: "1vw" }}>
 
-                                         </div>
+                                </div>
                             </div>
 
                             <div className="placeholderdiv">
@@ -346,13 +346,13 @@ function CustomerSignInAndSignUp() {
                                     type="password"
                                     id="customerPassword"
                                     placeholder="Enter password"
-                        
+
                                     minLength={8}
                                     maxLength={16}
-                                  />
+                                />
                                 <div style={{ height: "1vw" }}>
 
-                                  </div>
+                                </div>
                             </div>
                             <div>
                                 <a href="" className="link">
