@@ -6,7 +6,7 @@ import { validContact, validName, validPassword } from "../../Regex/regex";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import api from "../../../WebApi/api";
-import { setCustomer } from "../../../redux-config/customerSlice";
+import { setShopkeeper } from "../../../redux-config/shopkeeperSlice";
 
 function ShopKeeperSignInAndSignUp() {
     const [contact, setContact] = useState("");
@@ -17,7 +17,11 @@ function ShopKeeperSignInAndSignUp() {
     const [passErr, setPassErr] = useState(false);
     const [nameErr, setNameErr] = useState(false);
     const [confirmpassErr, setConfirmPassErr] = useState(false);
-
+    // -------------------REGISTREATION STATES-------------------------------
+    const [rcontact, setRcontact] = useState("");
+    const [rpassword, setRpassword] = useState("");
+    const [rname, setRname] = useState("");
+    // const [r,setrcontact] = useState("");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -35,7 +39,7 @@ function ShopKeeperSignInAndSignUp() {
             setPassErr(false);
     }
     function confirmPasswordHendler(e) {
-        if (!(password == e.target.value))
+        if (!(rpassword == e.target.value))
             setConfirmPassErr(true);
         else
             setConfirmPassErr(false);
@@ -64,34 +68,36 @@ function ShopKeeperSignInAndSignUp() {
     }
 
 
-    const handleSubmit = async (event) => {
+    const signInHandler = async (event) => {
 
         try {
             event.preventDefault();
             const response = await axios.post(api.SHOPKEEPER_SIGNIN, { contact, password });
             toast.success("Log In successfully...");
-            window.alert("api is called...");
-            // dispatch(setCustomer(response.data.customer));
+            window.alert("api is called...in shopkeeper");
+            dispatch(setShopkeeper(response.data));
             console.log(response.data);
-            navigate("/forgotPassword");
+            navigate("/shopkeeperHome");
+            console.log("chalalalal");
 
         }
         catch (err) {
             if (err.response.status == 400)
-                toast.error("Invalid Password");
-            else
-                toast.error("invalid contact");
+                toast.error("Invalid Contact & Password");
+            else if (err.response.status == 500)
+                toast.error("Server Error...");
+
+
         }
     }
 
 
-    const onSignUpHendler = async (event) => {
+    const SignUpHandler = async (event) => {
         try {
             event.preventDefault();
+            let response = await axios.post(api.SHOPKEEPER_SIGNUP, { contact: rcontact, password: rpassword, shopkeeperName: rname });
             toast.success("Registration successfully...");
-            let response = await axios.post(api.CUSTOMER_SIGNUP, { contact, password, customerName })
             funReturn();
-
         }
         catch (err) {
             if (err.response.status == 400)
@@ -108,7 +114,6 @@ function ShopKeeperSignInAndSignUp() {
             <div className="modal-dialog modal-lg modal-content modal1"  >
                 <div className="container-fluid m-0 p-0 box">
                     <div className="container-fluid m-0 p-0 box-content" id="box-content-shopkeeper">
-
 
                         <div className="row r1 p-0 m-0 outer1">
                             <div className="col-md-4 col-sm-12 " id="firstside">
@@ -133,14 +138,10 @@ function ShopKeeperSignInAndSignUp() {
 
                                 </div>
 
-                                <form onSubmit={handleSubmit}>
+                                <form onSubmit={signInHandler}>
                                     <div className="" style={{ marginTop: "2vw" }}>
                                         <div style={{ marginLeft: "1.5vw" }}>
-
-
                                             <div className="div1">
-
-
                                                 <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10} onChange={(event) => setContact(event.target.value)} onKeyUp={contactHendler} />
                                                 <label className="form-label label1">Enter Mobile Number</label>
                                                 {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
@@ -199,16 +200,14 @@ function ShopKeeperSignInAndSignUp() {
                                         aria-label="Close"></button>
 
                                 </div>
-                                {/* onSubmit={onSignUpHendler} */}
-                                <form  >
+                                <form onSubmit={SignUpHandler} >
                                     <div className="" style={{ marginTop: "2vw" }}>
                                         <div style={{ marginLeft: "1.5vw" }}>
                                             <div className="div1 ">
                                                 {/* onChange={(event) => setCustomerName(event.target.value)} onKeyUp={nameHendler} */}
-
-                                                <input className="input1" type="text" name="username" required="" id="password" placeholder="Ex: John" />
-                                                <label className="form-label label1">Customer name</label>
-                                                {/* {nameErr ? <small style={{ color: "red" }} >Invalid customer name</small> : ""} */}
+                                                <input className="input1" type="text" name="username" required="" id="password" placeholder="Ex: John" onChange={(event) => setRname(event.target.value)} />
+                                                <label className="form-label label1">Shopkeeper Name</label>
+                                                {/* {nameErr ? <small style={{ color: "red", fontSize : "10px" }} >Invalid customer name</small> : ""} */}
 
 
                                             </div>
@@ -216,14 +215,14 @@ function ShopKeeperSignInAndSignUp() {
                                             <div className="div1 mt-2" >
 
                                                 {/* onChange={(event) => setContact(event.target.value)} onKeyUp={contactHendler} */}
-                                                <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10} />
+                                                <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10} onChange={(event) => setRcontact(event.target.value)} />
                                                 <label className="form-label label1">Mobile Number</label>
                                                 {/* {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""} */}
 
                                             </div>
                                             <div className="div1 mt-2">
                                                 {/* onKeyUp={passwordHendler} onChange={(event) => setPassword(event.target.value)} */}
-                                                <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter password" minLength={8} maxLength={16} />
+                                                <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter password" minLength={8} maxLength={16} onChange={(event) => setRpassword(event.target.value)} />
                                                 <label className="form-label label1">Password</label>
                                                 {/* {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""} */}
 
@@ -231,9 +230,9 @@ function ShopKeeperSignInAndSignUp() {
                                             <div className="div1 mt-2">
                                                 {/* onKeyUp={confirmPasswordHendler}  */}
 
-                                                <input className="input1" type="password" name="confirmPassword" required="" id="password" placeholder="Enter Confirm Password" minLength={8} maxLength={16} />
+                                                <input className="input1" type="password" name="confirmPassword" required="" id="password" placeholder="Enter Confirm Password" minLength={8} maxLength={16} onKeyUp={confirmPasswordHendler} />
                                                 <label className="form-label label1">Confirm Password</label>
-                                                {/* {confirmpassErr ? <small style={{ color: "red" }} >Password not match</small> : ""} */}
+                                                {confirmpassErr ? <small style={{ color: "red" }} >Password not match</small> : ""}
 
                                             </div>
 
@@ -294,7 +293,7 @@ function ShopKeeperSignInAndSignUp() {
                                 aria-label="Close"
                             />
                         </div>
-                        {/*  onSubmit={onSignUpHendler} */}
+                        {/*  onSubmit={SignUpHandler} */}
                         <form style={{ padding: "3vw" }}>
                             <div className="placeholderdiv">
                                 <input

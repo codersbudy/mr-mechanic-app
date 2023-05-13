@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CustomerNavigation from "../Navigation/navigation";
+// import CustomerNavigation from "../Navigation/navigation";
 
 function CustomerRequest(){
      
