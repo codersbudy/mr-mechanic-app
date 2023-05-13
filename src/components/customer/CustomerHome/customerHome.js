@@ -5,11 +5,14 @@ import { fetchShop } from "../../../redux-config/shopSlice";
 import "./customerHome.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../navbar/Navbar";
+import Footer from "../../Footer/Footer";
 
 function CustomerHome() {
   const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.shop);
   const { shopList } = useSelector(state => state.shop);
+  // const{}=useSelector(state=>state.categories);
+  const{categoryisLoading,categoryList}=useSelector(state=>state.categories)
   const navigate = useNavigate();
 
 
@@ -33,14 +36,20 @@ function CustomerHome() {
     <Navbar />
     <div className="container-fluid" style={{ marginTop: "-11vw" }}>
       <div className="container py-5">
-        <div className="row my-5">
-          <div className=" col-sm-12 col-md-3  bg-success mt-5 p-2 filter">
-            <span className="fw-bold px-2 text-light">Filter :</span>
-            <span className="text-light"><select>
+      <div className="row my-5 " >
+          <div className=" col-sm-12 col-md-3 mt-5 p-2">
+            <div class="dropdown">
+              <button class="btn btn dropdown-toggle category" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Vehichle Type
+              </button>
 
-            </select> </span>
+              {!categoryisLoading && <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                {categoryList.result.map((category, index) => <li>
+                  <a class="dropdown-item dt" href="#">{category.categoryName}</a>
+                </li>)} </ul>}
+            </div>
           </div>
-        </div>
+        </div>
         {!isLoading && <div className="row justify-content-around px-3">
 
           {shopList.shop.map((shop, index) => <div
@@ -151,7 +160,7 @@ function CustomerHome() {
       </div>
     </div>
 
-
+<Footer/>
   </>
 
 }

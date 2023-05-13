@@ -194,16 +194,13 @@
     margin-bottom: 0px;
   }
 
-  /* .filter{
-    border-radius: 17px;
-  }
-  
-  .index{
-
-     cursor: pointer;
-  }
-  .drop{
-    align-items: end;
-    margin-left: 1vw;
-  } */
-
+/* _________________filter category_______________________ */
+.category{
+  border-radius: 10px;
+  background-color: #1aa694;
+  color:white;
+ }
+.category:hover{
+  background-color: #1aa694;
+  color:white;
+}

@@ -10,6 +10,7 @@ import { setCustomer } from "../../../redux-config/customerSlice";
 import { setCurrentLocation } from "../../../redux-config/customerSlice";
 import { setLatLong } from "../../../redux-config/customerSlice";
 import { fetchShop } from "../../../redux-config/shopSlice";
+import { fetchCategory } from "../../../redux-config/categorySlice";
 function CustomerSignInAndSignUp() {
     var latlong;
     const [contact, setContact] = useState("");
@@ -78,6 +79,7 @@ function CustomerSignInAndSignUp() {
                 let long = position.coords.longitude;
                 latlong = lat + "," + long;
                 dispatch(fetchShop(latlong));
+                dispatch(fetchCategory());
                 getLocation();
                 navigate("/customerHome");
 
