@@ -202,9 +202,14 @@
 
      cursor: pointer;
   }
-  .drop{
-    align-items: end;
-    /* background-color: black; */
-    margin-left: 1vw;
-  }
 
+  /* ---------------------------------  category ----------------- */
+ .category{
+  border-radius: 10px;
+  background-color: #1aa694;
+  color:white;
+ }
+.category:hover{
+  background-color: #1aa694;
+  color:white;
+}

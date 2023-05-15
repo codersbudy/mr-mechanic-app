@@ -10,8 +10,7 @@ const slice=createSlice(
         setShopkeeper:(state,action)=>{
             state.currentShopkeeper=action.payload;
         },
-    }
-    
+    }   
 }
 )
 export const {setShopkeeper}=slice.actions;

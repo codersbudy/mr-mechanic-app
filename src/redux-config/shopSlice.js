@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import api from "../WebApi/api";
+import api from "../WebApi/ApiEndPoint";
 import { useSelector } from "react-redux";
 
 export const fetchShop=createAsyncThunk("shop",async(latLong)=>{
@@ -23,8 +23,6 @@ const slice=createSlice({
         builder.addCase(fetchShop.pending,(state,action)=>{
             state.isLoading=true;
         }).addCase(fetchShop.fulfilled,(state,action)=>{
-            console.log("inner fullfield")
-            console.log(action.payload);
             state.shopList=action.payload;
             state.isLoading=false;
         }).addCase(fetchShop.rejected,(state,action)=>{

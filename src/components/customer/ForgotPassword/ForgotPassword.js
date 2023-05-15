@@ -3,7 +3,7 @@ import './ForgotPassword.css'
 import { useState } from 'react';
 import { validContact, validEmail } from '../../Regex/regex';
 import axios from 'axios'
-import api from "../../../WebApi/api";
+import api from "../../../WebApi/ApiEndPoint";
 import { useDispatch } from 'react-redux';
 import { setCustomer } from '../../../redux-config/customerSlice';
 import { toast } from 'react-toastify';

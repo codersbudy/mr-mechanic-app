@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import './navigation.css'
 import axios from "axios";
-import api from "../../../WebApi/api";
+import api from "../../../WebApi/ApiEndPoint";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { setCustomer } from "../../../redux-config/customerSlice";

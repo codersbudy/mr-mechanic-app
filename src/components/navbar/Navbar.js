@@ -7,8 +7,14 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import { Link, useNavigate } from "react-router-dom";
 import MechanicSignInAndSignUp from "../Mechanic/SignInAndSignUp/signInAndSignUp";
+import { signOut } from "../../redux-config/customerSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 
 function Navbar() {
+    const {currentCustomer}=useSelector(state=>state.customer);
+    const dispatch=useDispatch();
+    {currentCustomer&&dispatch(signOut)}
     return <>
         <CustomerSignInAndSignUp/>
         <ShopKeeperSignInAndSignUp/>

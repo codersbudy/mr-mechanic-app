@@ -3,7 +3,7 @@ import './VerifyPassword.css'
 import { useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import api from '../../../WebApi/api';
+import api from '../../../WebApi/ApiEndPoint';
 import { toast } from 'react-toastify';
 import Navbar from '../../navbar/Navbar';
 function VerifyPassword() {

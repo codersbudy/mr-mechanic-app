@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { validPassword } from '../../Regex/regex';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import api from '../../../WebApi/api';
+import api from '../../../WebApi/ApiEndPoint';
 import { ToastContainer, toast } from 'react-toastify';
 import Navbar from '../../navbar/Navbar';
 import 'react-toastify/dist/ReactToastify.css';

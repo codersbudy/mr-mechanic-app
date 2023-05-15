@@ -5,7 +5,7 @@ import { useState } from "react";
 import { validContact, validName, validPassword } from "../../Regex/regex";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import api from "../../../WebApi/api";
+import api from "../../../WebApi/ApiEndPoint";
 import { setCustomer } from "../../../redux-config/customerSlice";
 
 function MechanicSignInAndSignUp() {

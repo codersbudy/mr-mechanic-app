@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CustomerNavigation from "../Navigation/navigation";
 import axios from "axios";
-import api from "../../../WebApi/api";
+import api from "../../../WebApi/ApiEndPoint";
 import { setCustomerBookingHistory } from "../../../redux-config/customerSlice";
 import './BookingHistory.css'
 import { useNavigate } from "react-router-dom";

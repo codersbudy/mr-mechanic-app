@@ -5,11 +5,12 @@ import { useState } from "react";
 import { validContact, validName, validPassword } from "../../Regex/regex";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import api from "../../../WebApi/api";
+import api from "../../../WebApi/ApiEndPoint";
 import { setCustomer } from "../../../redux-config/customerSlice";
 import { setCurrentLocation } from "../../../redux-config/customerSlice";
 import { setLatLong } from "../../../redux-config/customerSlice";
 import { fetchShop } from "../../../redux-config/shopSlice";
+import { fetchCategory } from "../../../redux-config/categorySlice";
 function CustomerSignInAndSignUp() {
     var latlong;
     const [contact, setContact] = useState("");
@@ -20,6 +21,7 @@ function CustomerSignInAndSignUp() {
     const [passErr, setPassErr] = useState(false);
     const [nameErr, setNameErr] = useState(false);
     const [confirmpassErr, setConfirmPassErr] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
 
     const {isLoading}=useSelector(state=>state.shop);
     const dispatch = useDispatch();
@@ -51,6 +53,12 @@ function CustomerSignInAndSignUp() {
             setNameErr(true);
     }
 
+    const handleCheckboxChange = (event) => {
+        setIsChecked(event.target.checked);
+        window.alert(isChecked);
+      }
+
+
     function funReturn() {
         let element = document.getElementById('box-content');
         element.style.transform = "rotateY(0deg)";
@@ -78,6 +86,7 @@ function CustomerSignInAndSignUp() {
                 let long = position.coords.longitude;
                 latlong=lat+","+long;
                  dispatch(fetchShop(latlong));
+                 dispatch(fetchCategory());
                 getLocation();
                   navigate("/customerHome");
               
@@ -87,6 +96,10 @@ function CustomerSignInAndSignUp() {
 
         }
         catch (err) {
+            window.alert(err.response.status);
+            if(err.response.status==400)
+              toast.error("contact not found");
+              else
             toast.error("please check contact password")
         }
     }
@@ -183,7 +196,7 @@ function CustomerSignInAndSignUp() {
 
                                             <div style={{ fontSize: 16, marginTop: "8vw" }}>
                                                 <span style={{ marginTop: "2vw" }}>
-                                                    <input type="checkbox" id="checkbox" onclick="termcondition()" />
+                                                    <input type="checkbox" id="checkbox"  onChange={handleCheckboxChange} />
                                                 </span>
                                                 <span id="checkboxcontaint">I agree to the <a href="" class="linkHover" id="termcondition">Term and condition.</a></span>
 
