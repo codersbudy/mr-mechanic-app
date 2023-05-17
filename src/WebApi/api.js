@@ -13,6 +13,7 @@ export default{
     SHOPKEEPER_VERIFY_OTP:'/shopkeeper/verifyOtp',
     MECHANIC_SIGNIN:'/mechanic/signIn',
     SHOP_LIST:'/shop/nearByShop',
+    ALL_SHOP:'/shop/getList',
     CATEGORY_LIST:'/category/categoryList',
 
 }

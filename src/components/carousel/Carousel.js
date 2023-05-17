@@ -1,5 +1,4 @@
 function Carousel() {
-
     return <>
         <div id="carouselExampleDark" className="carousel carousel-dark slide">
             <div className="carousel-indicators">
