@@ -15,5 +15,10 @@ export default{
     SHOP_LIST:'/shop/nearByShop',
     ALL_SHOP:'/shop/getList',
     CATEGORY_LIST:'/category/categoryList',
-
+    ADMIN_SIGNIN:'/admin/signIn',
+    ALL_CUSTOMER:'/customer/getList',
+    ADMIN_FORGOT_PASSWORD:'/admin/forgotPassword',
+    ADMIN_APP_PERFORMANCE:'/ADMIN/applictionPerformance',
+    ALL_MECHANIC_LIST:'/mechanic/getList',
+    ALL_SHOPKEEPER_LIST:'/shopkeeper/list'
 }

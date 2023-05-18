@@ -1,0 +1,20 @@
+@media (min-width: 1025px) {
+               .h-custom {
+                 height: 100vh !important;
+               }
+             }
+             /* .myh5 {
+               font-size: 20px;
+             } */
+             .mycard {
+               width: 100%;
+             }
+             .card1 {
+               height: 130px;
+               border-radius: 15px 15px;
+               box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+             }
+             .view-size {
+               margin-left: 4%;
+             }
+             
