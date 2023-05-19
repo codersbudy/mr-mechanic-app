@@ -1,0 +1,61 @@
+.loader-cover{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: white;
+    z-index: 10000;
+    top: 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.shop-nav{
+    background-color: #42C8B7 !important;
+}
+
+.section-header{
+    margin-top: -70px !important;
+}
+
+.dropdown-menu{
+    background-color: white !important;
+    border: 1px solid grey !important;
+}
+.dropdown-item-avatar img{
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.my-shop:hover{
+    background-color: #42C8B7 !important;
+}
+
+abbr{
+    cursor: pointer !important;
+}
+
+#sidebar{
+    display: block !important;
+    overflow: hidden !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.myToggle{
+    /* display: none !important; */
+    width: 0px !important;
+}
+
+.main-wrapper{
+    width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+}
+
+#my-nav{
+    width: 100% !important;;
+}
