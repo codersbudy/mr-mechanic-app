@@ -14,5 +14,5 @@ export default{
     MECHANIC_SIGNIN:'/mechanic/signIn',
     SHOP_LIST:'/shop/nearByShop',
     CATEGORY_LIST:'/category/categoryList',
-
+    GET_MECHANIC : '/booking/request',
 }

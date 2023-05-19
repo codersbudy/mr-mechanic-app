@@ -1,4 +1,3 @@
-// import { useState } from "react";
 
 import "./logIn.css";
 import "./navigation.css";
@@ -16,6 +15,7 @@ function Navbar() {
     const dispatch = useDispatch();
     const { currentCustomer } = useSelector(state => state.customer);
     const { currentShopkeeper } = useSelector(state => state.shopkeeper);
+    const { currentMechanic } = useSelector(state => state.mechanic);
     const navigete = useNavigate();
 
     function getLocation() {
@@ -31,7 +31,7 @@ function Navbar() {
             if (xhttp.readyState == 4) {
                 var citySpan = document.getElementById("city");
                 let data = JSON.parse(xhttp.responseText);
-                citySpan.innerHTML = data.results[0].components.city;
+                // citySpan.innerHTML = data.results[0].components.city;
             }
         }
     }
@@ -75,8 +75,28 @@ function Navbar() {
                                 <CustomerProfile />
                             </>}
                             {currentCustomer && console.log(setTimeout(getLocation, 3000))}
-
-                            {!currentCustomer && !currentShopkeeper && <><li className="nav-item ">
+                             {/* {currentMechanic && <><li className="nav-item ">
+                                <Link to="/" className="nav-link navOption" aria-current="page" >Home</Link>
+                            </li>
+                                <li className="nav-item">
+                                    <a className="nav-link navOption" href="#">Features </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link navOption" href="#">About</a>
+                                </li>
+                                <li className="nav-item dropdown ">
+                                    <a className="nav-link navOption  text-light btn btn-info loginBtn" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span className="dropdown-toggle ">Login</span>
+                                    </a>
+                                    <ul className="dropdown-menu ">
+                                        <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#customerModel">Customer</a></li>
+                                        <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#shopKeeperModel" >Shopkeeper</a></li>
+                                        <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#mechanicModel" href="#">Mechanic</a></li>
+                                        <li><a className="dropdown-item drop" href="#">Admin</a></li>
+                                    </ul>
+                                </li></>} */}
+                            {!currentCustomer && !currentShopkeeper && !currentMechanic && <><li className="nav-item ">
                                 <Link to="/" className="nav-link navOption" aria-current="page" >Home</Link>
                             </li>
                                 <li className="nav-item">

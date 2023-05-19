@@ -1,0 +1,16 @@
+.mapbtn,.fileBtn{
+    font-size: 12px;
+    margin-left: 10px;
+}
+.uploadLabel{
+    margin-left: 55%;
+}
+.shopFile{
+    position: absolute;
+    top: 25px;
+    left: 55%;
+    border: none;
+    width: 100px !important;
+    height: 50px !important;
+    opacity: 0;
+}
