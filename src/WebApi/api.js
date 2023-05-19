@@ -15,5 +15,5 @@ export default{
     SHOP_LIST:'/shop/nearByShop',
     ALL_SHOP:'/shop/getList',
     CATEGORY_LIST:'/category/categoryList',
-
+    GET_MECHANIC : '/booking/request',
 }

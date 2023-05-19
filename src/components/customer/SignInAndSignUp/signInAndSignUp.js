@@ -21,7 +21,7 @@ function CustomerSignInAndSignUp() {
     const [passErr, setPassErr] = useState(false);
     const [nameErr, setNameErr] = useState(false);
     const [confirmpassErr, setConfirmPassErr] = useState(false);
-
+    const [forgotPasswordFlag, setForgetPasswordFlag] = useState(false);
     const { isLoading } = useSelector(state => state.shop);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -80,13 +80,9 @@ function CustomerSignInAndSignUp() {
                 latlong = lat + "," + long;
                 dispatch(fetchShop(latlong));
                 dispatch(fetchCategory());
-                getLocation();
+                // getLocation();
                 navigate("/customerHome");
-
             });
-
-
-
         }
         catch (err) {
             toast.error("please check contact password")
@@ -128,6 +124,14 @@ function CustomerSignInAndSignUp() {
             }
         }
     }
+    var forPassFun = () => {
+        setForgetPasswordFlag(true);
+        funTurn();
+    }
+    var signUpFun = () => {
+        setForgetPasswordFlag(false);
+        funTurn();
+    }
     return <>
         <ToastContainer />
         <div class="modal fade" id="customerModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -135,7 +139,7 @@ function CustomerSignInAndSignUp() {
             <div className="modal-dialog modal-lg modal-content modal1"  >
                 <div className="container-fluid m-0 p-0 box">
                     <div className="container-fluid m-0 p-0 box-content" id="box-content">
-
+                        {/* _________________________login page_____________________________________ */}
                         <div className="row r1 p-0 m-0 outer1">
                             <div className="col-md-4 col-sm-12 " id="firstside">
                                 <div style={{ marginTop: "2vw" }}>
@@ -178,9 +182,9 @@ function CustomerSignInAndSignUp() {
 
                                             </div>
                                             <div style={{ marginTop: 15 }}>
-                                                <Link to='/forgotPassword' className="link">
-                                                    <small className="fp linkHover" data-bs-dismiss="modal">Forgot password?</small>
-                                                </Link>
+                                                <span className="link">
+                                                    <small className="fp linkHover" onClick={forPassFun}>Forgot password?</small>
+                                                </span>
                                             </div>
 
                                             <div style={{ fontSize: 16, marginTop: "8vw" }}>
@@ -194,7 +198,7 @@ function CustomerSignInAndSignUp() {
                                                 <button type="submit" className="btn p-2" data-bs-dismiss="modal" aria-label="Close" id="signinBtn" > Login </button>
 
                                             </div>
-                                            <div className="signup">Don't have an account? <span><Link className="signuplink linkHover" onClick={funTurn} >Sign up</Link></span></div>
+                                            <div className="signup">Don't have an account? <span><Link className="signuplink linkHover" onClick={signUpFun} >Sign up</Link></span></div>
                                         </div>
                                     </div>
 
@@ -202,74 +206,149 @@ function CustomerSignInAndSignUp() {
                             </div>
                         </div>
                         <div className="row r1 p-0 m-0 outer2" id="outer2">
-                            <div className="col-md-4 col-sm-12 " id="firstside">
-                                <div style={{ marginTop: "2vw" }}>
-                                    <div className="container-fluid fw-bold text-center " id="h2">
-                                        * Sign up *
-                                    </div>
-                                </div>
-                                <div >
-                                    <img
-                                        src="./images/LoginImage.svg"
-                                        className="sideImg"
-                                        alt="Responsive image"
-                                    />
-                                </div>
-                            </div>
-                            <div className="col-md-8 col-sm-12 secondside">
-                                <div className="close">
-                                    <button type="button" id="closebutoon" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-
-                                </div>
-
-                                <form onSubmit={onSignUpHendler} >
-                                    <div className="" style={{ marginTop: "2vw" }}>
-                                        <div style={{ marginLeft: "1.5vw" }}>
-                                            <div className="div1 ">
-
-                                                <input className="input1" type="text" name="username" required="" id="password" placeholder="Ex: John" onChange={(event) => setCustomerName(event.target.value)} onKeyUp={nameHendler} />
-                                                <label className="form-label label1">Customer name</label>
-                                                {nameErr ? <small style={{ color: "red" }} >Invalid customer name</small> : ""}
-
-
-                                            </div>
-
-                                            <div className="div1 mt-2" >
-
-                                                <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10} onChange={(event) => setContact(event.target.value)} onKeyUp={contactHendler} />
-                                                <label className="form-label label1">Mobile Number</label>
-                                                {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
-
-                                            </div>
-                                            <div className="div1 mt-2">
-
-                                                <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter password" minLength={8} maxLength={16} onKeyUp={passwordHendler} onChange={(event) => setPassword(event.target.value)} />
-                                                <label className="form-label label1">Password</label>
-                                                {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""}
-
-                                            </div>
-                                            <div className="div1 mt-2">
-
-
-                                                <input className="input1" type="password" name="confirmPassword" required="" id="password" placeholder="Enter Confirm Password" minLength={8} maxLength={16} onKeyUp={confirmPasswordHendler} />
-                                                <label className="form-label label1">Confirm Password</label>
-                                                {confirmpassErr ? <small style={{ color: "red" }} >Password not match</small> : ""}
-
-                                            </div>
-
-
-
-                                            <div style={{ fontSize: 16, marginTop: "4vw" }} >
-                                                <button type="submit" className="btn p-2" id="signinBtn" > Sign Up </button>
-
-
-                                            </div>
-                                            <div className="signup">have an account? <span><a className="signuplink linkHover" onClick={funReturn} >Log in</a></span></div>
+                            {/* --------------------------------signUp page------------------------------------------ */}
+                            {!forgotPasswordFlag && <>
+                                <div className="col-md-4 col-sm-12 " id="firstside">
+                                    <div style={{ marginTop: "2vw" }}>
+                                        <div className="container-fluid fw-bold text-center " id="h2">
+                                            * Sign up *
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                    <div >
+                                        <img
+                                            src="./images/LoginImage.svg"
+                                            className="sideImg"
+                                            alt="Responsive image"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-8 col-sm-12 secondside">
+                                    <div className="close">
+                                        <button type="button" id="closebutoon" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+
+                                    </div>
+
+                                    <form onSubmit={onSignUpHendler} >
+                                        <div className="" style={{ marginTop: "2vw" }}>
+                                            <div style={{ marginLeft: "1.5vw" }}>
+                                                <div className="div1 ">
+
+                                                    <input className="input1" type="text" name="username" required="" id="password" placeholder="Ex: John" onChange={(event) => setCustomerName(event.target.value)} onKeyUp={nameHendler} />
+                                                    <label className="form-label label1">Customer name</label>
+                                                    {nameErr ? <small style={{ color: "red" }} >Invalid customer name</small> : ""}
+
+
+                                                </div>
+
+                                                <div className="div1 mt-2" >
+
+                                                    <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10} onChange={(event) => setContact(event.target.value)} onKeyUp={contactHendler} />
+                                                    <label className="form-label label1">Mobile Number</label>
+                                                    {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
+
+                                                </div>
+                                                <div className="div1 mt-2">
+
+                                                    <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter password" minLength={8} maxLength={16} onKeyUp={passwordHendler} onChange={(event) => setPassword(event.target.value)} />
+                                                    <label className="form-label label1">Password</label>
+                                                    {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""}
+
+                                                </div>
+                                                <div className="div1 mt-2">
+
+
+                                                    <input className="input1" type="password" name="confirmPassword" required="" id="password" placeholder="Enter Confirm Password" minLength={8} maxLength={16} onKeyUp={confirmPasswordHendler} />
+                                                    <label className="form-label label1">Confirm Password</label>
+                                                    {confirmpassErr ? <small style={{ color: "red" }} >Password not match</small> : ""}
+
+                                                </div>
+
+
+
+                                                <div style={{ fontSize: 16, marginTop: "4vw" }} >
+                                                    <button type="submit" className="btn p-2" id="signinBtn" > Sign Up </button>
+
+
+                                                </div>
+                                                <div className="signup">have an account? <span><a className="signuplink linkHover" onClick={funReturn} >Log in</a></span></div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </>}
+                            {/* ------------------------------forgetPassword Page---------------------------------- */}
+                            {forgotPasswordFlag && <>
+                                <div className="col-md-4 col-sm-12 " id="firstside">
+                                    <div style={{ marginTop: "2vw" }}>
+                                        <div className="container-fluid fw-bold text-center " id="h2">
+                                            Forgot
+
+                                        </div>
+                                    </div>
+                                    <div >
+                                        <img
+                                            src="./images/LoginImage.svg"
+                                            className="sideImg"
+                                            alt="Responsive image"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-8 col-sm-12 secondside">
+                                    <div className="close">
+                                        <button type="button" id="closebutoon" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+
+                                    </div>
+
+                                    <form onSubmit={onSignUpHendler} >
+                                        <div className="" style={{ marginTop: "2vw" }}>
+                                            <div style={{ marginLeft: "1.5vw" }}>
+                                                <div className="div1 ">
+
+                                                    <input className="input1" type="text" name="username" required="" id="password" placeholder="Ex: John" onChange={(event) => setCustomerName(event.target.value)} onKeyUp={nameHendler} />
+                                                    <label className="form-label label1">Customer name</label>
+                                                    {nameErr ? <small style={{ color: "red" }} >Invalid customer name</small> : ""}
+
+
+                                                </div>
+
+                                                <div className="div1 mt-2" >
+
+                                                    <input className="input1" type="text" name="contact" required="" id="input" placeholder="+91" minLength={10} maxLength={10} onChange={(event) => setContact(event.target.value)} onKeyUp={contactHendler} />
+                                                    <label className="form-label label1">Mobile Number</label>
+                                                    {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""}
+
+                                                </div>
+                                                <div className="div1 mt-2">
+
+                                                    <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter password" minLength={8} maxLength={16} onKeyUp={passwordHendler} onChange={(event) => setPassword(event.target.value)} />
+                                                    <label className="form-label label1">Password</label>
+                                                    {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""}
+
+                                                </div>
+                                                <div className="div1 mt-2">
+
+
+                                                    <input className="input1" type="password" name="confirmPassword" required="" id="password" placeholder="Enter Confirm Password" minLength={8} maxLength={16} onKeyUp={confirmPasswordHendler} />
+                                                    <label className="form-label label1">Confirm Password</label>
+                                                    {confirmpassErr ? <small style={{ color: "red" }} >Password not match</small> : ""}
+
+                                                </div>
+
+
+
+                                                <div style={{ fontSize: 16, marginTop: "4vw" }} >
+                                                    <button type="submit" className="btn p-2" id="signinBtn" > Forgot Password </button>
+
+
+                                                </div>
+                                                <div className="signup">have an account? <span><a className="signuplink linkHover" onClick={funReturn} >Log in</a></span></div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </>}
                         </div>
 
                     </div>

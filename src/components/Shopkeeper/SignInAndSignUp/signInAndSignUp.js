@@ -1,3 +1,4 @@
+import "./shopkeeperRegistration.css"
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { useDispatch } from "react-redux";
@@ -7,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import api from "../../../WebApi/api";
 import { setShopkeeper } from "../../../redux-config/shopkeeperSlice";
+
 
 function ShopKeeperSignInAndSignUp() {
     const [contact, setContact] = useState("");
@@ -21,7 +23,14 @@ function ShopKeeperSignInAndSignUp() {
     const [rcontact, setRcontact] = useState("");
     const [rpassword, setRpassword] = useState("");
     const [rname, setRname] = useState("");
-    // const [r,setrcontact] = useState("");
+    const [shopkeeperDetails,setShopkeeperDetails] = useState({});
+    const [shopFlag, setShopFlag] = useState(false);
+    //-------------------Shop States---------------------------------------------
+    const [shopName,setShopName] = useState(""); 
+    const [shopPhoto,setShopPhoto] = useState(""); 
+    const [shopAddress,setShopAddress] = useState(""); 
+    const [shopLatLong,setShopLatLong] = useState(""); 
+    const [shopContact,setShopContact] = useState(""); 
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -67,11 +76,12 @@ function ShopKeeperSignInAndSignUp() {
         ele.style.transform = "rotateY(180deg)";
     }
 
-
     const signInHandler = async (event) => {
 
         try {
             event.preventDefault();
+
+
             const response = await axios.post(api.SHOPKEEPER_SIGNIN, { contact, password });
             toast.success("Log In successfully...");
             window.alert("api is called...in shopkeeper");
@@ -95,9 +105,11 @@ function ShopKeeperSignInAndSignUp() {
     const SignUpHandler = async (event) => {
         try {
             event.preventDefault();
-            let response = await axios.post(api.SHOPKEEPER_SIGNUP, { contact: rcontact, password: rpassword, shopkeeperName: rname });
-            toast.success("Registration successfully...");
+             setShopkeeperDetails({ contact: rcontact, password: rpassword, shopkeeperName: rname });
+            // toast.success("Registration successfully...");
+            setShopFlag(true);
             funReturn();
+
         }
         catch (err) {
             if (err.response.status == 400)
@@ -105,6 +117,10 @@ function ShopKeeperSignInAndSignUp() {
             else if (err.response.status == 500)
                 toast.error("Server Error : 500");
         }
+    }
+    var loginTurn = () => {
+        setShopFlag(false);
+        funReturn();
     }
 
     return <>
@@ -114,8 +130,8 @@ function ShopKeeperSignInAndSignUp() {
             <div className="modal-dialog modal-lg modal-content modal1"  >
                 <div className="container-fluid m-0 p-0 box">
                     <div className="container-fluid m-0 p-0 box-content" id="box-content-shopkeeper">
-
-                        <div className="row r1 p-0 m-0 outer1">
+                        {/* _______________________Shopkeeper Login________________________________ */}
+                        {!shopFlag && <div className="row r1 p-0 m-0 outer1">
                             <div className="col-md-4 col-sm-12 " id="firstside">
 
                                 <div style={{ marginTop: "2vw" }}>
@@ -135,7 +151,6 @@ function ShopKeeperSignInAndSignUp() {
                                 <div className="close">
                                     <button type="button" id="closebutoon" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
-
                                 </div>
 
                                 <form onSubmit={signInHandler}>
@@ -148,7 +163,6 @@ function ShopKeeperSignInAndSignUp() {
 
                                             </div>
                                             <div className="div1 mt-3">
-
 
                                                 <input className="input1" type="password" name="password" required="" id="password" placeholder="Enter Password" minLength={8} maxLength={16} onChange={(event) => setPassword(event.target.value)} onKeyUp={passwordHendler} />
                                                 <label className="form-label label1">Enter Password</label>
@@ -178,7 +192,83 @@ function ShopKeeperSignInAndSignUp() {
 
                                 </form>
                             </div>
-                        </div>
+                        </div>}
+                        {/* _______________________ Addshop Details____________________________ */}
+                        {shopFlag && <><div className="row r1 p-0 m-0 outer1">
+                            <div className="col-md-4 col-sm-12 " id="firstside">
+
+                                <div style={{ marginTop: "2vw" }}>
+                                    <div className="container-fluid fw-bold text-center " id="h2">
+                                        * Add Shop *
+                                    </div>
+                                </div>
+                                <div className="imgDiv">
+                                    <img
+                                        src="./images/LoginImage.svg"
+                                        className="sideImg"
+                                        alt="Responsive image"
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-md-8 col-sm-12 secondside">
+                                <div className="close">
+                                    <button type="button" id="closebutoon" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+
+                                </div>
+
+                                <form onSubmit={signInHandler}>
+                                    <div className="" style={{ marginTop: "2vw" }}>
+                                        <div style={{ marginLeft: "1.5vw" }}>
+                                            <div className="div1">
+                                            {/* onKeyUp={contactHendler}  */}
+                                                <input className="input1" type="text" name="shopName" required="" id="input" placeholder="ShopName" minLength={10} maxLength={10} onChange={(event) => setShopName(event.target.value)} />
+                                                <label className="form-label label1">Enter Shop Name</label>
+                                                {/* {contErr ? <small style={{ color: "red" }} >Invalid contact number</small> : ""} */}
+
+                                            </div>
+                                            <div className="div1 mt-3">
+                                            {/* onKeyUp={passwordHendler} */}
+                                                <input className="input1" type="text" name="shopContact" required="" id="password" placeholder="+91" minLength={8} maxLength={16} onChange={(event) => setShopContact(event.target.value)}  />
+                                                <label className="form-label label1">Enter Shop Contact</label>
+                                                {/* {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""} */}
+
+                                            </div>
+                                        {/* ___________________________________________MAP + FILE_______________________________________________ */}
+                                            <div className="div1 mt-3 row">
+                                                 <div className="col-6">
+                                                    <p className="label1">Select Your Shop Loaction</p>
+                                                    <a className="btn btn-light mapbtn"><i class="fa fa-map-marker" aria-hidden="true"></i> Set Location</a></div>
+                                                 <div className="col-6">
+                                                 <span className="uploadLabel label1 ">Upload Your Shop Image</span>
+                                                   <div className="btn btn-light w-50 px-0 fileBtn"><i class="fa fa-image" aria-hidden="true"></i> Upload <input type="file" className=" shopFile "/></div></div>
+                                                
+                                            </div>
+                                            
+
+                                          {/* ____________________________________________________________________________________________   */}
+                                            
+
+
+                                            {/* <div style={{ fontSize: 16, marginTop: "5vw" }}>
+                                                <span style={{ marginTop: "2vw" }}>
+                                                    <input type="checkbox" id="checkbox" onclick="termcondition()" />
+                                                </span>
+                                                <span id="checkboxcontaint">I agree to the <a href="" class="linkHover" id="termcondition">Term and condition.</a></span>
+
+                                            </div> */}
+                                            <div style={{ fontSize: 16, marginTop: "1.5vw" }} >
+                                                <button type="submit" className="btn p-2" data-bs-dismiss="modal" aria-label="Close" id="signinBtn" > Login </button>
+
+                                            </div>
+                                            <div className="signup">Don't have an account? <span><Link className="signuplink linkHover" onClick={funTurn} >Sign up</Link></span></div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div></>}
+                        {/* ________________________Shopkeeper Detail___________________________ */}
                         <div className="row r1 p-0 m-0 outer2" id="outer2">
                             <div className="col-md-4 col-sm-12 " id="firstside">
                                 <div style={{ marginTop: "2vw" }}>
@@ -209,7 +299,6 @@ function ShopKeeperSignInAndSignUp() {
                                                 <label className="form-label label1">Shopkeeper Name</label>
                                                 {/* {nameErr ? <small style={{ color: "red", fontSize : "10px" }} >Invalid customer name</small> : ""} */}
 
-
                                             </div>
 
                                             <div className="div1 mt-2" >
@@ -236,14 +325,11 @@ function ShopKeeperSignInAndSignUp() {
 
                                             </div>
 
-
-
                                             <div style={{ fontSize: 16, marginTop: "4vw" }} >
-                                                <button type="submit" className="btn p-2" id="signinBtn" > Sign Up </button>
-
+                                                <button type="submit" className="btn p-2" id="signinBtn"> Add Shop </button>
 
                                             </div>
-                                            <div className="signup">have an account? <span><a className="signuplink linkHover" onClick={funReturn} >Log in</a></span></div>
+                                            <div className="signup">have an account? <span><a className="signuplink linkHover" onClick={loginTurn} >Log in</a></span></div>
                                         </div>
                                     </div>
                                 </form>

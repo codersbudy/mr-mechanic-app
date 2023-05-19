@@ -107,7 +107,7 @@
 .viewProfile input:focus{
      outline: none;
 }
-input[type='file'] {
+#file{
     width: 100px;
     height: 100px;
     opacity:0;

@@ -16,12 +16,39 @@ import CustomerUpdateProfile from "./components/customer/UpdateProfile/updatePro
 import ShopKeeperSignIn from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import ShopkeeperForgotPassword from "./components/Shopkeeper/ForgotPassword/ForgotPassword";
 import ShopkeeperHome from "./components/Shopkeeper/shopkeeperHome/shopkeeperHome";
+
+import  io from "socket.io-client";
+import { useEffect, useState } from "react";
+import Map from "./components/Shopkeeper/map/Map";
+
+const socket  = io("http://localhost:3000")
+
 import ShopKeeperSignInAndSignUp from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import AdminHome from "./components/Admin/AdminHome/adminHome";
+
 function App() {
+  const [message, setMessage] = useState('Jagmohan');
+  const [messages, setMessages] = useState([]);
+  let index = 0;
+  useEffect(() => {
+    socket.on('chat message', (message) => {
+      console.log(messages);
+      console.log(message);
+      messages.push(message)
+      console.log(messages);
+    });
+  }, []);
+
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    socket.emit('chat message', message);
+    setMessage(message+(index++));
+  };
+
   return <>
-
-
+  {/* // <center>
+  // <button style={{position:"absolute",margin:"50px",zIndex:"1000"}} onClick={handleSendMessage}>Send Connection</button>
+  // </center> */}
  <Routes>
 
     <Route path="/" element={<Home/>}/>
@@ -44,6 +71,7 @@ function App() {
    <Route path="/admin" element={ <AdminHome/>}/>
    
   </Routes> 
+  <Map/>
   </>
   
 }

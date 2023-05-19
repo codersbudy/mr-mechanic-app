@@ -6,7 +6,7 @@ import axios from "axios";
 import api from "../../../WebApi/api";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { setCustomer } from "../../../redux-config/customerSlice";
+import { setCustomer, signOut } from "../../../redux-config/customerSlice";
 
 function CusotmerProfile() {
     const dispatch=useDispatch();
@@ -107,7 +107,7 @@ function CusotmerProfile() {
         toast.success("Profile successfully update..");
         navigete("/customerHome");
     }
-    var signOut = ()=>{
+    var signout = ()=>{
         dispatch(signOut())
     }
 
@@ -147,7 +147,7 @@ function CusotmerProfile() {
                 </div>
             </div>
             <div className="  px-3 mt-3 text-center">
-                <Link className="btn btn-danger" onClick={signOut} id="signout">Sign Out</Link>
+                <Link className="btn btn-danger" onClick={signout} id="signout">Sign Out</Link>
                 <button className="btn btn-success" type="submit" id="save" onClick={saveData}>Save</button>
             </div>
         </div>
