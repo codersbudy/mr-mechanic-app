@@ -16,11 +16,16 @@ import CustomerUpdateProfile from "./components/customer/UpdateProfile/updatePro
 import ShopKeeperSignIn from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import ShopkeeperForgotPassword from "./components/Shopkeeper/ForgotPassword/ForgotPassword";
 import ShopkeeperHome from "./components/Shopkeeper/shopkeeperHome/shopkeeperHome";
+
 import  io from "socket.io-client";
 import { useEffect, useState } from "react";
 import Map from "./components/Shopkeeper/map/Map";
 
 const socket  = io("http://localhost:3000")
+
+import ShopKeeperSignInAndSignUp from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
+import AdminHome from "./components/Admin/AdminHome/adminHome";
+
 function App() {
   const [message, setMessage] = useState('Jagmohan');
   const [messages, setMessages] = useState([]);
@@ -55,11 +60,15 @@ function App() {
     <Route path="/customerBookingHistory" element={<ProtectedRoute><CustomerBookingHistory/></ProtectedRoute>}/>
     <Route path="/customerHome" element={<ProtectedRoute><CustomerHome/></ProtectedRoute>}/>
     <Route path="/viewBookingHistory" element={<ProtectedRoute><ViewBookingHistory/></ProtectedRoute>}/>
-    <Route path="/customerViewShop" element={<ProtectedRoute><ViewShop/></ProtectedRoute>} />
+    <Route path="/customerViewShop" element={<ViewShop/>} />
 
    {/* -----------------------------------------shop keeper functionality---------------- */}
    <Route path="/shopkeeperForgotPassword" element={<ShopkeeperForgotPassword/>}/>
    <Route path="/shopkeeperHome" element={<ShopkeeperHome/>}/>
+   <Route path="/shopkeeperSigninSignup" element={<ShopKeeperSignInAndSignUp/>} />
+
+   {/* ----admin */}
+   <Route path="/admin" element={ <AdminHome/>}/>
    
   </Routes> 
   <Map/>

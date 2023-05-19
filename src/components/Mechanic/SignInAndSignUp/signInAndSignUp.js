@@ -100,6 +100,7 @@ function MechanicSignInAndSignUp() {
                                                 <label className="form-label label1">Enter Password</label>
                                                 {passErr ? <small style={{ color: "red" }} >Invalid password</small> : ""}
 
+
                                             </div>
                                             <div style={{ marginTop: 15 }}>
                                                 <Link to='/shopkeeperForgotPassword' className="link">
@@ -120,7 +121,6 @@ function MechanicSignInAndSignUp() {
                                             </div>
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
