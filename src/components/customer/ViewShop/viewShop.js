@@ -5,10 +5,15 @@ import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../../navbar/Navbar';
 
 function ViewShop() {
+    console.log("haooooo")
     const {shopList}=useSelector(state=>state.shop);
-    const state=useLocation()
+    const state=useLocation();
     let index=state.state.index;
+    console.log(shopList);
+    console.log(index);
     let shop=shopList.shop[index];
+    
+
     return <>
        <Navbar/>
         <div className="container-fluid outerContainer">

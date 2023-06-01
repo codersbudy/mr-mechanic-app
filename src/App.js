@@ -25,6 +25,14 @@ const socket  = io("http://localhost:3000")
 
 import ShopKeeperSignInAndSignUp from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import AdminHome from "./components/Admin/AdminHome/adminHome";
+import AdminForgotPassword from "./components/Admin/AdminHome/AdminForgot/AdminForgot";
+import ShopList from "./components/Admin/shopList/shopList";
+import ShopkeeperList from "./components/Admin/AdminHome/ShopkeeperList/shopkeeper";
+import CustomerList from "./components/Admin/AdminHome/customerList/customer";
+import MechanicList from "./components/Admin/AdminHome/mechanicList/mechanic";
+import ViewShopDetails from "./components/Admin/viewShopDetails/viewShopDetails";
+import BookingList from "./components/Admin/AdminHome/BookingList/BookingList";
+
 
 function App() {
   const [message, setMessage] = useState('Jagmohan');
@@ -38,6 +46,7 @@ function App() {
       console.log(messages);
     });
   }, []);
+
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -68,12 +77,21 @@ function App() {
    <Route path="/shopkeeperSigninSignup" element={<ShopKeeperSignInAndSignUp/>} />
 
    {/* ----admin */}
-   <Route path="/admin" element={ <AdminHome/>}/>
+   
+      <Route path="/admin" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
+      <Route path="/adminForgotPassword" element={<AdminForgotPassword />} />
+
+      <Route path="/shopList" element={<ProtectedRoute><ShopList /></ProtectedRoute>} />
+      <Route path="/shopkeeperList" element={<ProtectedRoute><ShopkeeperList /></ProtectedRoute>} />
+      <Route path="/customerList" element={<ProtectedRoute><CustomerList /></ProtectedRoute>} />
+      <Route path="/mechanicList" element={<ProtectedRoute><MechanicList /></ProtectedRoute>} />
+      <Route path="/viewShopDetails" element={<ProtectedRoute><ViewShopDetails /></ProtectedRoute>} />
+      <Route path="/bookingList" element={<BookingList />} />
    
   </Routes> 
   <Map/>
   </>
-  
+
 }
 
 export default App;
