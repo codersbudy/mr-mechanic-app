@@ -21,8 +21,9 @@ function CustomerHome() {
   const [location, setLocation] = useState("");
   const [vehicleName, setVehicalName] = useState("");
   const [shopId, setShopId] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  // const [date, setDate] = useState("");
+  // const [time, setTime] = useState("");
+  const [requestFlag, setRequestFlag] = useState(true);
 
   const navigate = useNavigate();
   // --------------------timer------------------------------------------
@@ -43,6 +44,7 @@ function CustomerHome() {
           if ((prevTimer - 1) == 0) {
             span.innerHTML = "Rejected"
             cart.style.background = "red"
+            setRequestFlag(true);
           }
           else {
             let latest = prevTimer - 1;
@@ -89,39 +91,39 @@ function CustomerHome() {
   }
 
   // __________________________for Date___________________________________
-  var currentDate = () => {
-    var dateObj = new Date();
-    var day = dateObj.getDate();
-    var month = dateObj.getMonth() + 1;
-    var year = dateObj.getFullYear();
+  // var currentDate = () => {
+  //   var dateObj = new Date();
+  //   var day = dateObj.getDate();
+  //   var month = dateObj.getMonth() + 1;
+  //   var year = dateObj.getFullYear();
 
-    if (day < 10) {
-      day = "0" + day;
-    }
-    if (month < 10) {
-      month = "0" + month;
-    }
-    var formattedDate = day + "/" + month + "/" + year;
-    return formattedDate;
-  }
+  //   if (day < 10) {
+  //     day = "0" + day;
+  //   }
+  //   if (month < 10) {
+  //     month = "0" + month;
+  //   }
+  //   var formattedDate = day + "/" + month + "/" + year;
+  //   return formattedDate;
+  // }
   // __________________________for Time___________________________________
-  var currentTime = () => {
-    var dateObj = new Date();
-    var hours = dateObj.getHours();
-    var minutes = dateObj.getMinutes();
-    var ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
+  // var currentTime = () => {
+  //   var dateObj = new Date();
+  //   var hours = dateObj.getHours();
+  //   var minutes = dateObj.getMinutes();
+  //   var ampm = hours >= 12 ? 'PM' : 'AM';
+  //   hours = hours % 12;
+  //   hours = hours ? hours : 12;
 
-    if (hours < 10) {
-      hours = "0" + hours;
-    }
-    if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-    var formattedTime = hours + ":" + minutes + " " + ampm;
-    return formattedTime;
-  }
+  //   if (hours < 10) {
+  //     hours = "0" + hours;
+  //   }
+  //   if (minutes < 10) {
+  //     minutes = "0" + minutes;
+  //   }
+  //   var formattedTime = hours + ":" + minutes + " " + ampm;
+  //   return formattedTime;
+  // }
   // __________________________for current Location_______________________
   var currentLocation = () => {
     return new Promise((resolve, reject) => {
@@ -140,33 +142,34 @@ function CustomerHome() {
       }
     });
   };
-  // Usage
 
-
-  //  console.log(currentLocation());
 
   // ------------------------------------------------------------------------
 
 
   // ------------------------------getMechanic-------------------------------------------
   const getMechanic = async () => {
-
+    setRequestFlag(false);
     //  let cart =  document.getElementById(shopId);
     //  let span =  document.getElementById("span"+shopId);
 
     //   cart.style.background = "black"
     //   span.innerHTML = formatTime(120);
     console.log(shopId);
+    window.alert("Fun me aaya")
     try {
       var latlong = await currentLocation();
-      const response = await axios.post(api.GET_MECHANIC, { customerId: currentCustomer._id, shopId: shopId, problem: problem, location: location, vehicleName: vehicleName, date: currentDate(), time: currentTime(), latlong: latlong });
+      const response = await axios.post(api.GET_MECHANIC, { customerId: currentCustomer._id, shopId: shopId, problem: problem, location: location, vehicleName: vehicleName, latLong: latlong });
       if (response.data.status) {
         setTimer(120);
         toast.success("Request Send successfully...");
       }
-      
+
+
     }
     catch (err) {
+      
+      window.alert("cathch me aata")
       if (err.response.status == 400)
         toast.error("Bad request : 400");
       else if (err.response.status == 500)
@@ -189,7 +192,7 @@ function CustomerHome() {
               </button>
 
               {!categoryisLoading && <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                {categoryList.result.map((category, index) => <li>
+                {categoryList.result?.map((category, index) => <li>
                   <a class="dropdown-item dt" href="#">{category.categoryName}</a>
                 </li>)} </ul>}
             </div>
@@ -201,6 +204,7 @@ function CustomerHome() {
             id="shopId1"
             className="col-sm-12 col-md-3  card mb-5 mx-2 px-0 py-0 box0"
             style={{ width: "14rem" }}
+            key={index}
           >
             <div className="rotate">
               <div className="box-content0 bts1">
@@ -233,7 +237,8 @@ function CustomerHome() {
               <p className="card-text"><i class="text-warning  fa fa-phone" aria-hidden="true"></i> {shop.contact}</p>
 
               {/* onClick={()=>{getMechanic(shop._id)}} */}
-              <button className="button-57" id={shop._id} role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={() => { setShopId(shop._id) }}>
+              <button className="button-57" id={shop._id} role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={() => { requestFlag && setShopId(shop._id) }}>
+                {/* {!requestFlag && <span><i class="fa fa-clock-o"></i></span>} */}
                 <span id={"span" + shop._id} className="text" >
                   <i className="fa fa-wrench p-1" aria-hidden="true" />
                   Get Mechanic
@@ -253,34 +258,71 @@ function CustomerHome() {
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Details</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div className="px-4 py-2">
 
-                  <div className="div1">
-                    <input className="input1" type="text" name="problem" id="input" placeholder="Describe Here" onChange={(event) => setProblem(event.target.value)} />
-                    <label className="form-label label1">Describe Your Vehichle Problem</label>
-                  </div>
-
-                  <div className="div1 mt-3">
-                    <input className="input1" type="text" name="vehicalName" id="input" placeholder="Enter Vehical Name" onChange={(event) => setVehicalName(event.target.value)} />
-                    <label className="form-label label1">Enter Your Vehical Name</label>
-                  </div>
-
-                  <div className="div1 mt-3">
-                    <input className="input1" type="text" name="location" id="input" placeholder="Enter Your Location" onChange={(event) => setLocation(event.target.value)} />
-                    <label className="form-label label1">Enter Your current Location</label>
-                  </div>
-
+              {requestFlag && <>
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Details</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-info" onClick={() => { getMechanic() }}>Submit</button>
-              </div>
+                <div class="modal-body">
+                  <div className="px-4 py-2">
+
+                    <div className="div1">
+                      <input className="input1" type="text" name="problem" id="input" placeholder="Describe Here" onChange={(event) => setProblem(event.target.value)} />
+                      <label className="form-label label1">Describe Your Vehichle Problem</label>
+                    </div>
+
+                    <div className="div1 mt-3">
+                      <input className="input1" type="text" name="vehicalName" id="input" placeholder="Enter Vehical Name" onChange={(event) => setVehicalName(event.target.value)} />
+                      <label className="form-label label1">Enter Your Vehical Name</label>
+                    </div>
+
+                    <div className="div1 mt-3">
+                      <input className="input1" type="text" name="location" id="input" placeholder="Enter Your Location" onChange={(event) => setLocation(event.target.value)} />
+                      <label className="form-label label1">Enter Your current Location</label>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-info" data-bs-dismiss="modal" onClick={() => { getMechanic() }}>Submit</button>
+                </div>
+              </>}
+              {
+                !requestFlag && <>
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div className="px-4 py-2">
+
+                      <div className="div1">
+                        <input className="input1" type="text" name="problem" id="input" placeholder="Describe Here" onChange={(event) => setProblem(event.target.value)} />
+                        <label className="form-label label1">Describe Your Vehichle Problem</label>
+                      </div>
+
+                      <div className="div1 mt-3">
+                        <input className="input1" type="text" name="vehicalName" id="input" placeholder="Enter Vehical Name" onChange={(event) => setVehicalName(event.target.value)} />
+                        <label className="form-label label1">Enter Your Vehical Name</label>
+                      </div>
+
+                      <div className="div1 mt-3">
+                        <input className="input1" type="text" name="location" id="input" placeholder="Enter Your Location" onChange={(event) => setLocation(event.target.value)} />
+                        <label className="form-label label1">Enter Your current Location</label>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">pk</button>
+                    {/* <button type="button" class="btn btn-info" data-bs-dismiss="modal" onClick={() => { getMechanic() }}>Submit</button> */}
+                  </div>
+                </>
+              }
+
+
             </div>
           </div>
         </div>

@@ -99,6 +99,7 @@ function CusotmerProfile() {
         formdata.set('customerName',customerName);  
         formdata.set('email',email);
         formdata.set('contact',contact);   
+        console.log(formdata); 
         let response=axios.post(api.CUSTOMER_UPDATE_PROFILE,formdata);
     // const [customerName, setCustomerName] = useState(currentCustomer.customerName);
         let customer={...currentCustomer,customerName,email,photo};
