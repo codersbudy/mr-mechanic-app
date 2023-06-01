@@ -1,3 +1,4 @@
+
 export default {
     CUSTOMER_SIGNIN: '/customer/signIn',
     CUSTOMER_SIGNUP: '/customer/signUp',
@@ -15,6 +16,7 @@ export default {
     SHOP_LIST: '/shop/nearByShop',
     ALL_SHOP: '/shop/getList',
     CATEGORY_LIST: '/category/categoryList',
+  GET_MECHANIC : '/booking/request'
     ADMIN_SIGNIN: '/admin/signIn',
     ALL_CUSTOMER: '/customer/getList',
     ADMIN_FORGOT_PASSWORD: '/admin/forgotPassword',
@@ -24,4 +26,5 @@ export default {
     ADMIN_SET_PASSWORD: '/admin/setPassword',
     ADMIN_VERIFY_OTP: '/admin/verifyOtp',
     UPDATE_SHOP_STATUS: '/shop/updateStatus'
+
 }

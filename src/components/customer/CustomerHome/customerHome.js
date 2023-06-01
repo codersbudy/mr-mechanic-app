@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShop } from "../../../redux-config/shopSlice";
 
@@ -6,16 +6,71 @@ import "./customerHome.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../navbar/Navbar";
 import Footer from "../../Footer/Footer";
+import api from "../../../WebApi/api";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function CustomerHome() {
   const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.shop);
   const { shopList } = useSelector(state => state.shop);
+  const { currentCustomer } = useSelector(state => state.customer);
   // const{}=useSelector(state=>state.categories);
-  const{categoryisLoading,categoryList}=useSelector(state=>state.categories)
+  const { categoryisLoading, categoryList } = useSelector(state => state.categories)
+  const [problem, setProblem] = useState("");
+  const [location, setLocation] = useState("");
+  const [vehicleName, setVehicalName] = useState("");
+  const [shopId, setShopId] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+
   const navigate = useNavigate();
+  // --------------------timer------------------------------------------
+  const [timer, setTimer] = useState(0);
 
+  useEffect(() => {
+    let interval;
 
+    if (timer > 0) {
+      interval = setInterval(() => {
+        let cart = document.getElementById(shopId);
+        let span = document.getElementById("span" + shopId);
+
+        cart.style.background = "black"
+        // span.innerHTML = 
+        setTimer(prevTimer => {
+
+          if ((prevTimer - 1) == 0) {
+            span.innerHTML = "Rejected"
+            cart.style.background = "red"
+          }
+          else {
+            let latest = prevTimer - 1;
+            const minutes = Math.floor(latest / 60);
+            const seconds = latest % 60;
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+            span.innerHTML = `${formattedMinutes}:${formattedSeconds}`;
+          }
+          return prevTimer - 1;
+        });
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timer]);
+
+  // const formatTime = (time) => {
+  //   const minutes = Math.floor(time / 60);
+  //   const seconds = time % 60;
+  //   const formattedMinutes = String(minutes).padStart(2, '0');
+  //   const formattedSeconds = String(seconds).padStart(2, '0');
+  //   return `${formattedMinutes}:${formattedSeconds}`;
+  // };
+
+  // -----------------------------------------------------------------------------
   var rating = (r) => {
     let count = <></>;
     for (let i = 0; i < Math.trunc(r); i++)
@@ -32,12 +87,102 @@ function CustomerHome() {
       }
     })
   }
+
+  // __________________________for Date___________________________________
+  var currentDate = () => {
+    var dateObj = new Date();
+    var day = dateObj.getDate();
+    var month = dateObj.getMonth() + 1;
+    var year = dateObj.getFullYear();
+
+    if (day < 10) {
+      day = "0" + day;
+    }
+    if (month < 10) {
+      month = "0" + month;
+    }
+    var formattedDate = day + "/" + month + "/" + year;
+    return formattedDate;
+  }
+  // __________________________for Time___________________________________
+  var currentTime = () => {
+    var dateObj = new Date();
+    var hours = dateObj.getHours();
+    var minutes = dateObj.getMinutes();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+
+    if (hours < 10) {
+      hours = "0" + hours;
+    }
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+    var formattedTime = hours + ":" + minutes + " " + ampm;
+    return formattedTime;
+  }
+  // __________________________for current Location_______________________
+  var currentLocation = () => {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+      } else {
+        reject("Geolocation is not supported by your browser.");
+      }
+      function successCallback(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        resolve(latitude + "," + longitude);
+      }
+      function errorCallback(error) {
+        reject("Error occurred while retrieving your location: " + error.message);
+      }
+    });
+  };
+  // Usage
+
+
+  //  console.log(currentLocation());
+
+  // ------------------------------------------------------------------------
+
+
+  // ------------------------------getMechanic-------------------------------------------
+  const getMechanic = async () => {
+
+    //  let cart =  document.getElementById(shopId);
+    //  let span =  document.getElementById("span"+shopId);
+
+    //   cart.style.background = "black"
+    //   span.innerHTML = formatTime(120);
+    console.log(shopId);
+    try {
+      var latlong = await currentLocation();
+      const response = await axios.post(api.GET_MECHANIC, { customerId: currentCustomer._id, shopId: shopId, problem: problem, location: location, vehicleName: vehicleName, date: currentDate(), time: currentTime(), latlong: latlong });
+      if (response.data.status) {
+        setTimer(120);
+        toast.success("Request Send successfully...");
+      }
+      
+    }
+    catch (err) {
+      if (err.response.status == 400)
+        toast.error("Bad request : 400");
+      else if (err.response.status == 500)
+        toast.error("Server Error : 500");
+    }
+  }
+  // -------------------------------------------------------------------------
+
+
   return <>
     <Navbar />
     <div className="container-fluid" style={{ marginTop: "-11vw" }}>
       <div className="container py-5">
-      <div className="row my-5 " >
+        <div className="row my-5 " >
           <div className=" col-sm-12 col-md-3 mt-5 p-2">
+            {/* <h1>Timer: {formatTime(timer)}</h1> */}
             <div class="dropdown">
               <button class="btn btn dropdown-toggle category" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Vehichle Type
@@ -49,7 +194,7 @@ function CustomerHome() {
                 </li>)} </ul>}
             </div>
           </div>
-        </div>
+        </div>
         {!isLoading && <div className="row justify-content-around px-3">
 
           {shopList.shop.map((shop, index) => <div
@@ -87,22 +232,59 @@ function CustomerHome() {
               <h6 className="card-title">{shop.shopName}</h6>
               <p className="card-text"><i class="text-warning  fa fa-phone" aria-hidden="true"></i> {shop.contact}</p>
 
-              <a href="#">
-                <button className="button-57" id="buttonID" role="button">
-                  <span id="spanFirst" className="text">
-                    <i className="fa fa-wrench p-1" aria-hidden="true" />
-                    Get Mechanic
-                  </span>
-                  <span id="spanLast">
-                    <i className="fa fa-paper-plane" aria-hidden="true" />
-                    Send Request
-                  </span>
-                </button>
-              </a>
+              {/* onClick={()=>{getMechanic(shop._id)}} */}
+              <button className="button-57" id={shop._id} role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={() => { setShopId(shop._id) }}>
+                <span id={"span" + shop._id} className="text" >
+                  <i className="fa fa-wrench p-1" aria-hidden="true" />
+                  Get Mechanic
+                </span>
+                <span id="spanLast">
+                  <i className="fa fa-paper-plane" aria-hidden="true" />
+                  <>Send Request</>
+                </span>
+              </button>
+
+
             </div>
           </div>)}
 
         </div>}
+        {/* ___________________Modal___________________ */}
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div className="px-4 py-2">
+
+                  <div className="div1">
+                    <input className="input1" type="text" name="problem" id="input" placeholder="Describe Here" onChange={(event) => setProblem(event.target.value)} />
+                    <label className="form-label label1">Describe Your Vehichle Problem</label>
+                  </div>
+
+                  <div className="div1 mt-3">
+                    <input className="input1" type="text" name="vehicalName" id="input" placeholder="Enter Vehical Name" onChange={(event) => setVehicalName(event.target.value)} />
+                    <label className="form-label label1">Enter Your Vehical Name</label>
+                  </div>
+
+                  <div className="div1 mt-3">
+                    <input className="input1" type="text" name="location" id="input" placeholder="Enter Your Location" onChange={(event) => setLocation(event.target.value)} />
+                    <label className="form-label label1">Enter Your current Location</label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" onClick={() => { getMechanic() }}>Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* ______________________________________ */}
         {isLoading && <>
           <center>
             <svg
@@ -160,7 +342,7 @@ function CustomerHome() {
       </div>
     </div>
 
-<Footer/>
+    <Footer />
   </>
 
 }

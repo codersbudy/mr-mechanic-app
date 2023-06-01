@@ -112,8 +112,27 @@ input[type="file"] {
   margin-left: -100px;
 }
 
-.file {
-  align-items: center;
+
+.viewProfile input{
+    border: none;
+    background-color:transparent    ;
+}
+.viewProfile input:focus{
+     outline: none;
+}
+#file{
+    width: 100px;
+    height: 100px;
+    opacity:0;
+    background-color: brown;
+    border-radius:50%;   
+    position: absolute; 
+    margin-left:-100px;
+  }
+
+
+.file{
+   align-items: center ;
 }
 .viewProfile input {
   color: #3cb0a2;
