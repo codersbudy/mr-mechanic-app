@@ -34,44 +34,44 @@ function AdminHome() {
           <ul>
             <li>
               <a onClick={() => changeMenu("dashboard")} >
-                <i className="fa fa-home fa-2x" />
+                <i className="fa-n fa fa-home fa-2x" />
                 <span className="nav-text">Dashboard</span>
               </a>
             </li>
             <li className="has-subnav">
               <a onClick={() => changeMenu("shop")}>
-                <i className="fa fa-globe fa-2x" />
+                <i className="fa-n fa fa-globe fa-2x" />
                 <span className="nav-text">Shops</span>
               </a>
             </li>
             <li className="has-subnav">
               <a onClick={() => changeMenu("shopkeeper")} >
-                <i className="fa fa-user-friends fa-2x" />
+                <i className="fa-n fa fa-user-friends fa-2x" />
                 <span className="nav-text">Shopkeepers</span>
               </a>
             </li>
             <li className="has-subnav">
               <a onClick={() => changeMenu("mechanic")}>
-                <i className="fa fa-cogs fa-2x" />
+                <i className="fa-n fa fa-cogs fa-2x" />
                 <span className="nav-text">Mechanics</span>
               </a>
             </li>
             <li>
               <a onClick={() => changeMenu("customer")}>
-                <i className="fa  fa-user-tie fa-2x" />
+                <i className="fa-n fa  fa-user-tie fa-2x" />
                 <span className="nav-text">Custemers</span>
               </a>
             </li>
             <li>
               <a href="#">
-                <i className="fa fa-book fa-2x" />
+                <i className="fa-n fa fa-book fa-2x" />
                 <span className="nav-text">Bookings</span>
               </a>
             </li>
 
             <li>
               <a href="#">
-                <i className="fa fa-map-marker fa-2x" />
+                <i className="fa-n fa fa-map-marker fa-2x" />
                 <span className="nav-text">Shop Map</span>
               </a>
             </li>
@@ -80,7 +80,7 @@ function AdminHome() {
           <ul className="logout">
             <li>
               <a href="#">
-                <i className="fa fa-power-off fa-2x" />
+                <i className="fa-n fa fa-power-off fa-2x" />
                 <span className="nav-text">Logout</span>
               </a>
             </li>

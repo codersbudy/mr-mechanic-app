@@ -4,14 +4,14 @@ import Footer from "../Footer/Footer";
 import Carousel from "../carousel/Carousel";
 import Navbar from "../navbar/Navbar";
 
-function 
-Home() {
+function
+    Home() {
     return <>
         <Navbar />
-       
+
         <Carousel />
-        <AreYou/>
-        <Footer />  
+        <AreYou />
+        <Footer />
     </>
 }
 

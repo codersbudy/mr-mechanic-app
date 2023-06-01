@@ -12,7 +12,7 @@
 .fa-2x {
   font-size: 2em;
 }
-.fa {
+.fa-n {
   position: relative;
   display: table-cell;
   width: 60px;
@@ -110,6 +110,7 @@ nav.main-menu.expanded {
 a:hover,
 a:focus {
   text-decoration: none;
+  color: black;
 }
 
 nav {

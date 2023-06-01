@@ -1,10 +1,10 @@
 import Navbar from "../../navbar/Navbar";
 
 
-function ShopkeeperHome(){
+function ShopkeeperHome() {
 
-    return<>
-    <Navbar/>
-     </>
+    return <>
+        <Navbar />
+    </>
 }
 export default ShopkeeperHome;

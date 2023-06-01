@@ -19,10 +19,12 @@ import ShopkeeperHome from "./components/Shopkeeper/shopkeeperHome/shopkeeperHom
 import ShopKeeperSignInAndSignUp from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import AdminHome from "./components/Admin/AdminHome/adminHome";
 import AdminForgotPassword from "./components/Admin/AdminHome/AdminForgot/AdminForgot";
-import Shop from "./components/Admin/shopList/shopList";
-import Shopkeeper from "./components/Admin/AdminHome/ShopkeeperList/shopkeeper";
-import Customer from "./components/Admin/AdminHome/customerList/customer";
-import Mechanic from "./components/Admin/AdminHome/mechanicList/mechanic";
+import ShopList from "./components/Admin/shopList/shopList";
+import ShopkeeperList from "./components/Admin/AdminHome/ShopkeeperList/shopkeeper";
+import CustomerList from "./components/Admin/AdminHome/customerList/customer";
+import MechanicList from "./components/Admin/AdminHome/mechanicList/mechanic";
+import ViewShopDetails from "./components/Admin/viewShopDetails/viewShopDetails";
+import BookingList from "./components/Admin/AdminHome/BookingList/BookingList";
 function App() {
   return <>
 
@@ -46,14 +48,15 @@ function App() {
 
 
       {/* ----admin */}
-      <Route path="/admin" element={<AdminHome />} />
+      <Route path="/admin" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
       <Route path="/adminForgotPassword" element={<AdminForgotPassword />} />
 
-      <Route path="/shopList" element={<Shop />} />
-      <Route path="/shopkeeperList" element={<Shopkeeper />} />
-      <Route path="/customerList" element={<Customer />} />
-      <Route path="/mechanicList" element={<Mechanic />} />
-
+      <Route path="/shopList" element={<ProtectedRoute><ShopList /></ProtectedRoute>} />
+      <Route path="/shopkeeperList" element={<ProtectedRoute><ShopkeeperList /></ProtectedRoute>} />
+      <Route path="/customerList" element={<ProtectedRoute><CustomerList /></ProtectedRoute>} />
+      <Route path="/mechanicList" element={<ProtectedRoute><MechanicList /></ProtectedRoute>} />
+      <Route path="/viewShopDetails" element={<ProtectedRoute><ViewShopDetails /></ProtectedRoute>} />
+      <Route path="/bookingList" element={<BookingList />} />
     </Routes>
   </>
 
