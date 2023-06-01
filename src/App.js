@@ -20,9 +20,6 @@ import ShopkeeperHome from "./components/Shopkeeper/shopkeeperHome/shopkeeperHom
 import  io from "socket.io-client";
 import { useEffect, useState } from "react";
 import Map from "./components/Shopkeeper/map/Map";
-
-const socket  = io("http://localhost:3000")
-
 import ShopKeeperSignInAndSignUp from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import AdminHome from "./components/Admin/AdminHome/adminHome";
 import AdminForgotPassword from "./components/Admin/AdminHome/AdminForgot/AdminForgot";
@@ -32,6 +29,12 @@ import CustomerList from "./components/Admin/AdminHome/customerList/customer";
 import MechanicList from "./components/Admin/AdminHome/mechanicList/mechanic";
 import ViewShopDetails from "./components/Admin/viewShopDetails/viewShopDetails";
 import BookingList from "./components/Admin/AdminHome/BookingList/BookingList";
+
+
+import MechanicHome from "./components/Mechanic/MechanicHome/mechanicHome";
+import MechanicHistory from "./components/Mechanic/BookingHistory/BookingHistory";
+const socket  = io("http://localhost:3000")
+
 
 
 function App() {
@@ -76,6 +79,11 @@ function App() {
    <Route path="/shopkeeperHome" element={<ShopkeeperHome/>}/>
    <Route path="/shopkeeperSigninSignup" element={<ShopKeeperSignInAndSignUp/>} />
 
+   
+   {/* ----------------------------------------  Mechanic Route------------------------------ */}
+   <Route path="/mechanicHome" element={<ProtectedRoute><MechanicHome/></ProtectedRoute>}/>
+   <Route path="/mechanicHistory" element={<ProtectedRoute><MechanicHistory/></ProtectedRoute>}/>
+
    {/* ----admin */}
    
       <Route path="/admin" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
@@ -89,7 +97,7 @@ function App() {
       <Route path="/bookingList" element={<BookingList />} />
    
   </Routes> 
-  <Map/>
+  {/* <Map/> */}
   </>
 
 }

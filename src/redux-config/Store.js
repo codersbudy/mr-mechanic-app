@@ -7,6 +7,7 @@ import mechanicSlice from "./mechanicSlice";
 import adminSlice from "./adminSlice";
 
 const store = configureStore({
+
     reducer: {
         customer: CustomerSlice,
         shopkeeper: shopkeeperSlice,

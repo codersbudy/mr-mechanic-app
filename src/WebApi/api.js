@@ -1,4 +1,5 @@
 
+
 export default {
     CUSTOMER_SIGNIN: '/customer/signIn',
     CUSTOMER_SIGNUP: '/customer/signUp',
@@ -12,7 +13,6 @@ export default {
     SHOPKEEPER_FORGOT_PASSWORD: '/shopkeeper/forgetPassword',
     SHOPKEEPER_SET_PASSWORD: '/shopkeeper/setPassword',
     SHOPKEEPER_VERIFY_OTP: '/shopkeeper/verifyOtp',
-    MECHANIC_SIGNIN: '/mechanic/signIn',
     SHOP_LIST: '/shop/nearByShop',
     ALL_SHOP: '/shop/getList',
     CATEGORY_LIST: '/category/categoryList',
@@ -26,5 +26,12 @@ export default {
     ADMIN_SET_PASSWORD: '/admin/setPassword',
     ADMIN_VERIFY_OTP: '/admin/verifyOtp',
     UPDATE_SHOP_STATUS: '/shop/updateStatus'
+   // -------------------------------------  Mechanic Apis---------------------------------
+       MECHANIC_SIGNIN:'/mechanic/signIn',
+       MECHANIC_FORGOT_PASSWORD:'/mechanic/forgotPassword',
+       MECHANIC_VERIFY_OTP:'/mechanic/tempraryPassword',
+       MECHANIC_SET_PASSWORD:'/mechanic/setPassword',
+       MECHANIC_BOOKING_HISTORY:'/booking/mechanicHistory',
+       MECHANIC_RATING:'/mechanicRating/getMechanicRating'
 
 }

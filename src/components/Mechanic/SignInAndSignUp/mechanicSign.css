@@ -1,0 +1,9 @@
+.box-content10 {
+    /* border: 2px solid rgb(0, 255, 145); */
+    height: var(--modal-height);
+    padding: 0px;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    border-radius: 17px;
+    /* justify-content: center; */
+}
