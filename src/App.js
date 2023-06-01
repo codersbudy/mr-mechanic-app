@@ -20,11 +20,14 @@ import ShopkeeperHome from "./components/Shopkeeper/shopkeeperHome/shopkeeperHom
 import  io from "socket.io-client";
 import { useEffect, useState } from "react";
 import Map from "./components/Shopkeeper/map/Map";
-
-const socket  = io("http://localhost:3000")
-
 import ShopKeeperSignInAndSignUp from "./components/Shopkeeper/SignInAndSignUp/signInAndSignUp";
 import AdminHome from "./components/Admin/AdminHome/adminHome";
+
+import MechanicHome from "./components/Mechanic/MechanicHome/mechanicHome";
+import MechanicHistory from "./components/Mechanic/BookingHistory/BookingHistory";
+const socket  = io("http://localhost:3000")
+
+
 
 function App() {
   const [message, setMessage] = useState('Jagmohan');
@@ -67,11 +70,16 @@ function App() {
    <Route path="/shopkeeperHome" element={<ShopkeeperHome/>}/>
    <Route path="/shopkeeperSigninSignup" element={<ShopKeeperSignInAndSignUp/>} />
 
+   
+   {/* ----------------------------------------  Mechanic Route------------------------------ */}
+   <Route path="/mechanicHome" element={<ProtectedRoute><MechanicHome/></ProtectedRoute>}/>
+   <Route path="/mechanicHistory" element={<ProtectedRoute><MechanicHistory/></ProtectedRoute>}/>
+
    {/* ----admin */}
    <Route path="/admin" element={ <AdminHome/>}/>
    
   </Routes> 
-  <Map/>
+  {/* <Map/> */}
   </>
   
 }

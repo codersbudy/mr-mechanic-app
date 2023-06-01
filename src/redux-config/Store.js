@@ -8,9 +8,9 @@ const store = configureStore({
     reducer:{
          customer: CustomerSlice,
          shopkeeper:shopkeeperSlice,
-         mechanic:mechanicSlice,
-         shop:shopSlice,
          categories:categorySlice,
+         shop:shopSlice,
+         mechanic:mechanicSlice,
     }
 }
 );

@@ -4,7 +4,8 @@ import { Navigate } from "react-router-dom";
 function ProtectedRoute({children}){
     const {currentShopkeeper}=useSelector((state)=>state.shopkeeper);
      const {currentCustomer}=useSelector(state=>state.customer);
-     if(currentCustomer||currentShopkeeper)
+     const {currentMechanic}=useSelector(state=>state.mechanic);
+     if(currentCustomer||currentShopkeeper||currentMechanic)
         return children
     return <Navigate to="/"/>
 }
