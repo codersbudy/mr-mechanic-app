@@ -10,6 +10,7 @@ import MechanicSignInAndSignUp from "../Mechanic/SignInAndSignUp/signInAndSignUp
 import { useDispatch, useSelector } from "react-redux";
 import CustomerProfile from "../customer/customerProfile/customerProfile";
 import { signOut } from "../../redux-config/customerSlice";
+import AdminSignIn from "../Admin/adminSignIn/AdminSignIn";
 
 function Navbar() {
     const dispatch = useDispatch();
@@ -41,7 +42,7 @@ function Navbar() {
 
 
     return <>
-
+        <AdminSignIn/>
         <CustomerSignInAndSignUp />
         <ShopKeeperSignInAndSignUp />
         <MechanicSignInAndSignUp />
@@ -114,7 +115,7 @@ function Navbar() {
                                         <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#customerModel">Customer</a></li>
                                         <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#shopKeeperModel" >Shopkeeper</a></li>
                                         <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#mechanicModel" href="#">Mechanic</a></li>
-                                        <li><a className="dropdown-item drop" href="#">Admin</a></li>
+                                        <li><a className="dropdown-item drop" data-bs-toggle="modal" data-bs-target="#adminModel">Admin</a></li>
                                     </ul>
                                 </li></>}
                         </ul>
