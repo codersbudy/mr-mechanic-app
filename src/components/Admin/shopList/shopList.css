@@ -63,7 +63,7 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-.btn {
+.btnAdmin {
   position: relative;
   outline: 0;
   border: 1px solid transparent;
@@ -85,7 +85,7 @@
   box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
 }
 
-.btn span {
+.btnAdmin span {
   height: 100%;
   width: 100%;
   display: flex;
@@ -95,31 +95,31 @@
   transition: all 0.4s ease;
 }
 
-.btn span:nth-child(2),
-.btn span:nth-child(3) {
+.btnAdmin span:nth-child(2),
+.btnAdmin span:nth-child(3) {
   position: absolute;
   top: 40px;
   color: #fff;
 }
 
-.btn span:nth-child(2) {
+.btnAdmin span:nth-child(2) {
   background-color: #488aec;
 }
 
-.btn span:nth-child(3) {
+.btnAdmin span:nth-child(3) {
   background-color: #488aec;
 }
 
-.btn:hover {
+.btnAdmin:hover {
   box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
 }
 
-.btn:hover span:nth-child(2),
-.btn:focus span:nth-child(3) {
+.btnAdmin:hover span:nth-child(2),
+.btnAdmin:focus span:nth-child(3) {
   top: 0;
 }
 
-.btn:focus {
+.btnAdmin:focus {
   box-shadow: none;
 }
 
@@ -158,8 +158,4 @@
   opacity: 1;
 }
 
-@media (min-width: 600px) {
-  body {
-    font-size: 18px;
-  }
-}
+

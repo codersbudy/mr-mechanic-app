@@ -34,20 +34,20 @@ function Sidebar() {
           <ul>
             <li>
               <a onClick={() => changeMenu("dashboard")} >
-                <i className="fa fa-home fa-2x" />
+                <i className="fa fa-home fa-2x faMechanic" />
                 <span className="nav-text">Dashboard</span>
               </a>
             </li>
 
             <li>
               <a onClick={() => changeMenu("customer")}>
-              <i class="fa fa-bell fa-2x" aria-hidden="true" />
+              <i class="fa fa-bell fa-2x faMechanic" aria-hidden="true" />
                 <span className="nav-text">Request</span>
               </a>
             </li>
             <li>
               <Link to="/mechanicHistory">
-                <i className="fa fa-history fa-2x" />
+                <i className="fa fa-history fa-2x faMechanic" />
                 <span className="nav-text">History</span>
               </Link>
             </li>
@@ -55,7 +55,7 @@ function Sidebar() {
           <ul className="logout">
             <li>
               <a href="#">
-                <i className="fa fa-power-off fa-2x" />
+                <i className="fa fa-power-off fa-2x faMechanic" />
                 <span className="nav-text">Logout</span>
               </a>
             </li>

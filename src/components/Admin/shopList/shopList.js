@@ -86,7 +86,7 @@ function ShopList() {
                 <div className="col-8 pl-4 mt-1">
                   <div className="row">
                     <div className="col-5">
-                      {shop.shopStatus == "Deactive" && <button onClick={() => updateStatus(shop._id, shop.shopStatus)} class="btn">
+                      {shop.shopStatus == "Deactive" && <button onClick={() => updateStatus(shop._id, shop.shopStatus)} class="btnAdmin">
                         <span>
                           Active
                         </span>
@@ -95,7 +95,7 @@ function ShopList() {
                           Done !
                         </span>
                       </button>}
-                      {shop.shopStatus == "accept" && <button onClick={() => updateStatus(shop._id, shop.shopStatus)} disabled class="btn">
+                      {shop.shopStatus == "accept" && <button onClick={() => updateStatus(shop._id, shop.shopStatus)} disabled class="btnAdmin">
                         <span>
                           Active
                         </span>
@@ -106,7 +106,7 @@ function ShopList() {
                       </button>}
                     </div>
                     <div className="col-5 pl-1">
-                      {shop.shopStatus == "Deactive" && <button onClick={() => updateStatus(shop._id, shop.shopStatus)} disabled class="btn bg-nm">
+                      {shop.shopStatus == "Deactive" && <button onClick={() => updateStatus(shop._id, shop.shopStatus)} disabled class="btnAdmin bg-nm">
                         <span>
                           Deactive
                         </span>
@@ -115,7 +115,7 @@ function ShopList() {
                           Done !
                         </span>
                       </button>}
-                      {shop.shopStatus == "accept" && <button onClick={() => updateStatus(shop._id, shop.shopStatus)} class="btn bg-nm">
+                      {shop.shopStatus == "accept" && <button onClick={() => updateStatus(shop._id, shop.shopStatus)} class="btnAdmin bg-nm">
                         <span>
                           Deactive
                         </span>
