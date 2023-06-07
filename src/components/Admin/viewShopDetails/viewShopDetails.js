@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import './viewShopDetails.css'
+// import './viewShopDetails.css'
 function ViewShopDetails() {
   const { state } = useLocation();
   var shop = state.shop;

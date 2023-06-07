@@ -15,29 +15,19 @@
   font-family: Montserrat;
   font-weight: bold;
   margin-top: 5px;
-  /* background-color: red; */
 }
 .style2 {
   text-align: center;
   font: black;
   font-size: 15px;
   font-family: Montserrat;
-  /* font-weight: bold; */
 }
 .card-border-top {
   height: 127px;
   width: 120px;
-  /* background-color: blue; */
   margin: auto;
 }
 
-/* .profilecard .card-border-top {
-  width: 60%;
-  height: 3%;
-  background: #42c8b7;
-  margin: auto;F
-  border-radius: 0px 0px 15px 15px;
-} */
 
 .profilecard span {
   font-weight: 600;
@@ -51,8 +41,7 @@
   height: 100%;
   width: 100%;
   margin-top: 10px;
-  /* position: absolute; */
-  /* margin-top: -30%; */
+  
 }
 .profilecard .job {
   font-weight: 400;
@@ -77,7 +66,6 @@
   margin: auto;
   border-radius: 8px;
   border: none;
-  /* margin-top: 30px; */
   background: #42c8b7;
   color: white;
   font-weight: 600;

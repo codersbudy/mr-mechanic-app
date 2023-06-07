@@ -1,18 +1,14 @@
 .main-dashboard {
-    /* margin: 50px; */
     padding: 15px;
-    /* background-color: aquamarine; */
     width: 100%;
     height: auto;
   }
   
-  /* @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css); */
-  
-  /* @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300); */
+
   .fa-2x {
     font-size: 2em;
   }
-  .fa {
+  .faMechanic {
     position: relative;
     display: table-cell;
     width: 60px;
@@ -22,7 +18,7 @@
     font-size: 20px;
     color: #42c8b7;
   }
-  .fa:hover {
+  .faMechanic:hover {
     color: black;
   }
   .main-menu:hover,

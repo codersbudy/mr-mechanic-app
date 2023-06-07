@@ -29,12 +29,10 @@ import CustomerList from "./components/Admin/AdminHome/customerList/customer";
 import MechanicList from "./components/Admin/AdminHome/mechanicList/mechanic";
 import ViewShopDetails from "./components/Admin/viewShopDetails/viewShopDetails";
 import BookingList from "./components/Admin/AdminHome/BookingList/BookingList";
-
-
-
 import MechanicHome from "./components/Mechanic/MechanicHome/mechanicHome";
 import MechanicHistory from "./components/Mechanic/BookingHistory/BookingHistory";
-const socket  = io("http://localhost:3000")
+
+const socket = io("http://localhost:3000")
 
 
 
@@ -79,33 +77,15 @@ function App() {
       {/* -----------------------------------------shop keeper functionality---------------- */}
       <Route path="/shopkeeperForgotPassword" element={<ShopkeeperForgotPassword />} />
       <Route path="/shopkeeperHome" element={<ShopkeeperHome />} />
+      <Route path="/shopkeeperSigninSignup" element={<ShopKeeperSignInAndSignUp />} />
 
-    </Routes>
-    {/* <Map/> */}
 
-    <Route path="/" element={<Home/>}/>
-    <Route path="/forgotPassword" element={<ForgotPassword/>} />
-    <Route path="/home" element={<CustomerHome/>}/> 
-    <Route path="/verifyOtp" element={<ProtectedRoute><VerifyPassword/></ProtectedRoute>} /> 
-    <Route path="/setPassword" element={<ProtectedRoute><SetPassword/></ProtectedRoute>}/>
-    <Route path="/selectCity" element={<ProtectedRoute> <SelectCity/></ProtectedRoute>}/>
-    <Route path="/customerBookingHistory" element={<ProtectedRoute><CustomerBookingHistory/></ProtectedRoute>}/>
-    <Route path="/customerHome" element={<ProtectedRoute><CustomerHome/></ProtectedRoute>}/>
-    <Route path="/viewBookingHistory" element={<ProtectedRoute><ViewBookingHistory/></ProtectedRoute>}/>
-    <Route path="/customerViewShop" element={<ViewShop/>} />
+      {/* ----------------------------------------  Mechanic Route------------------------------ */}
+      <Route path="/mechanicHome" element={<ProtectedRoute><MechanicHome /></ProtectedRoute>} />
+      <Route path="/mechanicHistory" element={<ProtectedRoute><MechanicHistory /></ProtectedRoute>} />
 
-   {/* -----------------------------------------shop keeper functionality---------------- */}
-   <Route path="/shopkeeperForgotPassword" element={<ShopkeeperForgotPassword/>}/>
-   <Route path="/shopkeeperHome" element={<ShopkeeperHome/>}/>
-   <Route path="/shopkeeperSigninSignup" element={<ShopKeeperSignInAndSignUp/>} />
+      {/* ----admin */}
 
-   
-   {/* ----------------------------------------  Mechanic Route------------------------------ */}
-   <Route path="/mechanicHome" element={<ProtectedRoute><MechanicHome/></ProtectedRoute>}/>
-   <Route path="/mechanicHistory" element={<ProtectedRoute><MechanicHistory/></ProtectedRoute>}/>
-
-   {/* ----admin */}
-   
       <Route path="/admin" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
       <Route path="/adminForgotPassword" element={<AdminForgotPassword />} />
 
@@ -115,9 +95,9 @@ function App() {
       <Route path="/mechanicList" element={<ProtectedRoute><MechanicList /></ProtectedRoute>} />
       <Route path="/viewShopDetails" element={<ProtectedRoute><ViewShopDetails /></ProtectedRoute>} />
       <Route path="/bookingList" element={<BookingList />} />
-   
-  </Routes> 
-  {/* <Map/> */}
+
+    </Routes>
+    {/* <Map/> */}
 
   </>
 
