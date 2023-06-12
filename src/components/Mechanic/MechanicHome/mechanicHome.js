@@ -10,10 +10,10 @@ function MechanicHome() {
     const [mechanicRating, setMechanicRating] = useState("0");
     const { currentMechanic } = useSelector(state => state.mechanic);
     const { mechanicBookingHistory } = useSelector(state => state.mechanic);
-    const [possitiveRating,setPossitiveRating]=useState(null);
-    const [negativeRating,setNegetiveRating]=useState(null);
+    const [possitiveRating, setPossitiveRating] = useState(null);
+    const [negativeRating, setNegetiveRating] = useState(null);
 
-//   daily booking data 
+    //   daily booking data 
 
     function calculateCurrentDayStats() {
         const currentDate = new Date(); // Get current date
@@ -59,24 +59,24 @@ function MechanicHome() {
                 const response = await axios.post(api.MECHANIC_RATING, { mechanicId: "647492f6b17b8642e9326d5a" });
                 const rating = response.data; // Assuming the rating value is directly returned in the response data
                 setMechanicRating(rating);
-                let posCount=0;
-                let negCount=0;
-              
-                for(let i=0;i<rating.rating.length;i++){
-                     if(rating.rating[i].rating>3)
-                       posCount++;
-                      else 
-                       negCount++;
+                let posCount = 0;
+                let negCount = 0;
+
+                for (let i = 0; i < rating.rating.length; i++) {
+                    if (rating.rating[i].rating > 3)
+                        posCount++;
+                    else
+                        negCount++;
                 }
-            
+
                 const positivePercentage = Math.floor((posCount * 100) / rating.rating.length);
                 const negativePercentage = Math.floor((negCount * 100) / rating.rating.length);
-                
+
                 setPossitiveRating(positivePercentage > 50 ? positivePercentage + 1 : positivePercentage);
                 setNegetiveRating(negativePercentage > 50 ? negativePercentage + 1 : negativePercentage);
-                
-                    } catch (error) {   
-               
+
+            } catch (error) {
+
             }
         };
         fetchMechanicRating();
@@ -84,9 +84,12 @@ function MechanicHome() {
 
     return <>
         <Sidebar />
-        <div className='dashboard' style={{ marginTop: "7vw" }}>
+        <div className='dashboard'>
             <div className="col-md-10 ">
-                <div className="row ">
+                <h4 style={{textAlign:"center"}}>  <i class="fa-solid fa-store"></i>
+                    &nbsp;
+                    {currentMechanic.shopId.shopName}</h4>
+                <div className="row " style={{ marginTop: "7vw" }}>
                     <div className='col-1' style={{ marginLeft: "3vw" }}></div>
                     <div className="col-xl-5 col-lg-6 " style={{ cursor: "pointer" }}>
                         <div className="card l-bg-cherry boxMechanic">

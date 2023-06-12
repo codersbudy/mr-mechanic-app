@@ -270,3 +270,10 @@ input[type="file"] {
 .carousel-dark .carousel-indicators [data-bs-target] {
   background-color: #42c8b7;
 }
+
+
+.shopName{
+  color:#42c8b7 ;
+  /* font-size: bold; */
+  font-weight: bold;
+}

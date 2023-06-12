@@ -18,7 +18,7 @@ function Navbar() {
     const { currentShopkeeper } = useSelector(state => state.shopkeeper);
     const { currentMechanic } = useSelector(state => state.mechanic);
     const navigete = useNavigate();
-
+    console.log(currentMechanic);
     function getLocation() {
         if (navigator.geolocation)
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -36,13 +36,13 @@ function Navbar() {
             }
         }
     }
-    var signOutfun = ()=>{
+    var signOutfun = () => {
         dispatch(signOut())
     }
 
 
     return <>
-        <AdminSignIn/>
+        <AdminSignIn />
         <CustomerSignInAndSignUp />
         <ShopKeeperSignInAndSignUp />
         <MechanicSignInAndSignUp />
@@ -76,7 +76,7 @@ function Navbar() {
                                 <CustomerProfile />
                             </>}
                             {currentCustomer && console.log(setTimeout(getLocation, 3000))}
-                             {/* {currentMechanic && <><li className="nav-item ">
+                            {/* {currentMechanic && <><li className="nav-item ">
                                 <Link to="/" className="nav-link navOption" aria-current="page" >Home</Link>
                             </li>
                                 <li className="nav-item">
@@ -97,6 +97,37 @@ function Navbar() {
                                         <li><a className="dropdown-item drop" href="#">Admin</a></li>
                                     </ul>
                                 </li></>} */}
+                            {currentMechanic &&
+
+                                <>
+                                    {/* <nav class="navbar navbar-light bg-light">
+                                        <a class="navbar-brand" href="#"></a>
+                                    </nav> */}
+                                   
+                                    <li className="nav-item ">
+                                        <Link className="nav-link navOption" aria-current="page" to="/mechanicHome">
+                                            Home
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="nav-link navOption" to="/mechanicHistory">
+                                            History
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item shopName" >
+                                        <p className="nav-link navOption" aria-current="page">
+                                      
+                                        <i class="fa fa-user" aria-hidden="true"></i> &nbsp;
+                                             {currentMechanic.mechanicname}
+
+                                        </p>
+                                    </li>
+                
+
+                                </>
+
+
+                            }
                             {!currentCustomer && !currentShopkeeper && !currentMechanic && <><li className="nav-item ">
                                 <Link to="/" className="nav-link navOption" aria-current="page" >Home</Link>
                             </li>
