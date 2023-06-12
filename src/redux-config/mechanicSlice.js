@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../WebApi/api";
 import axios from 'axios'
 export const fatchMechanicBookingHistory=createAsyncThunk("fetchBookingHistory",async(mechanicId)=>{
-    window.alert(mechanicId);
     let response=await axios.post(api.MECHANIC_BOOKING_HISTORY,{mechanicId:"647492f6b17b8642e9326d5a"});
     console.log("response ke niche");
     console.log(response);

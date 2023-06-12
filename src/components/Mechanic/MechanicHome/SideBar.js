@@ -4,6 +4,8 @@ import './Sidebar.css'
 import api from '../../../WebApi/api';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../navbar/Navbar';
+import { mechanicSignOut } from '../../../redux-config/mechanicSlice';
+import { useDispatch } from 'react-redux';
 // import Dashboard from '../dashboard/dashboard';
 // import Shop from '../shopList/shopList';
 // import Customer from './customerList/customer';
@@ -11,11 +13,15 @@ import Navbar from '../../navbar/Navbar';
 // import Shopkeeper from './ShopkeeperList/shopkeeper';
 
 function Sidebar() {
+  const dispatch=useDispatch();
   const [menu, setMenu] = useState("dashboard");
 
   const changeMenu = (currentMenu) => {
     setMenu(currentMenu)
   }
+  var signout = ()=>{
+    dispatch(mechanicSignOut())
+}
   return <>
 
     <>
@@ -54,9 +60,9 @@ function Sidebar() {
           </ul>
           <ul className="logout">
             <li>
-              <a href="#">
+              <a href="#" onClick={signout}>
                 <i className="fa fa-power-off fa-2x faMechanic" />
-                <span className="nav-text">Logout</span>
+                <span className="nav-text" >Logout</span>
               </a>
             </li>
           </ul>

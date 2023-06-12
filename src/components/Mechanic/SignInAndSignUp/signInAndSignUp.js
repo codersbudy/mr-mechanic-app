@@ -72,12 +72,9 @@ function MechanicSignIn() {
 
         try {
             event.preventDefault();
-            window.alert("inner handle submit")
             const response = await axios.post(api.MECHANIC_SIGNIN, { contact, password });
-            window.alert("api chali")
             toast.success("Log In successfully...");
             dispatch(setMechanic(response.data.mechanic));
-            // console.log(response.data.mechanic._id);
              dispatch(fatchMechanicBookingHistory(response.data.mechanic._id));
              navigate("/mechanicHome");
         }
@@ -96,7 +93,6 @@ function MechanicSignIn() {
             }
             let response = await axios.post(api.CUSTOMER_VERIFY_REGISTRATION_OTP, {contact})
             setCustomerRegistration(mechanicData);
-            console.log(response);
             setVerifyOtp(response.data.otp);
             toast.success("Otp sent success");
             funReturn();
@@ -116,12 +112,8 @@ function MechanicSignIn() {
         try {
             event.preventDefault();
             const response = await axios.post(api.MECHANIC_FORGOT_PASSWORD, { contact });
-            window.alert("forget in api")
-            console.log(response)
             dispatch(setMechanic(response.data.mechanic))
-            console.log("--------------------------------------")
 
-            console.log(currentMechanic);
             setVerifyPasswordFlag(true);
             setForgetPasswordFlag1(false);
             funReturn();
@@ -170,7 +162,6 @@ function MechanicSignIn() {
             let tempraryPassword = pin1 + "" + pin2 + "" + pin3 + "" + pin4 + "" + pin5 + "" + pin6;
             event.preventDefault();
             if (currentMechanic) {
-                window.alert(tempraryPassword);
                 let contact = currentMechanic.contact;
                 const response = await axios.post(api.MECHANIC_VERIFY_OTP, { contact, tempraryPassword });
                 setSetPasswordFlag(true);
@@ -180,8 +171,6 @@ function MechanicSignIn() {
             else{
                 if(varifyOtp==tempraryPassword){
                     const response=await axios.post(api.CUSTOMER_SIGNUP,customerRegistration);
-                    console.log(response);
-                    window.alert("sign up ki api chli ")
                     toast.success("Registration Successs");
                     setVerifyPasswordFlag(false);
                     funReturn();
@@ -195,7 +184,6 @@ function MechanicSignIn() {
             }
         }
         catch (err) {
-            console.log(err);
             toast.error("Oops! wrong otp");
         }
     }
@@ -206,11 +194,8 @@ function MechanicSignIn() {
             event.preventDefault();
             if (currentMechanic) {
                 let contact = currentMechanic.contact
-               window.alert(password);
                 let response = await axios.post(api.MECHANIC_SET_PASSWORD, { contact, password });
                 toast.success("successfully password set");
-                console.log("________________________________________")
-                console.log(response);
                 setSetPasswordFlag(false);
                 dispatch(mechanicSignOut());
                 funReturn();
@@ -223,7 +208,6 @@ function MechanicSignIn() {
             }
         }
         catch (err) {
-            console.log(err);
             toast.error("Oops something went wrong");
         }
     }
